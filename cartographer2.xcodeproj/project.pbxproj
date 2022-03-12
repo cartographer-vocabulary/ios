@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1BA97A4027D40BA900598AAE /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA97A3F27D40BA900598AAE /* SidebarView.swift */; };
 		1BAF863D27D40530009A10C6 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF863C27D40530009A10C6 /* Tests_iOS.swift */; };
 		1BAF863F27D40530009A10C6 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF863E27D40530009A10C6 /* Tests_iOSLaunchTests.swift */; };
 		1BAF864927D40530009A10C6 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF864827D40530009A10C6 /* Tests_macOS.swift */; };
@@ -21,6 +22,10 @@
 		1BAF865327D40530009A10C6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862527D4052F009A10C6 /* Persistence.swift */; };
 		1BAF865427D40530009A10C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BAF862627D40530009A10C6 /* Assets.xcassets */; };
 		1BAF865527D40530009A10C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BAF862627D40530009A10C6 /* Assets.xcassets */; };
+		1BBF840227DC4BF700C0069B /* SidebarListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840127DC4BF700C0069B /* SidebarListsView.swift */; };
+		1BBF840827DCDAA800C0069B /* SidebarListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840727DCDAA800C0069B /* SidebarListRow.swift */; };
+		1BBF840B27DCDB5800C0069B /* VocabListHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */; };
+		1BBF840C27DCDB5800C0069B /* VocabListHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1BA97A3F27D40BA900598AAE /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		1BAF862227D4052F009A10C6 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		1BAF862327D4052F009A10C6 /* cartographer2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartographer2App.swift; sourceTree = "<group>"; };
 		1BAF862427D4052F009A10C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +61,9 @@
 		1BAF864427D40530009A10C6 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BAF864827D40530009A10C6 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		1BAF864A27D40530009A10C6 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		1BBF840127DC4BF700C0069B /* SidebarListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarListsView.swift; sourceTree = "<group>"; };
+		1BBF840727DCDAA800C0069B /* SidebarListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarListRow.swift; sourceTree = "<group>"; };
+		1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabListHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +115,8 @@
 				1BAF862327D4052F009A10C6 /* cartographer2App.swift */,
 				1BAF862427D4052F009A10C6 /* ContentView.swift */,
 				1BAF862527D4052F009A10C6 /* Persistence.swift */,
+				1BBF840D27DD59C000C0069B /* Sidebar */,
+				1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */,
 				1BAF862627D40530009A10C6 /* Assets.xcassets */,
 				1BAF862127D4052F009A10C6 /* cartographer2.xcdatamodeld */,
 			);
@@ -147,6 +158,16 @@
 				1BAF864A27D40530009A10C6 /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		1BBF840D27DD59C000C0069B /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				1BA97A3F27D40BA900598AAE /* SidebarView.swift */,
+				1BBF840127DC4BF700C0069B /* SidebarListsView.swift */,
+				1BBF840727DCDAA800C0069B /* SidebarListRow.swift */,
+			);
+			path = Sidebar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,7 +330,11 @@
 			files = (
 				1BAF864E27D40530009A10C6 /* cartographer2App.swift in Sources */,
 				1BAF865227D40530009A10C6 /* Persistence.swift in Sources */,
+				1BA97A4027D40BA900598AAE /* SidebarView.swift in Sources */,
+				1BBF840B27DCDB5800C0069B /* VocabListHelpers.swift in Sources */,
+				1BBF840827DCDAA800C0069B /* SidebarListRow.swift in Sources */,
 				1BAF864C27D40530009A10C6 /* cartographer2.xcdatamodeld in Sources */,
+				1BBF840227DC4BF700C0069B /* SidebarListsView.swift in Sources */,
 				1BAF865027D40530009A10C6 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BAF864F27D40530009A10C6 /* cartographer2App.swift in Sources */,
+				1BBF840C27DCDB5800C0069B /* VocabListHelpers.swift in Sources */,
 				1BAF865327D40530009A10C6 /* Persistence.swift in Sources */,
 				1BAF864D27D40530009A10C6 /* cartographer2.xcdatamodeld in Sources */,
 				1BAF865127D40530009A10C6 /* ContentView.swift in Sources */,
