@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B94A09A27E55D3C00111D9D /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B94A09927E55D3C00111D9D /* ListView.swift */; };
 		1BA97A4027D40BA900598AAE /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA97A3F27D40BA900598AAE /* SidebarView.swift */; };
 		1BAF863D27D40530009A10C6 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF863C27D40530009A10C6 /* Tests_iOS.swift */; };
 		1BAF863F27D40530009A10C6 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF863E27D40530009A10C6 /* Tests_iOSLaunchTests.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B94A09927E55D3C00111D9D /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		1BA97A3F27D40BA900598AAE /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		1BAF862227D4052F009A10C6 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		1BAF862327D4052F009A10C6 /* cartographer2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartographer2App.swift; sourceTree = "<group>"; };
@@ -98,6 +100,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B94A09827E55CDB00111D9D /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				1B94A09927E55D3C00111D9D /* ListView.swift */,
+			);
+			path = Lists;
+			sourceTree = "<group>";
+		};
 		1BAF861B27D4052E009A10C6 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +127,7 @@
 				1BAF862527D4052F009A10C6 /* Persistence.swift */,
 				1BBF840D27DD59C000C0069B /* Sidebar */,
 				1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */,
+				1B94A09827E55CDB00111D9D /* Lists */,
 				1BAF862627D40530009A10C6 /* Assets.xcassets */,
 				1BAF862127D4052F009A10C6 /* cartographer2.xcdatamodeld */,
 			);
@@ -336,6 +347,7 @@
 				1BAF864C27D40530009A10C6 /* cartographer2.xcdatamodeld in Sources */,
 				1BBF840227DC4BF700C0069B /* SidebarListsView.swift in Sources */,
 				1BAF865027D40530009A10C6 /* ContentView.swift in Sources */,
+				1B94A09A27E55D3C00111D9D /* ListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

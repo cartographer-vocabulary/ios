@@ -9,15 +9,23 @@ import SwiftUI
 
 struct SidebarListRow: View {
     let list:VocabList
+    @State var editSheet = false
     var body: some View {
-        Label(list.title ?? "Untitled Group", systemImage: list.icon ?? "rectangle.3.offgrid")
+        Label(list.wrappedTitle, systemImage: list.wrappedIcon)
             .contextMenu {
+                Button {
+                    editSheet = true
+                } label: {
+                    Label("Edit", systemImage: "pencil")
+                }
                 Button (role:.destructive){
-                    //                                    deleteItems(list: list)
                     list.delete()
                 } label: {
                     Label("Delete", systemImage: "trash")
                 }
+            }
+            .sheet(isPresented: $editSheet) {
+                Text("hello")
             }
     }
 }
