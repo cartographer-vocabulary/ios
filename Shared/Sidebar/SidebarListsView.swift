@@ -20,29 +20,34 @@ struct SidebarListsView: View {
         })
     }
     
+    @State var showingAddSheet = false
+    
     var body: some View {
         Section(header:
             HStack{
                 Text("Lists")
                 Button {
-                    let list = VocabList(context: viewContext)
-                    list.save()
+                    showingAddSheet = true
                 } label: {
                     Image(systemName: "plus.circle")
                 }
+                #if os(macOS)
+                .buttonStyle(.plain)
+                #endif
             }
-        ){
-            ForEach(topLevelLists) { list in
-                NavigationLink {
-                    ListView(list: list)
-                } label: {
-                    SidebarListRow(list: list)
-                }
-            }
-            .onMove { IndexSet, Int in
                 
+            .sheet(isPresented: $showingAddSheet) {
+                ListEditView(showingView: $showingAddSheet)
+            }
+            
+            
+        ){
+            ForEach(lists, id: \.self) { list in
+                SidebarListRow(list: list)
             }
         }
+         
+            
     }
     
 }

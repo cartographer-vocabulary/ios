@@ -8,25 +8,30 @@
 import SwiftUI
 
 struct SidebarListRow: View {
-    let list:VocabList
+    @ObservedObject var list:VocabList
     @State var editSheet = false
     var body: some View {
-        Label(list.wrappedTitle, systemImage: list.wrappedIcon)
-            .contextMenu {
-                Button {
-                    editSheet = true
-                } label: {
-                    Label("Edit", systemImage: "pencil")
-                }
-                Button (role:.destructive){
-                    list.delete()
-                } label: {
-                    Label("Delete", systemImage: "trash")
-                }
+        NavigationLink{
+            ListView(list: list)
+        } label: {
+            Label(list.wrappedTitle, systemImage: list.wrappedIcon)
+               
+        }
+        .contextMenu {
+            Button {
+                editSheet = true
+            } label: {
+                Label("Edit", systemImage: "pencil")
             }
-            .sheet(isPresented: $editSheet) {
-                Text("hello")
+            Button (role:.destructive){
+                list.delete()
+            } label: {
+                Label("Delete", systemImage: "trash")
             }
+        }
+        .sheet(isPresented: $editSheet) {
+            ListEditView(showingView: $editSheet,list: list)
+        }
     }
 }
 

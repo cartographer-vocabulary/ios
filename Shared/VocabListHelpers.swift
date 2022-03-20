@@ -7,11 +7,23 @@
 
 extension VocabList {
     var wrappedTitle: String {
-        title ?? "Untitled List"
+        get {
+            title ?? "Untitled List"
+        }
+        set (title) {
+            if title != "" {
+                self.title = title
+            }
+        }
     }
     
     var wrappedIcon: String {
-        icon ?? "rectangle.3.offgrid"
+        get {
+            icon ?? "rectangle.3.offgrid"
+        }
+        set (icon) {
+            self.icon = icon
+        }
     }
     
     func save(to parent:VocabList? = nil){

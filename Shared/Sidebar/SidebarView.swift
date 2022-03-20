@@ -16,7 +16,7 @@ struct SidebarView: View {
                 } label: {
                     Label("Today", systemImage: "star.fill")
                 }
-
+                
                 SidebarListsView()
             }
         }
