@@ -33,6 +33,7 @@ struct ContentView: View {
                 }
             Text("Select an item")
         }
+        .navigationViewStyle(.columns)
         
     }
 

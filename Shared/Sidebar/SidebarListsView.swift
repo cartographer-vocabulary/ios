@@ -42,7 +42,7 @@ struct SidebarListsView: View {
             
             
         ){
-            ForEach(lists, id: \.self) { list in
+            ForEach(topLevelLists, id: \.self) { list in
                 SidebarListRow(list: list)
             }
         }

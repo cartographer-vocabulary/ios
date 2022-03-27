@@ -13,30 +13,26 @@ struct ListEditView: View {
 
     var list:VocabList?
     
+    var inputTitle: String?
+    var inputIcon: String?
+    var parentList: VocabList?
+    
     @State var listTitle = ""
     @State var listIcon = "rectangle.3.offgrid"
     
     var body: some View {
-        ScrollView{
-            VStack(alignment: .center, spacing: 20) {
-                Image(systemName: listIcon)
-                    .font(.largeTitle)
-                    .padding()
-                    .frame(width: 80, height: 80)
-                    .background(.ultraThinMaterial)
-                    .cornerRadius(50)
-                    
-                TextField("List title", text: $listTitle, onCommit: {
+        Form{
+            Section{
+                TextField("Title", text: $listTitle, onCommit: {
                     save()
                 })
                     .font(.title)
-                
+            }
+            Section{
                 IconPickerView(icon: $listIcon)
             }
-            .padding(20)
-            
-            .foregroundColor(.primary)
         }
+        .foregroundColor(.primary)
         .toolbar {
             ToolbarItem(placement: .cancellationAction){
                 Button {
@@ -62,9 +58,15 @@ struct ListEditView: View {
                 listIcon = list.wrappedIcon
                 listTitle = list.wrappedTitle
             }
+            if let title = inputTitle {
+                listTitle = title
+            }
+            if let icon = inputIcon {
+                listIcon = icon
+            }
         }
         #if os(macOS)
-        .frame(minWidth: 300, maxWidth: 300, minHeight: 300,idealHeight: 400)
+        .frame(minWidth: 200, idealWidth: 400, maxWidth: 600, minHeight: 300,idealHeight: 400, maxHeight: 600)
         #else
         .wrapNavigation()
         #endif
@@ -75,12 +77,13 @@ struct ListEditView: View {
         if let list = list {
             list.wrappedIcon = listIcon
             list.wrappedTitle = listTitle
-            list.save()
+            list.save(to:parentList)
         } else {
             let list = VocabList(context: viewContext)
+            list.save(to:parentList)
             list.wrappedIcon = listIcon
             list.wrappedTitle = listTitle
-            list.save()
+            
         }
         
     }

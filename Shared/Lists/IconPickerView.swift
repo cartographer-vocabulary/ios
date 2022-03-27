@@ -137,5 +137,6 @@ struct IconPickerView: View {
             }
             .animation(.easeInOut(duration: 0.2), value: self.icon)
         }
+        .padding([.top,.bottom])
     }
 }

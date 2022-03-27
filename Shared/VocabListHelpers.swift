@@ -26,10 +26,22 @@ extension VocabList {
         }
     }
     
+    func expand() {
+        self.isExpanded = true
+    }
+    
+    func navigate() {
+        parentList?.expand()
+        self.isOpen = true
+        save()
+    }
+    
+    
+    
     func save(to parent:VocabList? = nil){
         let viewContext = PersistenceController.shared.container.viewContext
-        if let parentList = parentList {
-            self.parentList = parentList
+        if let parent = parent {
+            self.parentList = parent
         }
         try? viewContext.save()
     }

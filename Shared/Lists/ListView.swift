@@ -8,17 +8,61 @@
 import SwiftUI
 
 struct ListView: View {
-    var list:VocabList
+    @ObservedObject var list:VocabList
+    
+    
+    var childLists:[VocabList] {
+        if let lists = list.lists {
+            return lists.compactMap { list in
+                return list as? VocabList
+            }
+        } else {
+            return []
+        }
+    }
+    
+    var childCards:[Card]{
+        if let cards = list.cards {
+            return cards.compactMap { card in
+                return card as? Card
+            }
+        } else {
+            return []
+        }
+    }
+    
+    @State var showingAddList = false
+    @State var showingAddCard = false
+    
     var body: some View {
-        List {
-            VStack(alignment: .leading){
-                Text("hello")
-                    .font(.title)
-                Text("definition lreom ipsum the quick brown fox jumped into the quick brown fox")
-                    .font(.body)
-            }.padding([.top,.bottom])
-            
-            Text("hello")
+        List{
+            Section{
+                Button{
+                    showingAddList = true
+                } label: {
+                    Label("Add List", systemImage: "plus")
+                }
+                .sheet(isPresented: $showingAddList) {
+                    ListEditView(showingView: $showingAddList,parentList: list)
+                }
+                ForEach(childLists, id: \.self){list in
+                    ListFolderView(list:list)
+                }
+            }
+            Section{
+                Button{
+                    showingAddCard = true
+                } label: {
+                    Label("Add Card", systemImage: "plus")
+                }
+                .sheet(isPresented: $showingAddCard) {
+                    CardEditView(showingView: $showingAddCard,parentList: list)
+                }
+                ForEach(childCards, id: \.self){card in
+                    CardView(card: card)
+                }
+            }
+
         }
         .navigationTitle(list.wrappedTitle)
     }
@@ -29,3 +73,4 @@ struct ListView_Previews: PreviewProvider {
         ListView(list:VocabList())
     }
 }
+
