@@ -5,6 +5,8 @@
 //  Created by Tony Zhang on 3/26/22.
 //
 
+import Foundation
+
 extension Card {
     var wrappedWord:String {
         get {
@@ -12,7 +14,7 @@ extension Card {
         }
         set (word) {
             if word != "" {
-                self.word = word
+                self.word = word.trimmingCharacters(in: .whitespacesAndNewlines)
             }
         }
     }
@@ -22,9 +24,48 @@ extension Card {
         }
         set (definition) {
             if definition != "" {
-                self.definition = definition
+                self.definition = definition.trimmingCharacters(in: .whitespacesAndNewlines)
             }
         }
+    }
+    
+    var wrappedLastSeen: Date {
+        get {
+            lastSeen ?? Date()
+        }
+        set (date){
+            lastSeen = date
+        }
+    }
+    
+  
+    
+    func seen(){
+        wrappedLastSeen = Date()
+        save()
+    }
+    
+    enum Familiarity: Int64 {
+        case good = 2
+        case medium = 1
+        case bad = 0
+        case unset = -1
+    }
+
+
+    var familiarity:Familiarity {
+        get {
+            return Familiarity(rawValue: rawFamiliarity) ?? .unset
+        }
+        set (familiarity){
+            rawFamiliarity = familiarity.rawValue
+        }
+    }
+    
+    func familiarity(_ familiarity:Familiarity){
+        self.familiarity = familiarity
+        seen()
+        save()
     }
     
     func save(to parent:VocabList? = nil){
@@ -39,5 +80,20 @@ extension Card {
         let viewContext = PersistenceController.shared.container.viewContext
         viewContext.delete(self)
         try? viewContext.save()
+    }
+}
+
+extension Date {
+    func relativeTo(_ date:Date) -> String{
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        let dateDifference = date.timeIntervalSince(self)
+        if dateDifference < 60 {
+            return "now"
+        }
+        return formatter.localizedString(for: self, relativeTo: date)
+    }
+    var relativeToNow:String {
+        return relativeTo(Date())
     }
 }

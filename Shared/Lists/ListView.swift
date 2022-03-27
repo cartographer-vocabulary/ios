@@ -33,6 +33,7 @@ struct ListView: View {
     
     @State var showingAddList = false
     @State var showingAddCard = false
+    @State var showingEditList = false
     
     var body: some View {
         List{
@@ -46,7 +47,7 @@ struct ListView: View {
                     ListEditView(showingView: $showingAddList,parentList: list)
                 }
                 ForEach(childLists, id: \.self){list in
-                    ListFolderView(list:list)
+                    ListRow(list:list)
                 }
             }
             Section{
@@ -58,11 +59,24 @@ struct ListView: View {
                 .sheet(isPresented: $showingAddCard) {
                     CardEditView(showingView: $showingAddCard,parentList: list)
                 }
-                ForEach(childCards, id: \.self){card in
-                    CardView(card: card)
-                }
+                
+            }
+            ForEach(childCards, id: \.self){card in
+                CardView(card: card)
             }
 
+        }
+        .toolbar{
+            ToolbarItemGroup {
+                Button{
+                    showingEditList = true
+                } label: {
+                    Label("Edit List", systemImage: "ellipsis.circle")
+                }
+                .sheet(isPresented: $showingEditList) {
+                    ListEditView(showingView:$showingEditList,list: list)
+                }
+            }
         }
         .navigationTitle(list.wrappedTitle)
     }

@@ -18,22 +18,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             SidebarView()
-                .toolbar {
-#if os(macOS)
-                    ToolbarItemGroup(placement: .primaryAction) {
-                        Spacer()
-                        Button {
-                            NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
-                        } label: {
-                            Image(systemName: "sidebar.left")
-                        }
-                        
-                    }
-#endif
-                }
-            Text("Select an item")
+                .navigationViewStyle(.columns)
+            Text("No List Selected")
+                .font(.title)
+                .opacity(0.5)
         }
-        .navigationViewStyle(.columns)
+        
         
     }
 

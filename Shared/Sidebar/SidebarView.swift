@@ -9,17 +9,16 @@ import SwiftUI
 
 struct SidebarView: View {
     var body: some View {
-        VStack{
-            List {
-                NavigationLink {
-                    Text("today")
-                } label: {
-                    Label("Today", systemImage: "star.fill")
-                }
-                
-                SidebarListsView()
+        List {
+            NavigationLink {
+                Text("today")
+            } label: {
+                Label("Today", systemImage: "star.fill")
             }
+            
+            SidebarListsView()
         }
+        .listStyle(.insetGrouped)
         .navigationTitle("Library")
     }
 }

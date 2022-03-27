@@ -23,27 +23,17 @@ struct SidebarListsView: View {
     @State var showingAddSheet = false
     
     var body: some View {
-        Section(header:
-            HStack{
-                Text("Lists")
-                Button {
-                    showingAddSheet = true
-                } label: {
-                    Image(systemName: "plus.circle")
-                }
-                #if os(macOS)
-                .buttonStyle(.plain)
-                #endif
+        Section{
+            Button {
+                showingAddSheet = true
+            } label: {
+                Label("Add List", systemImage: "plus")
             }
-                
             .sheet(isPresented: $showingAddSheet) {
                 ListEditView(showingView: $showingAddSheet)
             }
-            
-            
-        ){
             ForEach(topLevelLists, id: \.self) { list in
-                SidebarListRow(list: list)
+                ListRow(list: list)
             }
         }
          

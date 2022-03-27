@@ -2,24 +2,20 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E5222a" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Card" representedClassName="Card" syncable="YES" codeGenerationType="class">
         <attribute name="definition" optional="YES" attributeType="String"/>
+        <attribute name="lastSeen" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="rawFamiliarity" optional="YES" attributeType="Integer 64" minValueString="-1" maxValueString="2" defaultValueString="-1" usesScalarValueType="YES"/>
         <attribute name="word" optional="YES" attributeType="String"/>
         <relationship name="parentList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VocabList" inverseName="cards" inverseEntity="VocabList"/>
     </entity>
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-    </entity>
     <entity name="VocabList" representedClassName="VocabList" syncable="YES" codeGenerationType="class">
         <attribute name="icon" optional="YES" attributeType="String"/>
-        <attribute name="isExpanded" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="isOpen" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="parentList" inverseEntity="Card"/>
         <relationship name="lists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VocabList" inverseName="parentList" inverseEntity="VocabList"/>
         <relationship name="parentList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VocabList" inverseName="lists" inverseEntity="VocabList"/>
     </entity>
     <elements>
-        <element name="Item" positionX="-63" positionY="-18" width="128" height="44"/>
-        <element name="VocabList" positionX="-63" positionY="-9" width="128" height="134"/>
-        <element name="Card" positionX="-54" positionY="9" width="128" height="74"/>
+        <element name="Card" positionX="-54" positionY="9" width="128" height="104"/>
+        <element name="VocabList" positionX="-63" positionY="-9" width="128" height="104"/>
     </elements>
 </model>

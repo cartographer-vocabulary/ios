@@ -54,15 +54,17 @@ struct ListEditView: View {
             }
         }
         .onAppear{
-            if let list = list {
-                listIcon = list.wrappedIcon
-                listTitle = list.wrappedTitle
-            }
-            if let title = inputTitle {
-                listTitle = title
-            }
-            if let icon = inputIcon {
-                listIcon = icon
+            DispatchQueue.main.async {
+                if let list = list {
+                    listIcon = list.wrappedIcon
+                    listTitle = list.wrappedTitle
+                }
+                if let title = inputTitle {
+                    listTitle = title
+                }
+                if let icon = inputIcon {
+                    listIcon = icon
+                }
             }
         }
         #if os(macOS)

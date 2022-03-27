@@ -12,7 +12,7 @@ extension VocabList {
         }
         set (title) {
             if title != "" {
-                self.title = title
+                self.title = title.trimmingCharacters(in: .whitespacesAndNewlines)
             }
         }
     }
@@ -22,20 +22,16 @@ extension VocabList {
             icon ?? "rectangle.3.offgrid"
         }
         set (icon) {
-            self.icon = icon
+            self.icon = icon.trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
     
-    func expand() {
-        self.isExpanded = true
+    enum SortMethod {
+        case alphabetical
+        case date
+        case dateReversed
+        case familiarity
     }
-    
-    func navigate() {
-        parentList?.expand()
-        self.isOpen = true
-        save()
-    }
-    
     
     
     func save(to parent:VocabList? = nil){

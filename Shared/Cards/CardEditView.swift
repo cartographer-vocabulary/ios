@@ -22,10 +22,20 @@ struct CardEditView: View {
     
     var body: some View {
         Form {
-            TextField("Word", text: $word)
-            .font(.title)
-            TextField("Definition", text: $definition)
-        
+            Section{
+                TextField("Word", text: $word)
+                    .font(.title)
+                TextEditor(text: $definition)
+                    .padding([.leading,.trailing],-5)
+            }
+            if let card = card{
+                Button(role:.destructive){
+                    card.delete()
+                    showingView = false
+                } label: {
+                    Label("Delete Card",systemImage: "xmark")
+                }
+            }
         }
         .toolbar {
             ToolbarItem(placement: .cancellationAction){
@@ -48,9 +58,12 @@ struct CardEditView: View {
             }
         }
         .onAppear{
-            if let card = card {
-                word = card.wrappedWord
-                definition = card.wrappedDefinition
+            DispatchQueue.main.async {
+                if let card = card {
+                    word = card.wrappedWord
+                    definition = card.wrappedDefinition
+                }
+
             }
         }
 #if os(macOS)
@@ -70,6 +83,7 @@ struct CardEditView: View {
             let card = Card(context: viewContext)
             card.wrappedWord = word
             card.wrappedDefinition = definition
+            card.wrappedLastSeen = Date.now
             card.save(to:parentList)
             
         }

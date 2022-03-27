@@ -1,5 +1,5 @@
 //
-//  VocabListRow.swift
+//  ListRow.swift
 //  cartographer2
 //
 //  Created by Tony Zhang on 3/12/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SidebarListRow: View {
+struct ListRow: View {
     @ObservedObject var list:VocabList
     @State var editSheet = false
     @State var addSheet = false
@@ -23,7 +23,7 @@ struct SidebarListRow: View {
     }
     
     func currentRow() -> some View{
-        NavigationLink(isActive:$list.isOpen){
+        NavigationLink{
             ListView(list: list)
             
         } label: {
@@ -56,9 +56,9 @@ struct SidebarListRow: View {
     }
     var body: some View {
         if !childLists.isEmpty {
-            DisclosureGroup(isExpanded:$list.isExpanded){
+            DisclosureGroup{
                 ForEach(childLists, id: \.self) { list in
-                    SidebarListRow(list: list)
+                    ListRow(list: list)
                 }
             } label: {
                 currentRow()
@@ -69,8 +69,8 @@ struct SidebarListRow: View {
     }
 }
 
-struct SidebarListRow_Previews: PreviewProvider {
+struct ListRow_Previews: PreviewProvider {
     static var previews: some View {
-        SidebarListRow(list:VocabList())
+        ListRow(list:VocabList())
     }
 }
