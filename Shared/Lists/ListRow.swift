@@ -55,17 +55,7 @@ struct ListRow: View {
         }
     }
     var body: some View {
-        if !childLists.isEmpty {
-            DisclosureGroup{
-                ForEach(childLists, id: \.self) { list in
-                    ListRow(list: list)
-                }
-            } label: {
-                currentRow()
-            }
-        } else {
-            currentRow()
-        }
+        currentRow()
     }
 }
 

@@ -18,32 +18,38 @@ struct CardView: View {
     var body: some View {
         Section{
             VStack(alignment: .leading, spacing: 10){
+                if(parentList != card.parentList){
+                    Text(card.parentList?.wrappedTitle ?? "Library")
+                        .font(.caption)
+                        .opacity(0.5)
+                }
                 Text(card.wrappedWord)
                     .font(.title2)
                     .fontWeight(.medium)
                 Text(card.wrappedDefinition)
                 HStack {
                     Button {
-                        card.familiarity(.good)
+                        card.familiarity = .good
                     } label: {
                         Circle()
                             .frame(width: 28, height: 28)
                             .foregroundColor(card.familiarity == .good ? .green : .primary.opacity(0.1))
                     }
                     Button {
-                        card.familiarity(.medium)
+                        card.familiarity = .medium
                     } label: {
                         Circle()
                             .frame(width: 28, height: 28)
                             .foregroundColor(card.familiarity == .medium ? .yellow : .primary.opacity(0.1))
                     }
                     Button {
-                        card.familiarity(.bad)
+                        card.familiarity = .bad
                     } label: {
                         Circle()
                             .frame(width: 28, height: 28)
                             .foregroundColor(card.familiarity == .bad ? .red : .primary.opacity(0.1))
                     }
+                    
                     CardLastSeenView(card:card)
                   
                     Spacer()
@@ -51,6 +57,7 @@ struct CardView: View {
                         showingEditSheet = true
                     } label: {
                         Image(systemName: "ellipsis")
+                            .font(.title2)
                     }
                 }
                 .buttonStyle(.borderless)

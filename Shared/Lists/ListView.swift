@@ -10,64 +10,22 @@ import SwiftUI
 struct ListView: View {
     @ObservedObject var list:VocabList
     
-    
     var childLists:[VocabList] {
-        if let lists = list.lists {
-            return lists.compactMap { list in
-                return list as? VocabList
-            }
-        } else {
-            return []
-        }
+        list.getLists()
     }
     
     var childCards:[Card]{
-        if let cards = list.cards {
-            return cards.compactMap { card in
-                return card as? Card
-            }
-        } else {
-            return []
-        }
+        Card.sortCards( list.getCards(children:list.showChildren), with: list.sorting)
     }
     
-    @State var showingAddList = false
-    @State var showingAddCard = false
     @State var showingEditList = false
     
     var body: some View {
-        List{
-            Section{
-                Button{
-                    showingAddList = true
-                } label: {
-                    Label("Add List", systemImage: "plus")
-                }
-                .sheet(isPresented: $showingAddList) {
-                    ListEditView(showingView: $showingAddList,parentList: list)
-                }
-                ForEach(childLists, id: \.self){list in
-                    ListRow(list:list)
-                }
-            }
-            Section{
-                Button{
-                    showingAddCard = true
-                } label: {
-                    Label("Add Card", systemImage: "plus")
-                }
-                .sheet(isPresented: $showingAddCard) {
-                    CardEditView(showingView: $showingAddCard,parentList: list)
-                }
-                
-            }
-            ForEach(childCards, id: \.self){card in
-                CardView(card: card)
-            }
-
-        }
+        ListContentView(list: list, lists: childLists, cards: childCards)
         .toolbar{
-            ToolbarItemGroup {
+            ToolbarItemGroup(placement: .navigationBarTrailing){
+                ListSortView(showChildren: $list.showChildren, sorting: $list.sorting)
+                
                 Button{
                     showingEditList = true
                 } label: {

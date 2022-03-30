@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 extension Card {
     var wrappedWord:String {
@@ -59,13 +60,60 @@ extension Card {
         }
         set (familiarity){
             rawFamiliarity = familiarity.rawValue
+            save()
         }
     }
     
-    func familiarity(_ familiarity:Familiarity){
-        self.familiarity = familiarity
-        seen()
-        save()
+    static func sortCards(_ cards: [Card], with sorting: VocabList.SortMethod) -> [Card] {
+        switch sorting {
+        case .date:
+            return cards.sorted { a, b in
+                a.wrappedLastSeen > b.wrappedLastSeen
+            }
+            
+        case .dateReversed:
+            return cards.sorted { a, b in
+                a.wrappedLastSeen < b.wrappedLastSeen
+            }
+            
+        case .familiarity:
+            return cards.sorted { a, b in
+                a.familiarity.rawValue > b.familiarity.rawValue
+            }
+            
+        case .familiarityReversed:
+            return cards.sorted { a, b in
+                a.familiarity.rawValue < b.familiarity.rawValue
+            }
+            
+        case .random:
+            return cards.shuffled()
+            
+        default:
+            return cards.sorted { a, b in
+                a.wrappedWord < b.wrappedWord
+            }
+        }
+    }
+    
+    static func getAll() -> [Card] {
+        var cards:[Card] = []
+        
+        let fetchRequest:NSFetchRequest<Card> = Card.fetchRequest()
+        
+        
+        let viewContext = PersistenceController.shared.container.viewContext
+        
+        do {
+            
+            cards = try viewContext.fetch(fetchRequest)
+        }
+        catch {
+            
+        }
+        
+        
+        return cards
     }
     
     func save(to parent:VocabList? = nil){
