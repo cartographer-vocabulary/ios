@@ -22,8 +22,9 @@ struct CardView: View {
                 if(parentList != card.parentList){
                     Text(card.parentList?.wrappedTitle ?? "Library")
                         .font(.caption)
-                        .opacity(0.5)
-                        .padding([.top, .bottom], -3)
+                        .foregroundColor(.secondary)
+                        .padding(.top, -3)
+                        .padding(.bottom, -4)
                 }
                 Text(card.wrappedWord)
                     .font(.title2)

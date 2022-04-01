@@ -10,10 +10,7 @@ import SwiftUI
 struct SidebarView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \VocabList.title, ascending: true)],
-        animation: .default)
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.title)], animation: .default)
     private var fetchedLists: FetchedResults<VocabList>
     
     private var lists: [VocabList] {
@@ -23,10 +20,13 @@ struct SidebarView: View {
     }
     
     
-    
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.word)], animation: .default)
+    private var fetchedCards: FetchedResults<Card>
     
     private var allCards: [Card] {
-        Card.getAll()
+        fetchedCards.map { card in
+            return card
+        }
     }
     
     private var topLevelCards: [Card] {
@@ -49,6 +49,8 @@ struct SidebarView: View {
     var body: some View {
         
         ListContentView(lists: lists, cards: cards)
+            .animation(.default, value: cards)
+            .animation(.default, value: rawSorting)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     ListSortView(showChildren: $showChildren, sorting: Binding<VocabList.SortMethod> (
@@ -64,6 +66,5 @@ struct SidebarView: View {
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Library")
-        
     }
 }

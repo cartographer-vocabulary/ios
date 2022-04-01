@@ -10,18 +10,20 @@ import SwiftUI
 struct ListView: View {
     @ObservedObject var list:VocabList
     
-    var childLists:[VocabList] {
-        list.getLists()
-    }
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.word)], animation: .default)
+    private var fetchedCards: FetchedResults<Card>
+    
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.title)], animation: .default)
+    private var fetchedLists: FetchedResults<VocabList>
     
     var childCards:[Card]{
-        Card.sortCards( list.getCards(children:list.showChildren), with: list.sorting)
+        Card.sortCards( list.getCards(from: fetchedCards, children:list.showChildren), with: list.sorting)
     }
     
     @State var showingEditList = false
     
     var body: some View {
-        ListContentView(list: list, lists: childLists, cards: childCards)
+        ListContentView(list: list, lists: list.getLists(from: fetchedLists), cards: childCards)
         .toolbar{
             ToolbarItemGroup(placement: .navigationBarTrailing){
                 ListSortView(showChildren: $list.showChildren, sorting: $list.sorting)

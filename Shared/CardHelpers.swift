@@ -97,25 +97,16 @@ extension Card {
         }
     }
     
-    static func getAll() -> [Card] {
-        var cards:[Card] = []
+    func isInside(_ list: VocabList) -> Bool {
+        guard parentList != nil else {return false}
         
-        let fetchRequest:NSFetchRequest<Card> = Card.fetchRequest()
-        
-        
-        let viewContext = PersistenceController.shared.container.viewContext
-        
-        do {
-            
-            cards = try viewContext.fetch(fetchRequest)
-        }
-        catch {
-            
+        if parentList == list {
+            return true
         }
         
-        
-        return cards
+        return parentList?.isInside(list) ?? false
     }
+
     
     func save(to parent:VocabList? = nil){
         let viewContext = PersistenceController.shared.container.viewContext

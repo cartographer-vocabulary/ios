@@ -5,6 +5,8 @@
 //  Created by Tony Zhang on 3/12/22.
 //
 
+import SwiftUI
+
 
 extension VocabList {
     var wrappedTitle: String {
@@ -57,13 +59,24 @@ extension VocabList {
         }
     }
     
-   
+    func getLists(from fetchedLists: FetchedResults<VocabList>) -> [VocabList] {
+        let lists = fetchedLists.map{$0}
+        let filtered = lists.filter { list in
+            return list.parentList == self
+        }
+        return filtered
+    }
     
     var childLists: [VocabList]? {
         get {
-            let lists = getLists()
-            if lists.isEmpty { return nil }
-            return lists
+            var childLists = [VocabList]()
+            if let lists = lists {
+                childLists = lists.compactMap { list in
+                    return list as? VocabList
+                }
+            }
+            if !childLists.isEmpty {return childLists}
+            return nil
         }
     }
     
@@ -82,6 +95,25 @@ extension VocabList {
             }
         }
         return cards
+    }
+    
+    func getCards(from fetchedCards: FetchedResults<Card>, children:Bool = false) -> [Card] {
+        let cards = fetchedCards.map{$0}
+        let topLevel = cards.filter { card in
+            return card.parentList == self
+        }
+        
+        let allContained = cards.filter { card in
+            return card.isInside(self)
+        }
+        
+        return children ? allContained : topLevel
+    }
+    
+    func isInside(_ list: VocabList) -> Bool {
+        guard parentList != nil else { return false }
+        if list == parentList { return true}
+        return parentList?.isInside(list) ?? false
     }
     
     

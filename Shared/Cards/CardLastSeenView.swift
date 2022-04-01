@@ -13,7 +13,7 @@ struct CardLastSeenView: View {
     @State var date = Date()
     var body: some View {
         Text(card.wrappedLastSeen.relativeTo(date))
-            .opacity(0.5)
+            .foregroundColor(.secondary)
             .onReceive(timer) { _ in
                 date = Date()
             }

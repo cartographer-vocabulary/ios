@@ -28,7 +28,7 @@ struct ListContentView: View {
                     ListEditView(showingView: $showingAddList,parentList: list)
                 }
                 
-                OutlineGroup(lists, children: \.childLists) { list in
+                ForEach(lists){ list in
                     ListRow(list: list)
                 }
             }
