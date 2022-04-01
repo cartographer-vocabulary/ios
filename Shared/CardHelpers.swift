@@ -60,6 +60,7 @@ extension Card {
         }
         set (familiarity){
             rawFamiliarity = familiarity.rawValue
+            seen()
             save()
         }
     }

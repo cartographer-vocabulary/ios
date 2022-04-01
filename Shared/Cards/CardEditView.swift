@@ -23,7 +23,7 @@ struct CardEditView: View {
     var body: some View {
         Form {
             Section{
-                TextField("Word", text: $word)
+                TextField("", text: $word)
                     .font(.title)
                 TextEditor(text: $definition)
                     .padding([.leading,.trailing],-5)

@@ -31,11 +31,13 @@
       "size" : "40x40"
     },
     {
+      "filename" : "Plugin icon - 1120.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
+      "filename" : "Plugin icon - 1180.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
@@ -86,6 +88,7 @@
       "size" : "83.5x83.5"
     },
     {
+      "filename" : "Plugin icon - 1full.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
@@ -131,6 +134,7 @@
       "size" : "256x256"
     },
     {
+      "filename" : "Plugin icon - 1512.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"

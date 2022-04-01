@@ -14,6 +14,7 @@ struct CardView: View {
     
     @State var showingEditSheet = false
     
+    let impactMed = UIImpactFeedbackGenerator(style: .light)
     
     var body: some View {
         Section{
@@ -22,6 +23,7 @@ struct CardView: View {
                     Text(card.parentList?.wrappedTitle ?? "Library")
                         .font(.caption)
                         .opacity(0.5)
+                        .padding([.top, .bottom], -3)
                 }
                 Text(card.wrappedWord)
                     .font(.title2)
@@ -30,6 +32,7 @@ struct CardView: View {
                 HStack {
                     Button {
                         card.familiarity = .good
+                        impactMed.impactOccurred()
                     } label: {
                         Circle()
                             .frame(width: 28, height: 28)
@@ -37,6 +40,7 @@ struct CardView: View {
                     }
                     Button {
                         card.familiarity = .medium
+                        impactMed.impactOccurred()
                     } label: {
                         Circle()
                             .frame(width: 28, height: 28)
@@ -44,6 +48,7 @@ struct CardView: View {
                     }
                     Button {
                         card.familiarity = .bad
+                        impactMed.impactOccurred()
                     } label: {
                         Circle()
                             .frame(width: 28, height: 28)
@@ -54,16 +59,16 @@ struct CardView: View {
                   
                     Spacer()
                     Button{
-                        showingEditSheet = true
+                        card.seen()
+                        impactMed.impactOccurred()
                     } label: {
-                        Image(systemName: "ellipsis")
+                        Image(systemName: "checkmark")
                             .font(.title2)
                     }
                 }
                 .buttonStyle(.borderless)
             }
-            .padding(.top, 10)
-            .padding(.bottom, 5)
+            .padding([.top, .bottom], 10)
             
             .sheet(isPresented: $showingEditSheet) {
                 CardEditView(showingView: $showingEditSheet,card: card)
@@ -72,7 +77,7 @@ struct CardView: View {
         }
         .contentShape(Rectangle())
         .onTapGesture {
-            card.seen()
+            showingEditSheet = true
         }
         
     }

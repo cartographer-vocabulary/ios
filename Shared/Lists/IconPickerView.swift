@@ -115,7 +115,6 @@ struct IconPickerView: View {
                 } label: {
                     if(self.icon == icon){
                         Image(systemName: icon)
-                            .padding()
                             .font(.title2)
                             .frame(width: 50, height: 50)
                             .background(Color.accentColor)
@@ -123,7 +122,6 @@ struct IconPickerView: View {
                             .cornerRadius(50)
                     }else {
                         Image(systemName: icon)
-                            .padding()
                             .font(.title2)
                             .frame(width: 50, height: 50)
                             .background(.ultraThinMaterial)
