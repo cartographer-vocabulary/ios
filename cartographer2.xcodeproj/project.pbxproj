@@ -111,10 +111,10 @@
 			children = (
 				1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */,
 				1BA12E0D27E6B49C00F72A2F /* ListView.swift */,
+				1B8F9CEB27F2A44400014407 /* ListContentView.swift */,
 				1B753C3627F8766F005A0776 /* ListMoveView.swift */,
 				1BCC823027F8C656007E3E3A /* ListSelectorView.swift */,
 				1BCC823227F8CCEB007E3E3A /* ListOutlineView.swift */,
-				1B8F9CEB27F2A44400014407 /* ListContentView.swift */,
 				1B8F9CE927F1196B00014407 /* ListSortView.swift */,
 				1BA12E0727E6B45800F72A2F /* ListRow.swift */,
 				1BA12E1027E6B83500F72A2F /* ListEditView.swift */,

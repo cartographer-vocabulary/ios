@@ -33,39 +33,55 @@ struct ListContentView: View {
         List {
             
             if searchText.isEmpty {
-            Section {
-                Button {
-                    showingAddList = true
-                } label: {
-                    Label("Add List", systemImage: "plus")
-                }
-                .sheet(isPresented: $showingAddList) {
-                    ListEditView(showingView: $showingAddList,parentList: list)
-                }
-                
-                ForEach(lists){ list in
-                    ListRow(list: list)
-                }
-            }
-            
-            Section{
-                Button{
-                    showingAddCard = true
-                } label: {
-                    Label("Add Card", systemImage: "plus")
-                }
-                .sheet(isPresented: $showingAddCard) {
-                    CardEditView(showingView: $showingAddCard,parentList: list)
+                Section {
+                    Button {
+                        showingAddList = true
+                    } label: {
+                        Label("Add List", systemImage: "plus")
+                    }
+                    
+                    
+                    ForEach(lists){ list in
+                        ListRow(list: list)
+                    }
                 }
                 
+                Section{
+                    HStack {
+                        Button{
+                            showingAddCard = true
+                        } label: {
+                            Label("Add Card", systemImage: "plus")
+                            Spacer()
+                        }
+                       
+                        .buttonStyle(.borderless)
+                        Spacer()
+                        Menu {
+                            Button {
+                                
+                            } label: {
+                                Label("Import text", systemImage: "text.alignleft")
+                            }
+                        } label: {
+                            Label("More", systemImage: "ellipsis.circle")
+                                .labelStyle(.iconOnly)
+                        }
+                    }
+                    
+                }
             }
-            }
-            
             ForEach(searchedCards, id: \.self){card in
                 CardView(card: card, parentList: list)
             }
         }
         .animation(.default, value: searchText)
         .searchable(text: $searchText)
+        .sheet(isPresented: $showingAddCard) {
+            CardEditView(showingView: $showingAddCard,parentList: list)
+        }
+        .sheet(isPresented: $showingAddList) {
+            ListEditView(showingView: $showingAddList,parentList: list)
+        }
     }
 }

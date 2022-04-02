@@ -71,9 +71,6 @@ struct CardView: View {
                 .buttonStyle(.borderless)
             }
             .padding([.top, .bottom], 10)
-            
-            
-            
         }
         .contentShape(Rectangle())
         .onTapGesture {

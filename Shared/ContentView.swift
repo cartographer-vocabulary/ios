@@ -10,11 +10,10 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \VocabList.title, ascending: true)],
-        animation: .default)
-    private var lists: FetchedResults<VocabList>
-
+    
+    @State var undoAlert = false
+    let impactMed = UIImpactFeedbackGenerator(style: .medium)
+    
     var body: some View {
         NavigationView {
             SidebarView()
@@ -22,6 +21,32 @@ struct ContentView: View {
             Text("No List Selected")
                 .font(.title)
                 .opacity(0.5)
+        }
+        .onShake {
+            guard viewContext.undoManager != nil else {return}
+            guard viewContext.undoManager?.canUndo ?? false || viewContext.undoManager?.canRedo ?? false else {return}
+            
+            undoAlert = true
+        }.alert("Undo Changes", isPresented: $undoAlert) {
+            if(viewContext.undoManager?.canUndo ?? false) {
+                Button {
+                    viewContext.undo()
+                } label: {
+                    Text("Undo")
+                }
+            }
+            if(viewContext.undoManager?.canRedo ?? false) {
+                Button {
+                    viewContext.redo()
+                } label: {
+                    Text("Redo")
+                }
+            }
+            Button (role:.cancel
+            ){
+            } label: {
+                Text("Cancel")
+            }
         }
         
         
