@@ -16,8 +16,23 @@ struct ListContentView: View {
     @State var showingAddList = false
     @State var showingAddCard = false
     
+    @State var searchText = ""
+    
+    var searchedCards: [Card] {
+        
+        cards.filter { card in
+            if searchText.isEmpty { return true }
+            return (
+                card.wrappedWord.lowercased().contains(searchText.lowercased()) ||
+                card.wrappedDefinition.lowercased().contains(searchText.lowercased())
+                )
+        }
+    }
+    
     var body: some View {
         List {
+            
+            if searchText.isEmpty {
             Section {
                 Button {
                     showingAddList = true
@@ -44,9 +59,13 @@ struct ListContentView: View {
                 }
                 
             }
-            ForEach(cards, id: \.self){card in
+            }
+            
+            ForEach(searchedCards, id: \.self){card in
                 CardView(card: card, parentList: list)
             }
         }
+        .animation(.default, value: searchedCards)
+        .searchable(text: $searchText)
     }
 }

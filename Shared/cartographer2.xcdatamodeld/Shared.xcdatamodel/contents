@@ -12,7 +12,7 @@
         <attribute name="rawSorting" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="showChildren" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="parentList" inverseEntity="Card"/>
+        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Card" inverseName="parentList" inverseEntity="Card"/>
         <relationship name="lists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VocabList" inverseName="parentList" inverseEntity="VocabList"/>
         <relationship name="parentList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VocabList" inverseName="lists" inverseEntity="VocabList"/>
     </entity>

@@ -43,6 +43,7 @@
 		1B64C10E27EFB5CC0060AF97 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		1B64C11127EFB6040060AF97 /* CardHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHelpers.swift; sourceTree = "<group>"; };
 		1B64C11527EFBAEF0060AF97 /* CardEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditView.swift; sourceTree = "<group>"; };
+		1B753C3527F7F048005A0776 /* cartographer2 (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "cartographer2 (iOS).entitlements"; sourceTree = "<group>"; };
 		1B8F9CE927F1196B00014407 /* ListSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSortView.swift; sourceTree = "<group>"; };
 		1B8F9CEB27F2A44400014407 /* ListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContentView.swift; sourceTree = "<group>"; };
 		1BA12E0727E6B45800F72A2F /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
@@ -111,6 +112,7 @@
 		1BAF861B27D4052E009A10C6 = {
 			isa = PBXGroup;
 			children = (
+				1B753C3527F7F048005A0776 /* cartographer2 (iOS).entitlements */,
 				1BAF862027D4052F009A10C6 /* Shared */,
 				1BAF863227D40530009A10C6 /* macOS */,
 				1BAF863B27D40530009A10C6 /* Tests iOS */,
@@ -435,6 +437,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "cartographer2 (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 68NKG8SS32;
@@ -465,6 +468,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "cartographer2 (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 68NKG8SS32;

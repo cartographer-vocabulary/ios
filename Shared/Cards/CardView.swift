@@ -20,10 +20,10 @@ struct CardView: View {
         Section{
             VStack(alignment: .leading, spacing: 10){
                 if(parentList != card.parentList){
-                    Text(card.parentList?.wrappedTitle ?? "Library")
+                    Text(card.getPath(from: parentList).joined(separator: " - "))
                         .font(.caption)
                         .foregroundColor(.secondary)
-                        .padding(.top, -3)
+                        .padding(.top, -2)
                         .padding(.bottom, -4)
                 }
                 Text(card.wrappedWord)

@@ -24,21 +24,21 @@ struct ListView: View {
     
     var body: some View {
         ListContentView(list: list, lists: list.getLists(from: fetchedLists), cards: childCards)
-        .toolbar{
-            ToolbarItemGroup(placement: .navigationBarTrailing){
-                ListSortView(showChildren: $list.showChildren, sorting: $list.sorting)
-                
-                Button{
-                    showingEditList = true
-                } label: {
-                    Label("Edit List", systemImage: "ellipsis.circle")
-                }
-                .sheet(isPresented: $showingEditList) {
-                    ListEditView(showingView:$showingEditList,list: list)
+            .toolbar{
+                ToolbarItemGroup(placement: .navigationBarTrailing){
+                    ListSortView(showChildren: $list.showChildren, sorting: $list.sorting)
+                    
+                    Button{
+                        showingEditList = true
+                    } label: {
+                        Label("Edit List", systemImage: "ellipsis.circle")
+                    }
                 }
             }
-        }
-        .navigationTitle(list.wrappedTitle)
+            .navigationTitle(list.wrappedTitle)
+            .sheet(isPresented: $showingEditList) {
+                ListEditView(showingView:$showingEditList,list: list)
+            }
     }
 }
 

@@ -106,6 +106,15 @@ extension Card {
         
         return parentList?.isInside(list) ?? false
     }
+    
+    func getPath(from containerList: VocabList? = nil) -> [String] {
+        var pathSegments:[String] = []
+        if let parent = parentList {
+            pathSegments.append(contentsOf: parent.getPath(from: containerList))
+            pathSegments.append(parent.wrappedTitle)
+        }
+        return pathSegments
+    }
 
     
     func save(to parent:VocabList? = nil){
