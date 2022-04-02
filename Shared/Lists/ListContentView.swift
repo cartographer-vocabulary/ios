@@ -65,7 +65,7 @@ struct ListContentView: View {
                 CardView(card: card, parentList: list)
             }
         }
-        .animation(.default, value: searchedCards)
+        .animation(.default, value: searchText)
         .searchable(text: $searchText)
     }
 }

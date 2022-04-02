@@ -13,6 +13,7 @@ struct CardView: View {
     var parentList:VocabList?
     
     @State var showingEditSheet = false
+    @State var showingMoveSheet = false
     
     let impactMed = UIImpactFeedbackGenerator(style: .light)
     
@@ -71,14 +72,36 @@ struct CardView: View {
             }
             .padding([.top, .bottom], 10)
             
-            .sheet(isPresented: $showingEditSheet) {
-                CardEditView(showingView: $showingEditSheet,card: card)
-            }
+            
             
         }
         .contentShape(Rectangle())
         .onTapGesture {
             showingEditSheet = true
+        }
+        .contextMenu{
+            Button {
+                showingEditSheet = true
+            } label: {
+                Label("Edit", systemImage: "pencil")
+            }
+            Button {
+                showingMoveSheet = true
+            } label: {
+                Label("Move", systemImage: "arrowshape.turn.up.right")
+            }
+            Divider()
+            Button(role:.destructive) {
+                card.delete()
+            } label: {
+                Label("Delete", systemImage: "xmark")
+            }
+        }
+        .sheet(isPresented: $showingEditSheet) {
+            CardEditView(showingView: $showingEditSheet,card: card)
+        }
+        .sheet(isPresented: $showingMoveSheet) {
+            CardMoveView(showingView: $showingMoveSheet,card: card)
         }
         
     }

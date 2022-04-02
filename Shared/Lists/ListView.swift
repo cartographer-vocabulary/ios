@@ -21,6 +21,7 @@ struct ListView: View {
     }
     
     @State var showingEditList = false
+    @State var showingMoveList = false
     
     var body: some View {
         ListContentView(list: list, lists: list.getLists(from: fetchedLists), cards: childCards)
@@ -28,9 +29,24 @@ struct ListView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing){
                     ListSortView(showChildren: $list.showChildren, sorting: $list.sorting)
                     
-                    Button{
-                        showingEditList = true
-                    } label: {
+                    Menu {
+                        Button{
+                            showingEditList = true
+                        } label: {
+                            Label("Edit", systemImage: "pencil")
+                        }
+                        Button {
+                            showingMoveList = true
+                        } label: {
+                            Label("Move", systemImage: "arrowshape.turn.up.right")
+                        }
+                        Divider()
+                        Button (role:.destructive){
+                            list.delete()
+                        } label: {
+                            Label("Delete", systemImage: "trash")
+                        }
+                    } label : {
                         Label("Edit List", systemImage: "ellipsis.circle")
                     }
                 }
@@ -38,6 +54,9 @@ struct ListView: View {
             .navigationTitle(list.wrappedTitle)
             .sheet(isPresented: $showingEditList) {
                 ListEditView(showingView:$showingEditList,list: list)
+            }
+            .sheet(isPresented: $showingMoveList) {
+                ListMoveView(showingView:$showingMoveList,list: list)
             }
     }
 }

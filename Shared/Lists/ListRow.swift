@@ -10,6 +10,7 @@ import SwiftUI
 struct ListRow: View {
     @ObservedObject var list:VocabList
     @State var editSheet = false
+    @State var moveSheet = false
     
     var childLists:[VocabList] {
         if let lists = list.lists {
@@ -35,6 +36,12 @@ struct ListRow: View {
             } label: {
                 Label("Edit", systemImage: "pencil")
             }
+            Button {
+                moveSheet = true
+            } label: {
+                Label("Move", systemImage: "arrowshape.turn.up.right")
+            }
+            Divider()
             Button (role:.destructive){
                 list.delete()
             } label: {
@@ -43,6 +50,9 @@ struct ListRow: View {
         }
         .sheet(isPresented: $editSheet) {
             ListEditView(showingView: $editSheet, list: list)
+        }
+        .sheet(isPresented: $moveSheet) {
+            ListMoveView(showingView: $moveSheet, list: list)
         }
     }
     var body: some View {

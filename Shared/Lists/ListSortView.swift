@@ -45,7 +45,6 @@ struct ListSortView: View {
 
         } label: {
             Label("Sort", systemImage: icon)
-//            Label("Sort", systemImage: "line.3.horizontal.decrease.circle")
         }
     }
 }
