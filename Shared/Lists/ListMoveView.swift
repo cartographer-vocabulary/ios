@@ -40,6 +40,8 @@ struct ListMoveView: View {
             .onAppear{
                 selectedList = list.parentList
             }
+            .navigationTitle("Move List")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

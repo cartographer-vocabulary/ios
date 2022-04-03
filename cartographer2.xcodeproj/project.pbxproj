@@ -26,6 +26,8 @@
 		1BAF865027D40530009A10C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862427D4052F009A10C6 /* ContentView.swift */; };
 		1BAF865227D40530009A10C6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862527D4052F009A10C6 /* Persistence.swift */; };
 		1BAF865427D40530009A10C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BAF862627D40530009A10C6 /* Assets.xcassets */; };
+		1BBB34FB27F934EF00BD7476 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB34FA27F934EF00BD7476 /* SettingsView.swift */; };
+		1BBB34FE27F9364B00BD7476 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB34FD27F9364B00BD7476 /* AppIconView.swift */; };
 		1BBF840B27DCDB5800C0069B /* VocabListHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */; };
 		1BC5BEB727F0A56900CB133C /* CardLastSeenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5BEB627F0A56900CB133C /* CardLastSeenView.swift */; };
 		1BCC823127F8C656007E3E3A /* ListSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC823027F8C656007E3E3A /* ListSelectorView.swift */; };
@@ -69,6 +71,8 @@
 		1BAF863E27D40530009A10C6 /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
 		1BAF864827D40530009A10C6 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		1BAF864A27D40530009A10C6 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		1BBB34FA27F934EF00BD7476 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		1BBB34FD27F9364B00BD7476 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabListHelpers.swift; sourceTree = "<group>"; };
 		1BC5BEB627F0A56900CB133C /* CardLastSeenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLastSeenView.swift; sourceTree = "<group>"; };
 		1BCC823027F8C656007E3E3A /* ListSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectorView.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 				1BAF862427D4052F009A10C6 /* ContentView.swift */,
 				1BAF862527D4052F009A10C6 /* Persistence.swift */,
 				1BA12E1327E764C300F72A2F /* Helpers.swift */,
+				1BBB34FC27F934F600BD7476 /* Settings */,
 				1BBF840D27DD59C000C0069B /* Sidebar */,
 				1B64C11427EFB6950060AF97 /* Cards */,
 				1B94A09827E55CDB00111D9D /* Lists */,
@@ -184,6 +189,15 @@
 				1BAF864A27D40530009A10C6 /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		1BBB34FC27F934F600BD7476 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1BBB34FA27F934EF00BD7476 /* SettingsView.swift */,
+				1BBB34FD27F9364B00BD7476 /* AppIconView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		1BBF840D27DD59C000C0069B /* Sidebar */ = {
@@ -314,6 +328,8 @@
 				1BA12E0E27E6B49C00F72A2F /* ListView.swift in Sources */,
 				1B64C11227EFB6040060AF97 /* CardHelpers.swift in Sources */,
 				1BCC823527F8DBE7007E3E3A /* CardMoveView.swift in Sources */,
+				1BBB34FB27F934EF00BD7476 /* SettingsView.swift in Sources */,
+				1BBB34FE27F9364B00BD7476 /* AppIconView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +481,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -497,7 +513,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

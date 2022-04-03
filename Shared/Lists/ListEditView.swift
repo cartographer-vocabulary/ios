@@ -68,6 +68,8 @@ struct ListEditView: View {
                     }
                 }
             }
+            .navigationTitle(list == nil ? "Add List" : "Edit List")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
     

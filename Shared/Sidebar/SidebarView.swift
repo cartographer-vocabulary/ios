@@ -42,6 +42,7 @@ struct SidebarView: View {
     
     @State var showingAddSheet = false
     @State var showingSortList = false
+    @State var showingSettings = false
     
     @AppStorage("showChildren") var showChildren: Bool = false
     @AppStorage("cardSorting") var rawSorting: Int = 0
@@ -62,8 +63,16 @@ struct SidebarView: View {
                         }
                     )
                     )
+                    Button{
+                        showingSettings = true
+                    } label: {
+                        Label("Settings", systemImage: "gearshape")
+                    }
                 }
             }
+            .sheet(isPresented: $showingSettings, content: {
+                SettingsView()
+            })
             .listStyle(.insetGrouped)
             .navigationTitle("Library")
     }

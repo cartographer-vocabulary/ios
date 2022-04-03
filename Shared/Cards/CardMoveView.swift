@@ -40,6 +40,8 @@ struct CardMoveView: View {
                 .onAppear{
                     selectedList = card.parentList
                 }
+                .navigationTitle("Move Card")
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

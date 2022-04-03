@@ -21,56 +21,55 @@ struct CardEditView: View {
     var card:Card?
     
     var body: some View {
-        Form {
-            Section{
-                TextField("", text: $word)
-                    .font(.title)
-                TextEditor(text: $definition)
-                    .padding([.leading,.trailing],-5)
-            }
-            if let card = card{
-                Button(role:.destructive){
-                    card.delete()
-                    showingView = false
-                } label: {
-                    Label("Delete Card",systemImage: "xmark")
+        NavigationView{
+            Form {
+                Section{
+                    TextField("", text: $word)
+                        .font(.title)
+                    TextEditor(text: $definition)
+                        .padding([.leading,.trailing],-5)
+                }
+                if let card = card{
+                    Button(role:.destructive){
+                        card.delete()
+                        showingView = false
+                    } label: {
+                        Label("Delete Card",systemImage: "xmark")
+                    }
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction){
+                    Button {
+                        showingView = false
+                    } label: {
+                        Text("cancel")
+                    }
+                    .font(.body.weight(.regular))
+                    
+                }
+                ToolbarItem(placement: .confirmationAction){
+                    Button {
+                        save()
+                    } label: {
+                        Text("save")
+                    }
+                    .font(.body.weight(.bold))
+                    
+                }
+            }
+            .onAppear{
+                DispatchQueue.main.async {
+                    if let card = card {
+                        word = card.wrappedWord
+                        definition = card.wrappedDefinition
+                    }
+                    
+                }
+            }
+            .navigationTitle(card == nil ? "Add Card" : "Edit Card")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .toolbar {
-            ToolbarItem(placement: .cancellationAction){
-                Button {
-                    showingView = false
-                } label: {
-                    Text("cancel")
-                }
-                .font(.body.weight(.regular))
-                
-            }
-            ToolbarItem(placement: .confirmationAction){
-                Button {
-                    save()
-                } label: {
-                    Text("save")
-                }
-                .font(.body.weight(.bold))
-                
-            }
-        }
-        .onAppear{
-            DispatchQueue.main.async {
-                if let card = card {
-                    word = card.wrappedWord
-                    definition = card.wrappedDefinition
-                }
-
-            }
-        }
-#if os(macOS)
-        .frame(minWidth: 300, maxWidth: 300, minHeight: 300,idealHeight: 400)
-#else
-        .wrapNavigation()
-#endif
     }
     
     func save() {
