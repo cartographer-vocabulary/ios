@@ -77,13 +77,15 @@ struct CardEditView: View {
         if let card = card {
             card.wrappedWord = word
             card.wrappedDefinition = definition
-            card.save(to:parentList)
+            card.parentList = parentList
+            card.save()
         } else {
             let card = Card(context: viewContext)
             card.wrappedWord = word
             card.wrappedDefinition = definition
             card.wrappedLastSeen = Date.now
-            card.save(to:parentList)
+            card.parentList = parentList
+            card.save()
             
         }
     }

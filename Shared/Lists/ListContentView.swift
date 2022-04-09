@@ -15,6 +15,7 @@ struct ListContentView: View {
     
     @State var showingAddList = false
     @State var showingAddCard = false
+    @State var showingImportCard = false
     
     @State var searchText = ""
     
@@ -59,7 +60,7 @@ struct ListContentView: View {
                         Spacer()
                         Menu {
                             Button {
-                                
+                                showingImportCard = true
                             } label: {
                                 Label("Import text", systemImage: "text.alignleft")
                             }
@@ -78,10 +79,13 @@ struct ListContentView: View {
         .animation(.default, value: searchText)
         .searchable(text: $searchText)
         .sheet(isPresented: $showingAddCard) {
-            CardEditView(showingView: $showingAddCard,parentList: list)
+            CardEditView(showingView: $showingAddCard, parentList: list)
+        }
+        .sheet(isPresented: $showingImportCard) {
+            CardsImportView(showingView: $showingImportCard, parentList: list)
         }
         .sheet(isPresented: $showingAddList) {
-            ListEditView(showingView: $showingAddList,parentList: list)
+            ListEditView(showingView: $showingAddList, parentList: list)
         }
     }
 }

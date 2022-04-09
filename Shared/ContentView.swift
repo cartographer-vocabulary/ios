@@ -22,8 +22,6 @@ struct ContentView: View {
                 .font(.title)
                 .opacity(0.5)
         }
-        .navigationViewStyle(.stack)
-        
         .onShake {
             guard viewContext.undoManager != nil else {return}
             guard viewContext.undoManager?.canUndo ?? false || viewContext.undoManager?.canRedo ?? false else {return}

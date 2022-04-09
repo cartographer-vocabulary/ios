@@ -10,10 +10,10 @@ import SwiftUI
 struct ListView: View {
     @ObservedObject var list:VocabList
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.word)], animation: .default)
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "word", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
     private var fetchedCards: FetchedResults<Card>
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.title)], animation: .default)
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
     private var fetchedLists: FetchedResults<VocabList>
     
     var childCards:[Card]{

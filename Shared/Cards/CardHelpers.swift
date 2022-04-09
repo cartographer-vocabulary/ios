@@ -91,9 +91,7 @@ extension Card {
             return cards.shuffled()
             
         default:
-            return cards.sorted { a, b in
-                a.wrappedWord < b.wrappedWord
-            }
+            return cards
         }
     }
     
@@ -117,11 +115,8 @@ extension Card {
     }
 
     
-    func save(to parent:VocabList? = nil){
+    func save(){
         let viewContext = PersistenceController.shared.container.viewContext
-        if let parent = parent {
-            self.parentList = parent
-        }
         try? viewContext.save()
     }
     

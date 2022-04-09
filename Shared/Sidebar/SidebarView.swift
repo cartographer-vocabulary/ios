@@ -10,7 +10,8 @@ import SwiftUI
 struct SidebarView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.title)], animation: .default)
+    
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
     private var fetchedLists: FetchedResults<VocabList>
     
     private var lists: [VocabList] {
@@ -20,7 +21,7 @@ struct SidebarView: View {
     }
     
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.word)], animation: .default)
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "word", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
     private var fetchedCards: FetchedResults<Card>
     
     private var allCards: [Card] {
