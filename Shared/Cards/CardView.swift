@@ -32,31 +32,8 @@ struct CardView: View {
                     .fontWeight(.medium)
                 Text(card.wrappedDefinition)
                 HStack {
-                    Button {
-                        card.familiarity = .good
-                        impactMed.impactOccurred()
-                    } label: {
-                        Circle()
-                            .frame(width: 28, height: 28)
-                            .foregroundColor(card.familiarity == .good ? .green : .primary.opacity(0.1))
-                    }
-                    Button {
-                        card.familiarity = .medium
-                        impactMed.impactOccurred()
-                    } label: {
-                        Circle()
-                            .frame(width: 28, height: 28)
-                            .foregroundColor(card.familiarity == .medium ? .yellow : .primary.opacity(0.1))
-                    }
-                    Button {
-                        card.familiarity = .bad
-                        impactMed.impactOccurred()
-                    } label: {
-                        Circle()
-                            .frame(width: 28, height: 28)
-                            .foregroundColor(card.familiarity == .bad ? .red : .primary.opacity(0.1))
-                    }
                     
+                    CardFamiliaritySelectView(familiarity: $card.familiarity)
                     CardLastSeenView(card:card)
                   
                     Spacer()

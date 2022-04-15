@@ -16,6 +16,7 @@ struct CardEditView: View {
 
     @State var word = ""
     @State var definition = ""
+    @State var familiarity: Card.Familiarity = .unset
     
     var parentList:VocabList?
     var card:Card?
@@ -29,12 +30,18 @@ struct CardEditView: View {
                     TextEditor(text: $definition)
                         .padding([.leading,.trailing],-5)
                 }
+                Section {
+                    CardFamiliaritySelectView(familiarity: $familiarity)
+                }
+                
                 if let card = card{
-                    Button(role:.destructive){
-                        card.delete()
-                        showingView = false
-                    } label: {
-                        Label("Delete Card",systemImage: "xmark")
+                    Section {
+                        Button(role:.destructive){
+                            card.delete()
+                            showingView = false
+                        } label: {
+                            Label("Delete Card",systemImage: "xmark")
+                        }
                     }
                 }
             }
@@ -55,7 +62,6 @@ struct CardEditView: View {
                         Text("save")
                     }
                     .font(.body.weight(.bold))
-                    
                 }
             }
             .onAppear{
@@ -63,8 +69,8 @@ struct CardEditView: View {
                     if let card = card {
                         word = card.wrappedWord
                         definition = card.wrappedDefinition
+                        familiarity = card.familiarity
                     }
-                    
                 }
             }
             .navigationTitle(card == nil ? "Add Card" : "Edit Card")
@@ -78,6 +84,7 @@ struct CardEditView: View {
             card.wrappedWord = word
             card.wrappedDefinition = definition
             card.parentList = parentList
+            card.familiarity = familiarity
             card.save()
         } else {
             let card = Card(context: viewContext)
@@ -85,6 +92,7 @@ struct CardEditView: View {
             card.wrappedDefinition = definition
             card.wrappedLastSeen = Date.now
             card.parentList = parentList
+            card.familiarity = familiarity
             card.save()
             
         }
