@@ -113,7 +113,7 @@ struct IconPickerView: View {
                 Button {
                     self.icon = icon
                 } label: {
-                    if(self.icon == icon){
+                    if(self.icon == icon || (self.icon == "" && icon == "rectangle.3.offgrid")){
                         Image(systemName: icon)
                             .font(.title2)
                             .frame(width: 50, height: 50)

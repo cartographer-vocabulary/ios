@@ -72,7 +72,7 @@ struct CardView: View {
             }
         }
         .sheet(isPresented: $showingEditSheet) {
-            CardEditView(showingView: $showingEditSheet,card: card)
+            CardEditView(showingView: $showingEditSheet, card: card)
         }
         .sheet(isPresented: $showingMoveSheet) {
             CardMoveView(showingView: $showingMoveSheet,card: card)

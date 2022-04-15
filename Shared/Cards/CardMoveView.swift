@@ -17,28 +17,21 @@ struct CardMoveView: View {
         NavigationView {
             ListSelectorView(list: $selectedList)
                 .toolbar {
-                    ToolbarItem(placement: .cancellationAction){
-                        Button {
-                            showingView = false
-                        } label: {
-                            Text("cancel")
-                        }
-                        .font(.body.weight(.regular))
-                        
-                    }
                     ToolbarItem(placement: .confirmationAction){
                         Button {
-                            card.parentList = selectedList
-                            card.save()
                             showingView = false
                         } label: {
-                            Text("save")
+                            Text("Done")
                         }
                         .font(.body.weight(.bold))
                     }
                 }
                 .onAppear{
                     selectedList = card.parentList
+                }
+                .onDisappear{
+                    card.parentList = selectedList
+                    card.save()
                 }
                 .navigationTitle("Move Card")
                 .navigationBarTitleDisplayMode(.inline)

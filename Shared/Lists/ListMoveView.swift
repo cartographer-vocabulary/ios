@@ -17,28 +17,21 @@ struct ListMoveView: View {
         NavigationView {
             ListSelectorView(list: $selectedList, disabledLists: [list])
             .toolbar {
-                ToolbarItem(placement: .cancellationAction){
-                    Button {
-                        showingView = false
-                    } label: {
-                        Text("cancel")
-                    }
-                    .font(.body.weight(.regular))
-                    
-                }
                 ToolbarItem(placement: .confirmationAction){
                     Button {
-                        list.parentList = selectedList
-                        list.save()
                         showingView = false
                     } label: {
-                        Text("save")
+                        Text("Done")
                     }
                     .font(.body.weight(.bold))
                 }
             }
             .onAppear{
                 selectedList = list.parentList
+            }
+            .onDisappear{
+                list.parentList = selectedList
+                list.save()
             }
             .navigationTitle("Move List")
             .navigationBarTitleDisplayMode(.inline)

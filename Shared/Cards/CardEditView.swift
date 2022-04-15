@@ -46,20 +46,11 @@ struct CardEditView: View {
                 }
             }
             .toolbar {
-                ToolbarItem(placement: .cancellationAction){
+                ToolbarItem(placement: .confirmationAction){
                     Button {
                         showingView = false
                     } label: {
-                        Text("cancel")
-                    }
-                    .font(.body.weight(.regular))
-                    
-                }
-                ToolbarItem(placement: .confirmationAction){
-                    Button {
-                        save()
-                    } label: {
-                        Text("save")
+                        Text("Done")
                     }
                     .font(.body.weight(.bold))
                 }
@@ -73,6 +64,9 @@ struct CardEditView: View {
                     }
                 }
             }
+            .onDisappear{
+                save()
+            }
             .navigationTitle(card == nil ? "Add Card" : "Edit Card")
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -83,10 +77,11 @@ struct CardEditView: View {
         if let card = card {
             card.wrappedWord = word
             card.wrappedDefinition = definition
-            card.parentList = parentList
             card.familiarity = familiarity
             card.save()
         } else {
+            if(word.isEmpty && definition.isEmpty) {return}
+            
             let card = Card(context: viewContext)
             card.wrappedWord = word
             card.wrappedDefinition = definition

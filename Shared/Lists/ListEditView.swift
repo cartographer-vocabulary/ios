@@ -18,7 +18,7 @@ struct ListEditView: View {
     var parentList: VocabList?
     
     @State var listTitle = ""
-    @State var listIcon = "rectangle.3.offgrid"
+    @State var listIcon = ""
     
     var body: some View {
         NavigationView {
@@ -35,20 +35,11 @@ struct ListEditView: View {
             }
             .foregroundColor(.primary)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction){
+                ToolbarItem(placement: .confirmationAction){
                     Button {
                         showingView = false
                     } label: {
-                        Text("cancel")
-                    }
-                    .font(.body.weight(.regular))
-                    
-                }
-                ToolbarItem(placement: .confirmationAction){
-                    Button {
-                        save()
-                    } label: {
-                        Text("save")
+                        Text("Done")
                     }
                     .font(.body.weight(.bold))
                     
@@ -68,6 +59,9 @@ struct ListEditView: View {
                     }
                 }
             }
+            .onDisappear{
+                save()
+            }
             .navigationTitle(list == nil ? "Add List" : "Edit List")
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -80,6 +74,7 @@ struct ListEditView: View {
             list.wrappedTitle = listTitle
             list.save(to:parentList)
         } else {
+            if(listIcon.isEmpty && listTitle.isEmpty) {return}
             let list = VocabList(context: viewContext)
             list.save(to:parentList)
             list.wrappedIcon = listIcon
