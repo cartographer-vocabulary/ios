@@ -37,7 +37,7 @@ struct SidebarView: View {
     }
     
     private var cards: [Card] {
-       return Card.sortCards(showChildren ? allCards : topLevelCards, with: VocabList.SortMethod(rawValue: Int64(rawSorting)) ?? .alphabetical)
+       return Card.sortCards(showChildren ? allCards : topLevelCards, with: sorting)
     }
     
     
@@ -46,24 +46,17 @@ struct SidebarView: View {
     @State var showingSettings = false
     
     @AppStorage("showChildren") var showChildren: Bool = false
-    @AppStorage("cardSorting") var rawSorting: Int = 0
+    @AppStorage("cardSorting") var sorting: Int = 0
     
     var body: some View {
         
         ListContentView(lists: lists, cards: cards)
             .animation(.default, value: cards)
-            .animation(.default, value: rawSorting)
+            .animation(.default, value: sorting)
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    ListSortView(showChildren: $showChildren, sorting: Binding<VocabList.SortMethod> (
-                        get: {
-                            VocabList.SortMethod(rawValue: Int64(rawSorting)) ?? .alphabetical
-                        }, set: { sorting in
-                            rawSorting = 0
-                            rawSorting = Int(sorting.rawValue)
-                        }
-                    )
-                    )
+                    CardModePicker()
+                    ListSortView(showChildren: $showChildren, sorting: $sorting)
                     Button{
                         showingSettings = true
                     } label: {

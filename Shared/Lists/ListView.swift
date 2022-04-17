@@ -17,17 +17,22 @@ struct ListView: View {
     private var fetchedLists: FetchedResults<VocabList>
     
     var childCards:[Card]{
-        Card.sortCards( list.getCards(from: fetchedCards, children:list.showChildren), with: list.sorting)
+        Card.sortCards( list.getCards(from: fetchedCards, children:list.showChildren), with: sorting)
     }
     
     @State var showingEditList = false
     @State var showingMoveList = false
     
+    @AppStorage("cardSorting") var sorting: Int = 0
+    
     var body: some View {
         ListContentView(list: list, lists: list.getLists(from: fetchedLists), cards: childCards)
             .toolbar{
                 ToolbarItemGroup(placement: .navigationBarTrailing){
-                    ListSortView(showChildren: $list.showChildren, sorting: $list.sorting)
+                    
+                    CardModePicker()
+                    
+                    ListSortView(showChildren: $list.showChildren, sorting: $sorting)
                     
                     Menu {
                         Button{

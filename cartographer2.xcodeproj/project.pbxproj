@@ -20,6 +20,7 @@
 		1BA12E1127E6B83500F72A2F /* ListEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA12E1027E6B83500F72A2F /* ListEditView.swift */; };
 		1BA12E1427E764C400F72A2F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA12E1327E764C300F72A2F /* Helpers.swift */; };
 		1BA12E1727E7855600F72A2F /* IconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA12E1627E7855600F72A2F /* IconPickerView.swift */; };
+		1BA14EF5280C7738005A0BBD /* CardModePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA14EF4280C7738005A0BBD /* CardModePicker.swift */; };
 		1BA7A3C627F3EEC40088DB3F /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA7A3C527F3EEC40088DB3F /* SidebarView.swift */; };
 		1BAF863D27D40530009A10C6 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF863C27D40530009A10C6 /* Tests_iOS.swift */; };
 		1BAF863F27D40530009A10C6 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF863E27D40530009A10C6 /* Tests_iOSLaunchTests.swift */; };
@@ -62,6 +63,7 @@
 		1BA12E1027E6B83500F72A2F /* ListEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEditView.swift; sourceTree = "<group>"; };
 		1BA12E1327E764C300F72A2F /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		1BA12E1627E7855600F72A2F /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
+		1BA14EF4280C7738005A0BBD /* CardModePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModePicker.swift; sourceTree = "<group>"; };
 		1BA7A3C527F3EEC40088DB3F /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		1BAF862227D4052F009A10C6 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		1BAF862327D4052F009A10C6 /* cartographer2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartographer2App.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			children = (
 				1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */,
 				1BA12E0D27E6B49C00F72A2F /* ListView.swift */,
+				1BA14EF4280C7738005A0BBD /* CardModePicker.swift */,
 				1B8F9CEB27F2A44400014407 /* ListContentView.swift */,
 				1B753C3627F8766F005A0776 /* ListMoveView.swift */,
 				1BCC823027F8C656007E3E3A /* ListSelectorView.swift */,
@@ -319,6 +322,7 @@
 				1B6DED412801222700D28FD2 /* CardsImportView.swift in Sources */,
 				1BBF840B27DCDB5800C0069B /* VocabListHelpers.swift in Sources */,
 				1BC5BEB727F0A56900CB133C /* CardLastSeenView.swift in Sources */,
+				1BA14EF5280C7738005A0BBD /* CardModePicker.swift in Sources */,
 				1BA12E1427E764C400F72A2F /* Helpers.swift in Sources */,
 				1B8F9CEC27F2A44400014407 /* ListContentView.swift in Sources */,
 				1BA12E1727E7855600F72A2F /* IconPickerView.swift in Sources */,

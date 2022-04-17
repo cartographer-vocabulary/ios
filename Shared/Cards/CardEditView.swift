@@ -75,13 +75,12 @@ struct CardEditView: View {
     func save() {
         showingView = false
         if let card = card {
-            card.wrappedWord = word
-            card.wrappedDefinition = definition
-            card.familiarity = familiarity
+            if(card.wrappedWord != word) { card.wrappedWord = word }
+            if(card.wrappedDefinition != definition) { card.wrappedDefinition = definition }
+            if(card.familiarity != familiarity) { card.familiarity = familiarity }
             card.save()
         } else {
             if(word.isEmpty && definition.isEmpty) {return}
-            
             let card = Card(context: viewContext)
             card.wrappedWord = word
             card.wrappedDefinition = definition

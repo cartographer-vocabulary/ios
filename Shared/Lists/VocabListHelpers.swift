@@ -38,17 +38,6 @@ extension VocabList {
         case random = 5
     }
     
-    var sorting:SortMethod {
-        get {
-            return SortMethod(rawValue: rawSorting) ?? .alphabetical
-        }
-        set (sorting){
-            rawSorting = sorting.rawValue
-            save()
-        }
-    }
-    
-    
     func getLists() -> [VocabList] {
         if let lists = self.lists {
             return lists.compactMap { list in

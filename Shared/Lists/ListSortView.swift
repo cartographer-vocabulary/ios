@@ -9,20 +9,20 @@ import SwiftUI
 
 struct ListSortView: View {
     @Binding var showChildren:Bool
-    @Binding var sorting:VocabList.SortMethod
+    @Binding var sorting:Int
     
     var icon: String {
         switch sorting{
         
-        case .date:
+        case 1:
             return "clock"
-        case .dateReversed:
+        case 2:
             return "clock.arrow.circlepath"
-        case .familiarity:
+        case 3:
             return "checkmark.circle"
-        case .familiarityReversed:
+        case 4:
             return "xmark.circle"
-        case .random:
+        case 5:
             return "shuffle"
         default:
             return "textformat"
@@ -35,12 +35,12 @@ struct ListSortView: View {
             Toggle("Show Child Cards", isOn: $showChildren)
             Divider()
             Picker("Selection", selection: $sorting) {
-                Label("Alphabetical", systemImage: "textformat").tag(VocabList.SortMethod.alphabetical)
-                Label("Newest", systemImage: "clock").tag(VocabList.SortMethod.date)
-                Label("Oldest", systemImage: "clock.arrow.circlepath").tag(VocabList.SortMethod.dateReversed)
-                Label("Most Familiar", systemImage: "checkmark.circle").tag(VocabList.SortMethod.familiarity )
-                Label("Least Familiar", systemImage: "xmark.circle").tag(VocabList.SortMethod.familiarityReversed )
-                Label("Random", systemImage: "shuffle").tag(VocabList.SortMethod.random )
+                Label("Alphabetical", systemImage: "textformat").tag(0)
+                Label("Newest", systemImage: "clock").tag(1)
+                Label("Oldest", systemImage: "clock.arrow.circlepath").tag(2)
+                Label("Most Familiar", systemImage: "checkmark.circle").tag(3)
+                Label("Least Familiar", systemImage: "xmark.circle").tag(4)
+                Label("Random", systemImage: "shuffle").tag(5)
             }
 
         } label: {

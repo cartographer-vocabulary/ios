@@ -65,29 +65,29 @@ extension Card {
         }
     }
     
-    static func sortCards(_ cards: [Card], with sorting: VocabList.SortMethod) -> [Card] {
+    static func sortCards(_ cards: [Card], with sorting: Int) -> [Card] {
         switch sorting {
-        case .date:
+        case 1:
             return cards.sorted { a, b in
                 a.wrappedLastSeen > b.wrappedLastSeen
             }
             
-        case .dateReversed:
+        case 2:
             return cards.sorted { a, b in
                 a.wrappedLastSeen < b.wrappedLastSeen
             }
             
-        case .familiarity:
+        case 3:
             return cards.sorted { a, b in
                 a.familiarity.rawValue > b.familiarity.rawValue
             }
             
-        case .familiarityReversed:
+        case 4:
             return cards.sorted { a, b in
                 a.familiarity.rawValue < b.familiarity.rawValue
             }
             
-        case .random:
+        case 5:
             return cards.shuffled()
             
         default:

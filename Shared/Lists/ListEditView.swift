@@ -70,8 +70,8 @@ struct ListEditView: View {
     func save() {
         showingView = false
         if let list = list {
-            list.wrappedIcon = listIcon
-            list.wrappedTitle = listTitle
+            if(list.wrappedIcon != listIcon) { list.wrappedIcon = listIcon }
+            if(list.wrappedTitle != listTitle) { list.wrappedTitle = listTitle }
             list.save(to:parentList)
         } else {
             if(listIcon.isEmpty && listTitle.isEmpty) {return}
