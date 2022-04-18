@@ -22,7 +22,7 @@ extension VocabList {
     
     var wrappedIcon: String {
         get {
-            icon ?? "rectangle.3.offgrid"
+            icon == "" || icon == nil ? "rectangle.3.offgrid" : icon ?? ""
         }
         set (icon) {
             self.icon = icon.trimmingCharacters(in: .whitespacesAndNewlines)

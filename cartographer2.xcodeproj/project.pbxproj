@@ -21,6 +21,7 @@
 		1BA12E1427E764C400F72A2F /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA12E1327E764C300F72A2F /* Helpers.swift */; };
 		1BA12E1727E7855600F72A2F /* IconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA12E1627E7855600F72A2F /* IconPickerView.swift */; };
 		1BA14EF5280C7738005A0BBD /* CardModePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA14EF4280C7738005A0BBD /* CardModePicker.swift */; };
+		1BA14EF8280C83EF005A0BBD /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA14EF7280C83EF005A0BBD /* CloudKit.framework */; };
 		1BA7A3C627F3EEC40088DB3F /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA7A3C527F3EEC40088DB3F /* SidebarView.swift */; };
 		1BAF863D27D40530009A10C6 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF863C27D40530009A10C6 /* Tests_iOS.swift */; };
 		1BAF863F27D40530009A10C6 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF863E27D40530009A10C6 /* Tests_iOSLaunchTests.swift */; };
@@ -64,13 +65,14 @@
 		1BA12E1327E764C300F72A2F /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		1BA12E1627E7855600F72A2F /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
 		1BA14EF4280C7738005A0BBD /* CardModePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModePicker.swift; sourceTree = "<group>"; };
+		1BA14EF7280C83EF005A0BBD /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.4.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		1BA7A3C527F3EEC40088DB3F /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		1BAF862227D4052F009A10C6 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		1BAF862327D4052F009A10C6 /* cartographer2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartographer2App.swift; sourceTree = "<group>"; };
 		1BAF862427D4052F009A10C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1BAF862527D4052F009A10C6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		1BAF862627D40530009A10C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1BAF862B27D40530009A10C6 /* cartographer2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cartographer2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BAF862B27D40530009A10C6 /* Cartographer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartographer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BAF863327D40530009A10C6 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		1BAF863827D40530009A10C6 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BAF863C27D40530009A10C6 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BA14EF8280C83EF005A0BBD /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +139,14 @@
 			path = Lists;
 			sourceTree = "<group>";
 		};
+		1BA14EF6280C83EF005A0BBD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1BA14EF7280C83EF005A0BBD /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1BAF861B27D4052E009A10C6 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +156,7 @@
 				1BAF863B27D40530009A10C6 /* Tests iOS */,
 				1BAF864727D40530009A10C6 /* Tests macOS */,
 				1BAF862C27D40530009A10C6 /* Products */,
+				1BA14EF6280C83EF005A0BBD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,7 +180,7 @@
 		1BAF862C27D40530009A10C6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1BAF862B27D40530009A10C6 /* cartographer2.app */,
+				1BAF862B27D40530009A10C6 /* Cartographer.app */,
 				1BAF863827D40530009A10C6 /* Tests iOS.xctest */,
 			);
 			name = Products;
@@ -234,7 +246,7 @@
 			);
 			name = "cartographer2 (iOS)";
 			productName = "cartographer2 (iOS)";
-			productReference = 1BAF862B27D40530009A10C6 /* cartographer2.app */;
+			productReference = 1BAF862B27D40530009A10C6 /* Cartographer.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1BAF863727D40530009A10C6 /* Tests iOS */ = {
@@ -485,7 +497,7 @@
 				CODE_SIGN_ENTITLEMENTS = "cartographer2 (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 68NKG8SS32;
+				DEVELOPMENT_TEAM = D7P78H6282;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -500,7 +512,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tonyzhang.cartographer2;
-				PRODUCT_NAME = cartographer2;
+				PRODUCT_NAME = Cartographer;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -517,7 +529,7 @@
 				CODE_SIGN_ENTITLEMENTS = "cartographer2 (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 68NKG8SS32;
+				DEVELOPMENT_TEAM = D7P78H6282;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -532,7 +544,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tonyzhang.cartographer2;
-				PRODUCT_NAME = cartographer2;
+				PRODUCT_NAME = Cartographer;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

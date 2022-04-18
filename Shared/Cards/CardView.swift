@@ -42,6 +42,7 @@ struct CardView: View {
                     HStack {
                         
                         CardFamiliaritySelectView(familiarity: $card.familiarity)
+                            .animation(nil)
                         CardLastSeenView(card:card)
                       
                         Spacer()
@@ -76,7 +77,6 @@ struct CardView: View {
         .onChange(of: mode, perform: { newValue in
             isFlipped = false
         })
-        .animation(.default, value: mode)
         .contentShape(Rectangle())
         .onTapGesture {
             if mode == 0 {

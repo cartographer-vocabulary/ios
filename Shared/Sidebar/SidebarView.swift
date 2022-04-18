@@ -57,11 +57,11 @@ struct SidebarView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     CardModePicker()
                     ListSortView(showChildren: $showChildren, sorting: $sorting)
-                    Button{
-                        showingSettings = true
-                    } label: {
-                        Label("Settings", systemImage: "gearshape")
-                    }
+//                    Button{
+//                        showingSettings = true
+//                    } label: {
+//                        Label("Settings", systemImage: "gearshape")
+//                    }
                 }
             }
             .sheet(isPresented: $showingSettings, content: {
