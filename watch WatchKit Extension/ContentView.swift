@@ -14,8 +14,7 @@ struct ContentView: View {
     
     private var lists: [VocabList] {
         return fetchedLists.filter({ list in
-//            return list.parentList == nil
-            return true
+            return list.parentList == nil
         })
     }
     

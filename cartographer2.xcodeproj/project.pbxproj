@@ -11,6 +11,7 @@
 		1B64C10F27EFB5CC0060AF97 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64C10E27EFB5CC0060AF97 /* CardView.swift */; };
 		1B64C11227EFB6040060AF97 /* CardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64C11127EFB6040060AF97 /* CardHelpers.swift */; };
 		1B64C11627EFBAEF0060AF97 /* CardEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64C11527EFBAEF0060AF97 /* CardEditView.swift */; };
+		1B6589F028124EEA003DFDF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BAF862627D40530009A10C6 /* Assets.xcassets */; };
 		1B6DED412801222700D28FD2 /* CardsImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6DED402801222700D28FD2 /* CardsImportView.swift */; };
 		1B753C3727F8766F005A0776 /* ListMoveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B753C3627F8766F005A0776 /* ListMoveView.swift */; };
 		1B80202F28105B09000555CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B80202E28105B09000555CE /* Assets.xcassets */; };
@@ -486,6 +487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B80204728105B0A000555CE /* Preview Assets.xcassets in Resources */,
+				1B6589F028124EEA003DFDF0 /* Assets.xcassets in Resources */,
 				1B80204428105B0A000555CE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

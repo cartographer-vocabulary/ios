@@ -22,6 +22,7 @@ struct CardAddView: View {
                 card.wrappedWord = word
                 card.wrappedDefinition = definition
                 card.wrappedLastSeen = Date.now
+                card.parentList = parentList
                 try? viewContext.save()
                 showing=false
             } label: {

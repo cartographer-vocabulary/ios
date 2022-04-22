@@ -17,12 +17,12 @@ struct ListView: View {
     private var fetchedLists: FetchedResults<VocabList>
     
     var childCards:[Card]{
-        Card.sortCards( list.getCards(from: fetchedCards, children:list.showChildren), with: 0)
+        Card.sortCards( list.getCards(from: fetchedCards, children:false), with: 0)
     }
     
     private var lists: [VocabList] {
-        return fetchedLists.filter({ list in
-            return list.parentList == list
+        return fetchedLists.filter({ childList in
+            return childList.parentList == self.list
         })
     }
     
