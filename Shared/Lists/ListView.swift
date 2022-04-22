@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListView: View {
-    @ObservedObject var list:VocabList
+    var list:VocabList?
     
     @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "word", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
     private var fetchedCards: FetchedResults<Card>
@@ -16,52 +16,68 @@ struct ListView: View {
     @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
     private var fetchedLists: FetchedResults<VocabList>
     
-    var childCards:[Card]{
-        Card.sortCards( list.getCards(from: fetchedCards, children:list.showChildren), with: sorting)
-    }
-    
     @State var showingEditList = false
     @State var showingMoveList = false
     
     @AppStorage("cardSorting") var sorting: Int = 0
+    @AppStorage("showChildren") var showChildren: Bool = false
+
+    var childCards:[Card]{
+        return Card.sortCards(fetchedCards.filter { card in
+            return card.parentList == list || showChildren
+        }, with: sorting)
+    }
+    
+    var lists:[VocabList]{
+        return fetchedLists.filter { childList in
+            return childList.parentList == list
+        }
+    }
     
     var body: some View {
-        ListContentView(list: list, lists: list.getLists(from: fetchedLists), cards: childCards)
+        ListContentView(list: list, lists: lists, cards: childCards)
             .toolbar{
                 ToolbarItemGroup(placement: .navigationBarTrailing){
                     
                     CardModePicker()
                     
-                    ListSortView(showChildren: $list.showChildren, sorting: $sorting)
+                    ListSortView(showChildren: $showChildren, sorting: $sorting)
                     
-                    Menu {
-                        Button{
-                            showingEditList = true
-                        } label: {
-                            Label("Edit", systemImage: "pencil")
+                    if let list = list {
+                        Menu {
+                            Button{
+                                showingEditList = true
+                            } label: {
+                                Label("Edit", systemImage: "pencil")
+                            }
+                            Button {
+                                showingMoveList = true
+                            } label: {
+                                Label("Move", systemImage: "arrowshape.turn.up.right")
+                            }
+                            Divider()
+                            Button (role:.destructive){
+                                list.delete()
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        } label : {
+                            Label("Edit List", systemImage: "ellipsis.circle")
                         }
-                        Button {
-                            showingMoveList = true
-                        } label: {
-                            Label("Move", systemImage: "arrowshape.turn.up.right")
-                        }
-                        Divider()
-                        Button (role:.destructive){
-                            list.delete()
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                        }
-                    } label : {
-                        Label("Edit List", systemImage: "ellipsis.circle")
                     }
                 }
             }
-            .navigationTitle(list.wrappedTitle)
+            .navigationTitle(list?.wrappedTitle ?? "Library")
+            .listStyle(.insetGrouped)
             .sheet(isPresented: $showingEditList) {
-                ListEditView(showingView:$showingEditList,list: list)
+                if let list = list {
+                    ListEditView(showingView:$showingEditList, list: list)
+                }
             }
             .sheet(isPresented: $showingMoveList) {
-                ListMoveView(showingView:$showingMoveList,list: list)
+                if let list = list {
+                    ListMoveView(showingView:$showingMoveList, list: list)
+                }
             }
     }
 }

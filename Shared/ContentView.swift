@@ -17,7 +17,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            SidebarView()
+            ListView()
             Text("No List Selected")
                 .font(.title)
                 .opacity(0.5)

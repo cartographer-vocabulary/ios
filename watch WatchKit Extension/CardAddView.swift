@@ -18,12 +18,14 @@ struct CardAddView: View {
             TextField("Word", text: $word)
             TextField("Definition", text: $definition)
             Button{
-                let card = Card(context: viewContext)
-                card.wrappedWord = word
-                card.wrappedDefinition = definition
-                card.wrappedLastSeen = Date.now
-                card.parentList = parentList
-                try? viewContext.save()
+                if !(word.isEmpty && definition.isEmpty) {
+                    let card = Card(context: viewContext)
+                    card.wrappedWord = word
+                    card.wrappedDefinition = definition
+                    card.wrappedLastSeen = Date.now
+                    card.parentList = parentList
+                    try? viewContext.save()
+                }
                 showing=false
             } label: {
                 Text("Done")

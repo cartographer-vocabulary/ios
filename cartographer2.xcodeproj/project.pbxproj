@@ -23,13 +23,14 @@
 		1B80204228105B0A000555CE /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B80204128105B0A000555CE /* ComplicationController.swift */; };
 		1B80204428105B0A000555CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B80204328105B0A000555CE /* Assets.xcassets */; };
 		1B80204728105B0A000555CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B80204628105B0A000555CE /* Preview Assets.xcassets */; };
-		1B80204C28105B0A000555CE /* watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1B80202C28105B08000555CE /* watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B80204C28105B0A000555CE /* Cartographer.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1B80202C28105B08000555CE /* Cartographer.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1B80205628105B9F000555CE /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862527D4052F009A10C6 /* Persistence.swift */; };
 		1B80205728105BBF000555CE /* cartographer2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862127D4052F009A10C6 /* cartographer2.xcdatamodeld */; };
 		1B80205828105C6F000555CE /* CardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64C11127EFB6040060AF97 /* CardHelpers.swift */; };
 		1B80205928105C73000555CE /* VocabListHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */; };
 		1B8F9CEA27F1196B00014407 /* ListSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F9CE927F1196B00014407 /* ListSortView.swift */; };
 		1B8F9CEC27F2A44400014407 /* ListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F9CEB27F2A44400014407 /* ListContentView.swift */; };
+		1B9AB98A2812D11700027D80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BAF862627D40530009A10C6 /* Assets.xcassets */; };
 		1BA12E0827E6B45800F72A2F /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA12E0727E6B45800F72A2F /* ListRow.swift */; };
 		1BA12E0E27E6B49C00F72A2F /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA12E0D27E6B49C00F72A2F /* ListView.swift */; };
 		1BA12E1127E6B83500F72A2F /* ListEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA12E1027E6B83500F72A2F /* ListEditView.swift */; };
@@ -37,7 +38,6 @@
 		1BA12E1727E7855600F72A2F /* IconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA12E1627E7855600F72A2F /* IconPickerView.swift */; };
 		1BA14EF5280C7738005A0BBD /* CardModePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA14EF4280C7738005A0BBD /* CardModePicker.swift */; };
 		1BA14EF8280C83EF005A0BBD /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA14EF7280C83EF005A0BBD /* CloudKit.framework */; };
-		1BA7A3C627F3EEC40088DB3F /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA7A3C527F3EEC40088DB3F /* SidebarView.swift */; };
 		1BAF863D27D40530009A10C6 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF863C27D40530009A10C6 /* Tests_iOS.swift */; };
 		1BAF863F27D40530009A10C6 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF863E27D40530009A10C6 /* Tests_iOSLaunchTests.swift */; };
 		1BAF864C27D40530009A10C6 /* cartographer2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862127D4052F009A10C6 /* cartographer2.xcdatamodeld */; };
@@ -89,7 +89,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				1B80204C28105B0A000555CE /* watch.app in Embed Watch Content */,
+				1B80204C28105B0A000555CE /* Cartographer.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,7 +115,7 @@
 		1B6DED402801222700D28FD2 /* CardsImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsImportView.swift; sourceTree = "<group>"; };
 		1B753C3527F7F048005A0776 /* cartographer2 (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "cartographer2 (iOS).entitlements"; sourceTree = "<group>"; };
 		1B753C3627F8766F005A0776 /* ListMoveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoveView.swift; sourceTree = "<group>"; };
-		1B80202C28105B08000555CE /* watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B80202C28105B08000555CE /* Cartographer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartographer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B80202E28105B09000555CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B80203428105B0A000555CE /* watch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "watch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B80203928105B0A000555CE /* cartographer2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartographer2App.swift; sourceTree = "<group>"; };
@@ -136,7 +136,6 @@
 		1BA12E1627E7855600F72A2F /* IconPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPickerView.swift; sourceTree = "<group>"; };
 		1BA14EF4280C7738005A0BBD /* CardModePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModePicker.swift; sourceTree = "<group>"; };
 		1BA14EF7280C83EF005A0BBD /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.4.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
-		1BA7A3C527F3EEC40088DB3F /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		1BAF862227D4052F009A10C6 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		1BAF862327D4052F009A10C6 /* cartographer2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartographer2App.swift; sourceTree = "<group>"; };
 		1BAF862427D4052F009A10C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -290,7 +289,6 @@
 				1BAF862527D4052F009A10C6 /* Persistence.swift */,
 				1BA12E1327E764C300F72A2F /* Helpers.swift */,
 				1BBB34FC27F934F600BD7476 /* Settings */,
-				1BBF840D27DD59C000C0069B /* Sidebar */,
 				1B64C11427EFB6950060AF97 /* Cards */,
 				1B94A09827E55CDB00111D9D /* Lists */,
 				1BAF862627D40530009A10C6 /* Assets.xcassets */,
@@ -304,7 +302,7 @@
 			children = (
 				1BAF862B27D40530009A10C6 /* Cartographer.app */,
 				1BAF863827D40530009A10C6 /* Tests iOS.xctest */,
-				1B80202C28105B08000555CE /* watch.app */,
+				1B80202C28105B08000555CE /* Cartographer.app */,
 				1B80203428105B0A000555CE /* watch WatchKit Extension.appex */,
 			);
 			name = Products;
@@ -345,14 +343,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		1BBF840D27DD59C000C0069B /* Sidebar */ = {
-			isa = PBXGroup;
-			children = (
-				1BA7A3C527F3EEC40088DB3F /* SidebarView.swift */,
-			);
-			path = Sidebar;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -370,7 +360,7 @@
 			);
 			name = watch;
 			productName = watch;
-			productReference = 1B80202C28105B08000555CE /* watch.app */;
+			productReference = 1B80202C28105B08000555CE /* Cartographer.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		1B80203328105B0A000555CE /* watch WatchKit Extension */ = {
@@ -478,6 +468,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B9AB98A2812D11700027D80 /* Assets.xcassets in Resources */,
 				1B80202F28105B09000555CE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,7 +541,6 @@
 				1BAF864C27D40530009A10C6 /* cartographer2.xcdatamodeld in Sources */,
 				1B8F9CEA27F1196B00014407 /* ListSortView.swift in Sources */,
 				1BAF865027D40530009A10C6 /* ContentView.swift in Sources */,
-				1BA7A3C627F3EEC40088DB3F /* SidebarView.swift in Sources */,
 				1BCC823127F8C656007E3E3A /* ListSelectorView.swift in Sources */,
 				1B753C3727F8766F005A0776 /* ListMoveView.swift in Sources */,
 				1BA12E0E27E6B49C00F72A2F /* ListView.swift in Sources */,
@@ -603,12 +593,11 @@
 				DEVELOPMENT_TEAM = D7P78H6282;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = watch_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = watch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = net.tonyzhang.cartographer2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tonyzhang.cartographer2.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Cartographer;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -629,12 +618,11 @@
 				DEVELOPMENT_TEAM = D7P78H6282;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = watch_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = watch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = net.tonyzhang.cartographer2;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tonyzhang.cartographer2.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Cartographer;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -657,8 +645,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "watch WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "watch WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_CFBundleDisplayName = Cartographer;
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = watch_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -689,8 +677,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "watch WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "watch WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
+				INFOPLIST_KEY_CFBundleDisplayName = Cartographer;
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = watch_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
