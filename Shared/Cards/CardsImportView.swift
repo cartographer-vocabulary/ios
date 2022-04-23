@@ -21,8 +21,18 @@ struct CardsImportView: View {
                     TextField("Word Definition Separator (tab)", text: $wordDefinitionSeparator)
                     TextField("Card Separator (new line)", text: $cardSeparator)
                 }
-                TextEditor(text: $text)
-                    .padding([.leading,.trailing],-5)
+                Section {
+                    Button {
+                        if let string = UIPasteboard.general.string {
+                            text = string
+                        }
+                    } label: {
+                        Label("Paste", systemImage: "doc.on.clipboard")
+                    }
+
+                    TextEditor(text: $text)
+                        .padding([.leading,.trailing],-5)
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction){
@@ -56,7 +66,7 @@ struct CardsImportView: View {
                         
                         
                     } label: {
-                        Text("save")
+                        Text("Done")
                     }
                     .font(.body.weight(.bold))
                 }

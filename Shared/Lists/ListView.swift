@@ -18,6 +18,7 @@ struct ListView: View {
     
     @State var showingEditList = false
     @State var showingMoveList = false
+    @State var showingExportList = false
     
     @AppStorage("cardSorting") var sorting: Int = 0
     @AppStorage("showChildren") var showChildren: Bool = false
@@ -43,8 +44,14 @@ struct ListView: View {
                     
                     ListSortView(showChildren: $showChildren, sorting: $sorting)
                     
-                    if let list = list {
-                        Menu {
+                    Menu {
+                        Button{
+                            showingExportList = true
+                        } label: {
+                            Label("Export", systemImage:"square.and.arrow.up")
+                        }
+                        Divider()
+                        if let list = list {
                             Button{
                                 showingEditList = true
                             } label: {
@@ -55,19 +62,20 @@ struct ListView: View {
                             } label: {
                                 Label("Move", systemImage: "arrowshape.turn.up.right")
                             }
-                            Divider()
                             Button (role:.destructive){
                                 list.delete()
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
-                        } label : {
-                            Label("Edit List", systemImage: "ellipsis.circle")
                         }
+                    } label : {
+                        Label("List Options", systemImage: "ellipsis.circle")
                     }
                 }
             }
             .navigationTitle(list?.wrappedTitle ?? "Library")
+            .animation(.default, value: sorting)
+            .animation(.default, value: showChildren)
             .listStyle(.insetGrouped)
             .sheet(isPresented: $showingEditList) {
                 if let list = list {
@@ -78,6 +86,9 @@ struct ListView: View {
                 if let list = list {
                     ListMoveView(showingView:$showingMoveList, list: list)
                 }
+            }
+            .sheet(isPresented: $showingExportList) {
+                ListExportView(showingView:$showingExportList, list: list)
             }
     }
 }
