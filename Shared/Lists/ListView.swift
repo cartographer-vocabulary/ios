@@ -24,15 +24,11 @@ struct ListView: View {
     @AppStorage("showChildren") var showChildren: Bool = false
 
     var childCards:[Card]{
-        return Card.sortCards(fetchedCards.filter { card in
-            return card.parentList == list || showChildren
-        }, with: sorting)
+        Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), with: sorting)
     }
     
     var lists:[VocabList]{
-        return fetchedLists.filter { childList in
-            return childList.parentList == list
-        }
+        VocabList.getLists(of: list, from: fetchedLists)
     }
     
     var body: some View {

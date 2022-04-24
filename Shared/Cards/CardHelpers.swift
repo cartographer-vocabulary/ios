@@ -95,8 +95,7 @@ extension Card {
         }
     }
     
-    func isInside(_ list: VocabList) -> Bool {
-        guard parentList != nil else {return false}
+    func isInside(_ list: VocabList?) -> Bool {
         
         if parentList == list {
             return true

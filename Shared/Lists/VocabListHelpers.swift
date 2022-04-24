@@ -48,60 +48,30 @@ extension VocabList {
         }
     }
     
-    func getLists(from fetchedLists: FetchedResults<VocabList>) -> [VocabList] {
+    static func getLists(of list:VocabList?, from fetchedLists: FetchedResults<VocabList>) -> [VocabList] {
         let lists = fetchedLists.map{$0}
-        let filtered = lists.filter { list in
-            return list.parentList == self
+        let filtered = lists.filter { childList in
+            return childList.parentList == list
         }
         return filtered
     }
     
-    var childLists: [VocabList]? {
-        get {
-            var childLists = [VocabList]()
-            if let lists = lists {
-                childLists = lists.compactMap { list in
-                    return list as? VocabList
-                }
-            }
-            if !childLists.isEmpty {return childLists}
-            return nil
-        }
-    }
-    
-    func getCards(children:Bool = false) -> [Card]{
-        var cards:[Card] = []
-        if let childCards = self.cards {
-            cards.append(contentsOf:
-                childCards.compactMap { card in
-                    return card as? Card
-                }
-            )
-            if children {
-                self.getLists().forEach { list in
-                    cards.append(contentsOf:list.getCards(children: children))
-                }
-            }
-        }
-        return cards
-    }
-    
-    func getCards(from fetchedCards: FetchedResults<Card>, children:Bool = false) -> [Card] {
+    static func getCards(of list:VocabList?,from fetchedCards: FetchedResults<Card>, children:Bool = false) -> [Card] {
         let cards = fetchedCards.map{$0}
         let topLevel = cards.filter { card in
-            return card.parentList == self
+            return card.parentList == list
         }
         
         let allContained = cards.filter { card in
-            return card.isInside(self)
+            return card.isInside(list)
         }
         
         return children ? allContained : topLevel
     }
     
-    func isInside(_ list: VocabList) -> Bool {
-        guard parentList != nil else { return false }
-        if list == parentList { return true}
+    func isInside(_ list: VocabList?) -> Bool {
+        if parentList == list { return true }
+        
         return parentList?.isInside(list) ?? false
     }
     
