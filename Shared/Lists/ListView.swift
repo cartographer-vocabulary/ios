@@ -19,12 +19,15 @@ struct ListView: View {
     @State var showingEditList = false
     @State var showingMoveList = false
     @State var showingExportList = false
+    @State var showingSettings = false
     
     @AppStorage("cardSorting") var sorting: Int = 0
     @AppStorage("showChildren") var showChildren: Bool = false
+    @AppStorage("currentCardsOnTop") var currentCardsOnTop: Bool = false
+
 
     var childCards:[Card]{
-        Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), with: sorting)
+        Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), of:list, with: sorting, currentCardsOnTop:currentCardsOnTop)
     }
     
     var lists:[VocabList]{
@@ -63,7 +66,14 @@ struct ListView: View {
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
+                        } else {
+                            Button {
+                                showingSettings = true
+                            } label: {
+                                Label("Settings", systemImage: "gearshape")
+                            }
                         }
+                            
                     } label : {
                         Label("List Options", systemImage: "ellipsis.circle")
                     }
@@ -85,6 +95,9 @@ struct ListView: View {
             }
             .sheet(isPresented: $showingExportList) {
                 ListExportView(showingView:$showingExportList, list: list)
+            }
+            .sheet(isPresented: $showingSettings) {
+                SettingsView(showingView:$showingSettings)
             }
     }
 }

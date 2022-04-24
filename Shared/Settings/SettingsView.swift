@@ -8,12 +8,30 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Binding var showingView: Bool
+    @AppStorage("currentCardsOnTop") var currentCardsOnTop: Bool = true
     var body: some View {
         NavigationView {
             Form {
-                AppIconView()
+//                AppIconView()
+                Section {
+                    Toggle("Show Current List Cards on Top", isOn: $currentCardsOnTop)
+                } header: {
+                    Text("Sorting")
+                }
+
             }
             .navigationTitle("Settings")
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction){
+                    Button {
+                        showingView = false
+                    } label: {
+                        Text("Done")
+                    }
+                    .font(.body.weight(.bold))
+                }
+            }
         }
     }
 }

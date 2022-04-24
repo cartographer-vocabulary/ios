@@ -27,7 +27,7 @@ struct ListExportView: View {
     var childCards:[Card]{
         return Card.sortCards(fetchedCards.filter { card in
             return card.parentList == list || showChildren
-        }, with: sorting)
+        }, of: list, with: sorting)
     }
     
     var cardText:String {

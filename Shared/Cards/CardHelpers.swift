@@ -65,34 +65,39 @@ extension Card {
         }
     }
     
-    static func sortCards(_ cards: [Card], with sorting: Int) -> [Card] {
+    static func sortCards(_ cards: [Card], of list: VocabList?, with sorting: Int, currentCardsOnTop: Bool = true) -> [Card] {
+        var sorted:[Card] = []
         switch sorting {
         case 1:
-            return cards.sorted { a, b in
+            sorted = cards.sorted { a, b in
                 a.wrappedLastSeen > b.wrappedLastSeen
             }
             
         case 2:
-            return cards.sorted { a, b in
+            sorted =  cards.sorted { a, b in
                 a.wrappedLastSeen < b.wrappedLastSeen
             }
             
         case 3:
-            return cards.sorted { a, b in
+            sorted = cards.sorted { a, b in
                 a.familiarity.rawValue > b.familiarity.rawValue
             }
             
         case 4:
-            return cards.sorted { a, b in
+            sorted = cards.sorted { a, b in
                 a.familiarity.rawValue < b.familiarity.rawValue
             }
             
         case 5:
-            return cards.shuffled()
+            sorted = cards.shuffled()
             
         default:
-            return cards
+            sorted = cards
         }
+        return currentCardsOnTop ? sorted.sorted { a, b in
+            if a.parentList == list && b.parentList != list { return true }
+            return false
+        } : sorted
     }
     
     func isInside(_ list: VocabList?) -> Bool {
