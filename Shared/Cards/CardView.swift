@@ -18,9 +18,6 @@ struct CardView: View {
     @AppStorage("cardMode") var mode:Int = 0
     @State var isFlipped = false
     
-    
-    let impactMed = UIImpactFeedbackGenerator(style: .light)
-
     var body: some View {
         Section{
                 VStack(alignment: .leading, spacing: 10){
@@ -45,21 +42,8 @@ struct CardView: View {
                         .background(mode != 1 || isFlipped ? .clear : .primary.opacity(0.1))
                         .cornerRadius(3)
 
-                    HStack {
-
-                        CardFamiliaritySelectView(familiarity: $card.familiarity)
-                        CardLastSeenView(card:card)
-
-                        Spacer()
-                        Button{
-                            card.seen()
-                            impactMed.impactOccurred()
-                        } label: {
-                            Image(systemName: "checkmark")
-                                .font(.title2)
-                        }
-                    }
-                    .buttonStyle(.borderless)
+                    CardInfoBarView(card: card)
+                    
                 }
                 .padding([.top, .bottom], 10)
         }

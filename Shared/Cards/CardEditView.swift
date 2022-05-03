@@ -31,7 +31,11 @@ struct CardEditView: View {
                         .padding([.leading,.trailing],-5)
                 }
                 Section {
-                    CardFamiliaritySelectView(familiarity: $familiarity)
+                    if let card = card {
+                        CardInfoBarView(card: card)
+                    } else {
+                        CardFamiliaritySelectView(familiarity: $familiarity)
+                    }
                 }
                 
                 if let card = card{
