@@ -30,8 +30,6 @@ struct ListContentView: View {
         }
     }
     
-    @AppStorage("cardMode") var cardMode:Int = 0
-    
     var body: some View {
         List {
             
@@ -75,7 +73,7 @@ struct ListContentView: View {
                 }
             }
             ForEach(searchedCards, id: \.self){card in
-                CardView(card: card, parentList: list, mode: cardMode)
+                CardView(card: card, parentList: list)
             }
         }
         .animation(.default, value: searchText)

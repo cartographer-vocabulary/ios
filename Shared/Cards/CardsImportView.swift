@@ -59,6 +59,7 @@ struct CardsImportView: View {
                             let card = Card(context: viewContext)
                             if(cardParts.indices.contains(0)) {card.word = cardParts[0]}
                             if(cardParts.indices.contains(1)) {card.definition = cardParts.suffix(from: 1).joined(separator: wordDefinitionSeparator.isEmpty ? "\t" : wordDefinitionSeparator)}
+                            card.lastSeen = Date.now
                             card.parentList = parentList
                         }
                         try? viewContext.save()

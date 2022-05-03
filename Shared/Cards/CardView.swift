@@ -14,8 +14,8 @@ struct CardView: View {
     
     @State var showingEditSheet = false
     @State var showingMoveSheet = false
-    
-    var mode = 1
+
+    @AppStorage("cardMode") var mode:Int = 0
     @State var isFlipped = false
     
     
@@ -23,7 +23,7 @@ struct CardView: View {
 
     var body: some View {
         Section{
-            if mode == 0 || isFlipped {
+            ZStack {
                 VStack(alignment: .leading, spacing: 10){
                     if(parentList != card.parentList){
                         Text(card.getPath(from: parentList).joined(separator: " - "))
@@ -31,20 +31,19 @@ struct CardView: View {
                             .foregroundColor(.secondary)
                             .padding(.top, -2)
                             .padding(.bottom, -4)
-                            
+
 
                     }
                     Text(card.wrappedWord)
                         .font(.title2)
                         .fontWeight(.medium)
-                        
+
                     Text(card.wrappedDefinition)
                     HStack {
-                        
+
                         CardFamiliaritySelectView(familiarity: $card.familiarity)
-                            .animation(nil)
                         CardLastSeenView(card:card)
-                      
+
                         Spacer()
                         Button{
                             card.seen()
@@ -57,7 +56,7 @@ struct CardView: View {
                     .buttonStyle(.borderless)
                 }
                 .padding([.top, .bottom], 10)
-            } else if mode == 1{
+                .opacity(mode == 0 || isFlipped ? 1 : 0)
                 HStack {
                     Text(card.wrappedWord)
                         .font(.title2)
@@ -66,14 +65,16 @@ struct CardView: View {
 
                     Spacer()
                 }
-            } else {
+                .opacity(mode == 1 && !isFlipped ? 1 : 0)
                 HStack {
                     Text(card.wrappedDefinition)
                         .padding([.top,.bottom])
                     Spacer()
                 }
+                .opacity(mode == 2 && !isFlipped ? 1 : 0)
             }
         }
+        .animation(.default, value: mode)
         .onChange(of: mode, perform: { newValue in
             isFlipped = false
         })
@@ -112,5 +113,11 @@ struct CardView: View {
             CardMoveView(showingView: $showingMoveSheet,card: card)
         }
         
+    }
+}
+
+struct CardView_Previews: PreviewProvider {
+    static var previews: some View {
+        CardView(card:Card())
     }
 }
