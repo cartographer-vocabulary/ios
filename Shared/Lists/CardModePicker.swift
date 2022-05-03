@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardModePicker: View {
     @AppStorage("cardMode") var cardMode: Int = 0
-    var cardIcons = ["rectangle.on.rectangle.angled", "rectangle.tophalf.inset.filled", "rectangle.bottomhalf.inset.filled"]
+    var cardIcons = ["rectangle.on.rectangle.angled",  "rectangle.bottomhalf.inset.filled", "rectangle.tophalf.inset.filled"]
     var body: some View {
         Menu {
             Picker(selection: $cardMode) {

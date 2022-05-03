@@ -23,7 +23,6 @@ struct CardView: View {
 
     var body: some View {
         Section{
-            ZStack {
                 VStack(alignment: .leading, spacing: 10){
                     if(parentList != card.parentList){
                         Text(card.getPath(from: parentList).joined(separator: " - "))
@@ -37,8 +36,15 @@ struct CardView: View {
                     Text(card.wrappedWord)
                         .font(.title2)
                         .fontWeight(.medium)
+                        .opacity(mode != 2 || isFlipped ? 1 : 0)
+                        .background(mode != 2 || isFlipped ? .clear : .primary.opacity(0.1))
+                        .cornerRadius(3)
 
                     Text(card.wrappedDefinition)
+                        .opacity(mode != 1 || isFlipped ? 1 : 0)
+                        .background(mode != 1 || isFlipped ? .clear : .primary.opacity(0.1))
+                        .cornerRadius(3)
+
                     HStack {
 
                         CardFamiliaritySelectView(familiarity: $card.familiarity)
@@ -56,23 +62,6 @@ struct CardView: View {
                     .buttonStyle(.borderless)
                 }
                 .padding([.top, .bottom], 10)
-                .opacity(mode == 0 || isFlipped ? 1 : 0)
-                HStack {
-                    Text(card.wrappedWord)
-                        .font(.title2)
-                        .fontWeight(.medium)
-                        .padding([.top,.bottom])
-
-                    Spacer()
-                }
-                .opacity(mode == 1 && !isFlipped ? 1 : 0)
-                HStack {
-                    Text(card.wrappedDefinition)
-                        .padding([.top,.bottom])
-                    Spacer()
-                }
-                .opacity(mode == 2 && !isFlipped ? 1 : 0)
-            }
         }
         .animation(.default, value: mode)
         .onChange(of: mode, perform: { newValue in
