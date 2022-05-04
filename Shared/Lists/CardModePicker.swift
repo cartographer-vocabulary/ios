@@ -14,8 +14,8 @@ struct CardModePicker: View {
         Menu {
             Picker(selection: $cardMode) {
                 Label("Full", systemImage: cardIcons[0]).tag(0)
-                Label("Hide Word", systemImage: cardIcons[2]).tag(2)
                 Label("Hide Definition", systemImage: cardIcons[1]).tag(1)
+                Label("Hide Word", systemImage: cardIcons[2]).tag(2)
             } label: {
                 Text("Card Mode")
             }

@@ -67,6 +67,7 @@ struct CardEditView: View {
                         familiarity = card.familiarity
                     }
                 }
+
             }
             .onDisappear{
                 save()
