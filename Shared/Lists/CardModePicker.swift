@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct CardModePicker: View {
-    @AppStorage("cardMode") var cardMode: Int = 0
+    @Binding var mode:Int
     var cardIcons = ["rectangle.on.rectangle.angled", "rectangle.bottomhalf.inset.filled", "rectangle.tophalf.inset.filled"]
     var body: some View {
         Menu {
-            Picker(selection: $cardMode) {
+            Picker(selection: $mode) {
                 Label("Full", systemImage: cardIcons[0]).tag(0)
                 Label("Hide Definition", systemImage: cardIcons[1]).tag(1)
                 Label("Hide Word", systemImage: cardIcons[2]).tag(2)
@@ -20,7 +20,7 @@ struct CardModePicker: View {
                 Text("Card Mode")
             }
         } label: {
-            Label("Card Mode", systemImage: cardIcons[cardMode])
+            Label("Card Mode", systemImage: cardIcons[mode])
         }
     }
 }

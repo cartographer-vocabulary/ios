@@ -25,6 +25,7 @@ struct ListView: View {
     @AppStorage("showChildren") var showChildren: Bool = false
     @AppStorage("currentCardsOnTop") var currentCardsOnTop: Bool = false
 
+    @State var cardMode = 0
 
     var childCards:[Card]{
         Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), of:list, with: sorting, currentCardsOnTop:currentCardsOnTop)
@@ -35,11 +36,11 @@ struct ListView: View {
     }
     
     var body: some View {
-        ListContentView(list: list, lists: lists, cards: childCards)
+        ListContentView(list: list, lists: lists, cards: childCards, cardMode: cardMode)
             .toolbar{
                 ToolbarItemGroup(placement: .navigationBarTrailing){
                     
-                    CardModePicker()
+                    CardModePicker(mode:$cardMode)
                     
                     ListSortView(showChildren: $showChildren, sorting: $sorting)
                     

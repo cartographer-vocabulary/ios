@@ -18,6 +18,8 @@ struct ListContentView: View {
     @State var showingImportCard = false
     
     @State var searchText = ""
+
+    var cardMode:Int
     
     var searchedCards: [Card] {
         
@@ -73,7 +75,7 @@ struct ListContentView: View {
                 }
             }
             ForEach(searchedCards, id: \.self){card in
-                CardView(card: card, parentList: list)
+                CardView(card: card, parentList: list, mode:cardMode)
             }
         }
         .animation(.default, value: searchText)

@@ -11,11 +11,11 @@ struct CardView: View {
     
     @ObservedObject var card:Card
     var parentList:VocabList?
-    
+    var mode:Int = 0
+
     @State var showingEditSheet = false
     @State var showingMoveSheet = false
 
-    @AppStorage("cardMode") var mode:Int = 0
     @State var isFlipped = false
     
     var body: some View {
@@ -91,6 +91,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card:Card())
+        CardView(card:Card(), mode:0)
     }
 }
