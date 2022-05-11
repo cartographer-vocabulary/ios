@@ -25,12 +25,11 @@ struct ListExportView: View {
     @State var wordDefinitionSeparator:String = ""
     
     var childCards:[Card]{
-        return Card.sortCards(fetchedCards.filter { card in
-            return card.parentList == list || showChildren
-        }, of: list, with: sorting)
+        Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), of:list, with: sorting)
     }
     
     var cardText:String {
+
         childCards.map { card in
             return card.wrappedWord + (wordDefinitionSeparator.isEmpty ? "\t" : wordDefinitionSeparator) + card.wrappedDefinition
         }.joined(separator: cardSeparator.isEmpty ? "\n" : cardSeparator)
@@ -48,11 +47,11 @@ struct ListExportView: View {
                 
                 Section {
                     Button{
-                        UIPasteboard.general.string = cardText
+                        UIPasteboard.general.string = unescapeString(cardText)
                     } label: {
                         Label("Copy", systemImage: "doc.on.clipboard")
                     }
-                    Text(cardText)
+                    Text(unescapeString(cardText))
                         .textSelection(.enabled)
                 }
             }

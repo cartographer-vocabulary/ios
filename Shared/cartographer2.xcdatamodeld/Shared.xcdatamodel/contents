@@ -9,7 +9,6 @@
     </entity>
     <entity name="VocabList" representedClassName="VocabList" syncable="YES" codeGenerationType="class">
         <attribute name="icon" optional="YES" attributeType="String"/>
-        <attribute name="showChildren" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Card" inverseName="parentList" inverseEntity="Card"/>
         <relationship name="lists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VocabList" inverseName="parentList" inverseEntity="VocabList"/>
@@ -17,6 +16,6 @@
     </entity>
     <elements>
         <element name="Card" positionX="-54" positionY="9" width="128" height="104"/>
-        <element name="VocabList" positionX="-63" positionY="-9" width="128" height="119"/>
+        <element name="VocabList" positionX="-63" positionY="-9" width="128" height="104"/>
     </elements>
 </model>

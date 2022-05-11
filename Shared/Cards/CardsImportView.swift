@@ -48,10 +48,10 @@ struct CardsImportView: View {
                     Button {
                         showingView = false
                         let parsedCards:[[String]] = text
-                            .components(separatedBy: cardSeparator.isEmpty ? "\n" : cardSeparator)
+                            .components(separatedBy: cardSeparator.isEmpty ? "\n" : unescapeString(cardSeparator))
                             .compactMap { card in
                                 guard !card.isEmpty else { return nil }
-                                return card.components(separatedBy: wordDefinitionSeparator.isEmpty ? "\t" : wordDefinitionSeparator)
+                                return card.components(separatedBy: wordDefinitionSeparator.isEmpty ? "\t" : unescapeString(wordDefinitionSeparator))
                             }
                         
                         parsedCards.forEach { cardParts in

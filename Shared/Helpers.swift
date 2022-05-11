@@ -54,3 +54,7 @@ extension View {
         self.modifier(DeviceShakeViewModifier(action: action))
     }
 }
+
+func unescapeString(_ string:String) -> String {
+    return string.replacingOccurrences(of: "\\n", with: "\n").replacingOccurrences(of: "\\t", with: "\t")
+}

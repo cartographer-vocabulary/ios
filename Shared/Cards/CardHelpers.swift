@@ -65,7 +65,8 @@ extension Card {
         }
     }
     
-    static func sortCards(_ cards: [Card], of list: VocabList?, with sorting: Int, currentCardsOnTop: Bool = true) -> [Card] {
+    static func sortCards(_ cards: [Card], of list: VocabList?, with sorting: Int) -> [Card] {
+        let currentCardsOnTop = UserDefaults.standard.bool(forKey: "currentCardsOnTop")
         var sorted:[Card] = []
         switch sorting {
         case 1:

@@ -23,12 +23,11 @@ struct ListView: View {
     
     @AppStorage("cardSorting") var sorting: Int = 0
     @AppStorage("showChildren") var showChildren: Bool = false
-    @AppStorage("currentCardsOnTop") var currentCardsOnTop: Bool = false
 
-    @State var cardMode = 0
+    @AppStorage("cardMode") var cardMode = 0
 
     var childCards:[Card]{
-        Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), of:list, with: sorting, currentCardsOnTop:currentCardsOnTop)
+        Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), of:list, with: sorting)
     }
     
     var lists:[VocabList]{
