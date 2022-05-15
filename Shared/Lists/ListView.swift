@@ -42,12 +42,18 @@ struct ListView: View {
                     CardModePicker(mode:$cardMode)
                     
                     ListSortView(showChildren: $showChildren, sorting: $sorting)
-                    
+
                     Menu {
                         Button{
                             showingExportList = true
                         } label: {
                             Label("Export", systemImage:"square.and.arrow.up")
+                        }
+                        Divider()
+                        Button {
+                            showingSettings = true
+                        } label: {
+                            Label("Settings", systemImage: "gearshape")
                         }
                         Divider()
                         if let list = list {
@@ -67,12 +73,7 @@ struct ListView: View {
                                 Label("Delete", systemImage: "trash")
                             }
                         }
-                        Divider()
-                        Button {
-                            showingSettings = true
-                        } label: {
-                            Label("Settings", systemImage: "gearshape")
-                        }
+
 
                     } label : {
                         Label("List Options", systemImage: "ellipsis.circle")

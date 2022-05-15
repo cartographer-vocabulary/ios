@@ -37,6 +37,7 @@ struct CardView: View {
                         .opacity(mode != 2 || isFlipped ? 1 : 0)
                         .background(mode != 2 || isFlipped ? .clear : .primary)
                         .cornerRadius(3)
+                        .padding([.bottom], -4)
 
                     Text(card.wrappedDefinition)
                         .opacity(mode != 1 || isFlipped ? 1 : 0)
@@ -70,21 +71,21 @@ struct CardView: View {
             Button {
                 card.familiarity = .good
             } label: {
-                Label("Familiar", systemImage: "circle.fill")
+                Label("Familiar", systemImage: card.familiarity == .good ? "circle.fill" : "circle.dotted")
                     .labelStyle(.iconOnly)
             }
             .tint(.green)
             Button {
                 card.familiarity = .medium
             } label: {
-                Label("Medium", systemImage: "circle.fill")
+                Label("Medium", systemImage: card.familiarity == .medium ? "circle.fill" : "circle.dotted")
                     .labelStyle(.iconOnly)
             }
             .tint(.yellow)
             Button {
                 card.familiarity = .bad
             } label: {
-                Label("Not Familiar", systemImage: "circle.fill")
+                Label("Not Familiar", systemImage: card.familiarity == .bad ? "circle.fill" : "circle.dotted")
                     .labelStyle(.iconOnly)
             }
             .tint(.red)
