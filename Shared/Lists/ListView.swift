@@ -66,14 +66,14 @@ struct ListView: View {
                             } label: {
                                 Label("Delete", systemImage: "trash")
                             }
-                        } else {
-                            Button {
-                                showingSettings = true
-                            } label: {
-                                Label("Settings", systemImage: "gearshape")
-                            }
                         }
-                            
+                        Divider()
+                        Button {
+                            showingSettings = true
+                        } label: {
+                            Label("Settings", systemImage: "gearshape")
+                        }
+
                     } label : {
                         Label("List Options", systemImage: "ellipsis.circle")
                     }

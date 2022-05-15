@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     @Binding var showingView: Bool
     @AppStorage("currentCardsOnTop") var currentCardsOnTop: Bool = true
+    @AppStorage("hideCardInfoBar") var hideCardInfoBar: Bool = false
     var body: some View {
         NavigationView {
             Form {
@@ -18,6 +19,12 @@ struct SettingsView: View {
                     Toggle("Show Current List Cards on Top", isOn: $currentCardsOnTop)
                 } header: {
                     Text("Sorting")
+                }
+
+                Section {
+                    Toggle("Hide Card Info Bar", isOn: $hideCardInfoBar)
+                } header: {
+                    Text("Appearance")
                 }
 
             }

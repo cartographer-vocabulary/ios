@@ -9,6 +9,9 @@ import SwiftUI
 
 struct CardsImportView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "word", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
+    private var fetchedCards: FetchedResults<Card>
+
     @Binding var showingView:Bool
     var parentList: VocabList?
     @State var text = ""
@@ -51,16 +54,27 @@ struct CardsImportView: View {
                             .components(separatedBy: cardSeparator.isEmpty ? "\n" : unescapeString(cardSeparator))
                             .compactMap { card in
                                 guard !card.isEmpty else { return nil }
-                                return card.components(separatedBy: wordDefinitionSeparator.isEmpty ? "\t" : unescapeString(wordDefinitionSeparator))
+                                var components = card.components(separatedBy: wordDefinitionSeparator.isEmpty ? "\t" : unescapeString(wordDefinitionSeparator))
+                                if(components.indices.contains(1)){components[1] = components.suffix(from: 1).joined(separator: wordDefinitionSeparator.isEmpty ? "\t" : wordDefinitionSeparator)}
+                                return Array(components.prefix(2))
                             }
-                        
+
+                        let cards = VocabList.getCards(of: parentList, from: fetchedCards, children: false)
                         parsedCards.forEach { cardParts in
                             guard !cardParts.isEmpty else { return }
-                            let card = Card(context: viewContext)
-                            if(cardParts.indices.contains(0)) {card.word = cardParts[0]}
-                            if(cardParts.indices.contains(1)) {card.definition = cardParts.suffix(from: 1).joined(separator: wordDefinitionSeparator.isEmpty ? "\t" : wordDefinitionSeparator)}
-                            card.lastSeen = Date.now
-                            card.parentList = parentList
+                            if !cards.contains(where: { card in
+                                if card.wrappedWord == cardParts[0] {
+                                    card.wrappedDefinition = cardParts[1]
+                                    return true
+                                }
+                                return false
+                            }){
+                                let card = Card(context: viewContext)
+                                if(cardParts.indices.contains(0)) {card.word = cardParts[0]}
+                                if(cardParts.indices.contains(1)) {card.definition = cardParts[1]}
+                                card.lastSeen = Date.now
+                                card.parentList = parentList
+                            }
                         }
                         try? viewContext.save()
                         

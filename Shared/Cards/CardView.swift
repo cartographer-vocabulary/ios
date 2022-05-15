@@ -17,9 +17,12 @@ struct CardView: View {
     @State var showingMoveSheet = false
 
     @State var isFlipped = false
+
+    @AppStorage("hideCardInfoBar") var hideCardInfoBar: Bool = false
     
     var body: some View {
         Section{
+            HStack{
                 VStack(alignment: .leading, spacing: 10){
                     if(parentList != card.parentList){
                         Text(card.getPath(from: parentList).joined(separator: " - "))
@@ -27,8 +30,6 @@ struct CardView: View {
                             .foregroundColor(.secondary)
                             .padding(.top, -2)
                             .padding(.bottom, -4)
-
-
                     }
                     Text(card.wrappedWord)
                         .font(.title2)
@@ -42,16 +43,52 @@ struct CardView: View {
                         .background(mode != 1 || isFlipped ? .clear : .primary)
                         .cornerRadius(3)
 
-                    CardInfoBarView(card: card)
+                    if !hideCardInfoBar {
+                        CardInfoBarView(card: card)
+                    }
                     
                 }
                 .padding([.top, .bottom], 10)
+                Spacer()
+            }
         }
         .animation(.default, value: mode)
         .onChange(of: mode, perform: { newValue in
             isFlipped = false
         })
         .contentShape(Rectangle())
+        .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
+            Button {
+                card.seen()
+            } label: {
+                Label("Check", systemImage: "checkmark")
+                    .labelStyle(.iconOnly)
+            }
+            .tint(.blue)
+        })
+        .swipeActions(edge: .leading, allowsFullSwipe: false, content: {
+            Button {
+                card.familiarity = .good
+            } label: {
+                Label("Familiar", systemImage: "circle.fill")
+                    .labelStyle(.iconOnly)
+            }
+            .tint(.green)
+            Button {
+                card.familiarity = .medium
+            } label: {
+                Label("Medium", systemImage: "circle.fill")
+                    .labelStyle(.iconOnly)
+            }
+            .tint(.yellow)
+            Button {
+                card.familiarity = .bad
+            } label: {
+                Label("Not Familiar", systemImage: "circle.fill")
+                    .labelStyle(.iconOnly)
+            }
+            .tint(.red)
+        })
         .onTapGesture {
             if mode == 0 {
                 showingEditSheet = true

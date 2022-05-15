@@ -187,6 +187,7 @@
       "subtype" : "45mm"
     },
     {
+      "filename" : "Plugin icon watch172.png",
       "idiom" : "watch",
       "role" : "quickLook",
       "scale" : "2x",
@@ -194,6 +195,7 @@
       "subtype" : "38mm"
     },
     {
+      "filename" : "Plugin icon watch196.png",
       "idiom" : "watch",
       "role" : "quickLook",
       "scale" : "2x",
@@ -201,6 +203,7 @@
       "subtype" : "42mm"
     },
     {
+      "filename" : "Plugin icon watch216.png",
       "idiom" : "watch",
       "role" : "quickLook",
       "scale" : "2x",
@@ -208,6 +211,7 @@
       "subtype" : "44mm"
     },
     {
+      "filename" : "Plugin icon watch234.png",
       "idiom" : "watch",
       "role" : "quickLook",
       "scale" : "2x",
@@ -215,6 +219,7 @@
       "subtype" : "45mm"
     },
     {
+      "filename" : "Plugin icon watchfull.png",
       "idiom" : "watch-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
