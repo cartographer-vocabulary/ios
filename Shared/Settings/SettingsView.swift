@@ -21,11 +21,11 @@ struct SettingsView: View {
                     Text("Sorting")
                 }
 
-                Section {
-                    Toggle("Hide Card Info Bar", isOn: $hideCardInfoBar)
-                } header: {
-                    Text("Appearance")
-                }
+//                Section {
+//                    Toggle("Hide Card Info Bar", isOn: $hideCardInfoBar)
+//                } header: {
+//                    Text("Appearance")
+//                }
 
             }
             .navigationTitle("Settings")

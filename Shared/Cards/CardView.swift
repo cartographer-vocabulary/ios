@@ -38,11 +38,13 @@ struct CardView: View {
                         .background(mode != 2 || isFlipped ? .clear : .primary)
                         .cornerRadius(3)
                         .padding([.bottom], -4)
+                        .animation(.default, value: mode)
 
                     Text(card.wrappedDefinition)
                         .opacity(mode != 1 || isFlipped ? 1 : 0)
                         .background(mode != 1 || isFlipped ? .clear : .primary)
                         .cornerRadius(3)
+                        .animation(.default, value: mode)
 
                     if !hideCardInfoBar {
                         CardInfoBarView(card: card)
@@ -53,7 +55,6 @@ struct CardView: View {
                 Spacer()
             }
         }
-        .animation(.default, value: mode)
         .onChange(of: mode, perform: { newValue in
             isFlipped = false
         })
@@ -62,8 +63,7 @@ struct CardView: View {
             Button {
                 card.seen()
             } label: {
-                Label("Check", systemImage: "checkmark")
-                    .labelStyle(.iconOnly)
+                Label(card.wrappedLastSeen.relativeTo(Date.now), systemImage: "checkmark")
             }
             .tint(.blue)
         })
