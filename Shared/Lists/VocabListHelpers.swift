@@ -87,6 +87,15 @@ extension VocabList {
         
         return pathSegments
     }
+
+
+    func getId() -> String? {
+        let id = self.objectID
+        if !id.isTemporaryID {
+            return id.uriRepresentation().absoluteString
+        }
+        return nil
+    }
     
     
     func save(to parent:VocabList? = nil){

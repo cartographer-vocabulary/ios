@@ -53,6 +53,13 @@
 		1BCC823127F8C656007E3E3A /* ListSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC823027F8C656007E3E3A /* ListSelectorView.swift */; };
 		1BCC823327F8CCEB007E3E3A /* ListOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC823227F8CCEB007E3E3A /* ListOutlineView.swift */; };
 		1BCC823527F8DBE7007E3E3A /* CardMoveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC823427F8DBE7007E3E3A /* CardMoveView.swift */; };
+		1BE5CC382839D7FA008CA386 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE5CC372839D7FA008CA386 /* WidgetKit.framework */; };
+		1BE5CC3A2839D7FA008CA386 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE5CC392839D7FA008CA386 /* SwiftUI.framework */; };
+		1BE5CC3D2839D7FA008CA386 /* widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CC3C2839D7FA008CA386 /* widget.swift */; };
+		1BE5CC402839D7FB008CA386 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BE5CC3F2839D7FB008CA386 /* Assets.xcassets */; };
+		1BE5CC422839D7FB008CA386 /* widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CC3E2839D7FA008CA386 /* widget.intentdefinition */; };
+		1BE5CC432839D7FB008CA386 /* widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CC3E2839D7FA008CA386 /* widget.intentdefinition */; };
+		1BE5CC462839D7FB008CA386 /* widgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1BE5CC362839D7FA008CA386 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1BEF8D0A2811901F003F9D50 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BEF8D092811901F003F9D50 /* CloudKit.framework */; };
 		1BEF8D0C28119275003F9D50 /* ListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF8D0B28119275003F9D50 /* ListContentView.swift */; };
 		1BEF8D1028119429003F9D50 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF8D0F28119429003F9D50 /* ListView.swift */; };
@@ -82,6 +89,13 @@
 			remoteGlobalIDString = 1BAF862A27D40530009A10C6;
 			remoteInfo = "cartographer2 (iOS)";
 		};
+		1BE5CC442839D7FB008CA386 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1BAF861C27D4052E009A10C6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BE5CC352839D7FA008CA386;
+			remoteInfo = widgetExtension;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -103,6 +117,17 @@
 			dstSubfolderSpec = 13;
 			files = (
 				1B80203528105B0A000555CE /* watch WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BE5CC472839D7FB008CA386 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1BE5CC462839D7FB008CA386 /* widgetExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +183,13 @@
 		1BCC823027F8C656007E3E3A /* ListSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectorView.swift; sourceTree = "<group>"; };
 		1BCC823227F8CCEB007E3E3A /* ListOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOutlineView.swift; sourceTree = "<group>"; };
 		1BCC823427F8DBE7007E3E3A /* CardMoveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMoveView.swift; sourceTree = "<group>"; };
+		1BE5CC362839D7FA008CA386 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BE5CC372839D7FA008CA386 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		1BE5CC392839D7FA008CA386 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		1BE5CC3C2839D7FA008CA386 /* widget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = widget.swift; sourceTree = "<group>"; };
+		1BE5CC3E2839D7FA008CA386 /* widget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = widget.intentdefinition; sourceTree = "<group>"; };
+		1BE5CC3F2839D7FB008CA386 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1BE5CC412839D7FB008CA386 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1BEF8D0828119016003F9D50 /* watch WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "watch WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		1BEF8D092811901F003F9D50 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.5.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		1BEF8D0B28119275003F9D50 /* ListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContentView.swift; sourceTree = "<group>"; };
@@ -187,6 +219,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BE5CC332839D7FA008CA386 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BE5CC3A2839D7FA008CA386 /* SwiftUI.framework in Frameworks */,
+				1BE5CC382839D7FA008CA386 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +309,8 @@
 			children = (
 				1BEF8D092811901F003F9D50 /* CloudKit.framework */,
 				1BA14EF7280C83EF005A0BBD /* CloudKit.framework */,
+				1BE5CC372839D7FA008CA386 /* WidgetKit.framework */,
+				1BE5CC392839D7FA008CA386 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -282,6 +325,7 @@
 				1BAF864727D40530009A10C6 /* Tests macOS */,
 				1B80202D28105B08000555CE /* watch */,
 				1B80203828105B0A000555CE /* watch WatchKit Extension */,
+				1BE5CC3B2839D7FA008CA386 /* widget */,
 				1BAF862C27D40530009A10C6 /* Products */,
 				1BA14EF6280C83EF005A0BBD /* Frameworks */,
 			);
@@ -310,6 +354,7 @@
 				1BAF863827D40530009A10C6 /* Tests iOS.xctest */,
 				1B80202C28105B08000555CE /* Cartographer.app */,
 				1B80203428105B0A000555CE /* watch WatchKit Extension.appex */,
+				1BE5CC362839D7FA008CA386 /* widgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -347,6 +392,17 @@
 				1BBB34FD27F9364B00BD7476 /* AppIconView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		1BE5CC3B2839D7FA008CA386 /* widget */ = {
+			isa = PBXGroup;
+			children = (
+				1BE5CC3C2839D7FA008CA386 /* widget.swift */,
+				1BE5CC3E2839D7FA008CA386 /* widget.intentdefinition */,
+				1BE5CC3F2839D7FB008CA386 /* Assets.xcassets */,
+				1BE5CC412839D7FB008CA386 /* Info.plist */,
+			);
+			path = widget;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,11 +450,13 @@
 				1BAF862827D40530009A10C6 /* Frameworks */,
 				1BAF862927D40530009A10C6 /* Resources */,
 				1B80204D28105B0A000555CE /* Embed Watch Content */,
+				1BE5CC472839D7FB008CA386 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				1B80204B28105B0A000555CE /* PBXTargetDependency */,
+				1BE5CC452839D7FB008CA386 /* PBXTargetDependency */,
 			);
 			name = "cartographer2 (iOS)";
 			productName = "cartographer2 (iOS)";
@@ -423,6 +481,23 @@
 			productReference = 1BAF863827D40530009A10C6 /* Tests iOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		1BE5CC352839D7FA008CA386 /* widgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1BE5CC4A2839D7FB008CA386 /* Build configuration list for PBXNativeTarget "widgetExtension" */;
+			buildPhases = (
+				1BE5CC322839D7FA008CA386 /* Sources */,
+				1BE5CC332839D7FA008CA386 /* Frameworks */,
+				1BE5CC342839D7FA008CA386 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = widgetExtension;
+			productName = widgetExtension;
+			productReference = 1BE5CC362839D7FA008CA386 /* widgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -430,7 +505,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					1B80202B28105B08000555CE = {
@@ -445,6 +520,9 @@
 					1BAF863727D40530009A10C6 = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 1BAF862A27D40530009A10C6;
+					};
+					1BE5CC352839D7FA008CA386 = {
+						CreatedOnToolsVersion = 13.4;
 					};
 				};
 			};
@@ -465,6 +543,7 @@
 				1BAF863727D40530009A10C6 /* Tests iOS */,
 				1B80202B28105B08000555CE /* watch */,
 				1B80203328105B0A000555CE /* watch WatchKit Extension */,
+				1BE5CC352839D7FA008CA386 /* widgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -501,6 +580,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BE5CC342839D7FA008CA386 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BE5CC402839D7FB008CA386 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +629,7 @@
 				1BA12E1727E7855600F72A2F /* IconPickerView.swift in Sources */,
 				1B64C11627EFBAEF0060AF97 /* CardEditView.swift in Sources */,
 				1BA12E1127E6B83500F72A2F /* ListEditView.swift in Sources */,
+				1BE5CC432839D7FB008CA386 /* widget.intentdefinition in Sources */,
 				1BA12E0827E6B45800F72A2F /* ListRow.swift in Sources */,
 				1BCC823327F8CCEB007E3E3A /* ListOutlineView.swift in Sources */,
 				1BAF864C27D40530009A10C6 /* cartographer2.xcdatamodeld in Sources */,
@@ -569,6 +657,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1BE5CC322839D7FA008CA386 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BE5CC422839D7FB008CA386 /* widget.intentdefinition in Sources */,
+				1BE5CC3D2839D7FA008CA386 /* widget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -587,6 +684,11 @@
 			isa = PBXTargetDependency;
 			target = 1BAF862A27D40530009A10C6 /* cartographer2 (iOS) */;
 			targetProxy = 1BAF863927D40530009A10C6 /* PBXContainerItemProxy */;
+		};
+		1BE5CC452839D7FB008CA386 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BE5CC352839D7FA008CA386 /* widgetExtension */;
+			targetProxy = 1BE5CC442839D7FB008CA386 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -821,6 +923,7 @@
 		1BAF865927D40530009A10C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -854,6 +957,7 @@
 		1BAF865A27D40530009A10C6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -926,6 +1030,65 @@
 			};
 			name = Release;
 		};
+		1BE5CC482839D7FB008CA386 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D7P78H6282;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tonyzhang.cartographer2.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1BE5CC492839D7FB008CA386 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D7P78H6282;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = widget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = widget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tonyzhang.cartographer2.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -970,6 +1133,15 @@
 			buildConfigurations = (
 				1BAF865F27D40530009A10C6 /* Debug */,
 				1BAF866027D40530009A10C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1BE5CC4A2839D7FB008CA386 /* Build configuration list for PBXNativeTarget "widgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BE5CC482839D7FB008CA386 /* Debug */,
+				1BE5CC492839D7FB008CA386 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
