@@ -71,21 +71,21 @@ struct CardView: View {
             Button {
                 card.familiarity = .good
             } label: {
-                Label("Familiar", systemImage: card.familiarity == .good ? "circle.fill" : "circle.dotted")
+                Label("Familiar", systemImage: card.familiarity == .good ? "circle.fill" : "")
                     .labelStyle(.iconOnly)
             }
             .tint(.green)
             Button {
                 card.familiarity = .medium
             } label: {
-                Label("Medium", systemImage: card.familiarity == .medium ? "circle.fill" : "circle.dotted")
+                Label("Medium", systemImage: card.familiarity == .medium ? "circle.fill" : "")
                     .labelStyle(.iconOnly)
             }
             .tint(.yellow)
             Button {
                 card.familiarity = .bad
             } label: {
-                Label("Not Familiar", systemImage: card.familiarity == .bad ? "circle.fill" : "circle.dotted")
+                Label("Not Familiar", systemImage: card.familiarity == .bad ? "circle.fill" : "")
                     .labelStyle(.iconOnly)
             }
             .tint(.red)

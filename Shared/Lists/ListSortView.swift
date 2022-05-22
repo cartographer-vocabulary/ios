@@ -32,8 +32,6 @@ struct ListSortView: View {
     var body: some View {
 
         Menu {
-            Toggle("Show Child Cards", isOn: $showChildren)
-            Divider()
             Picker("Selection", selection: $sorting) {
                 Label("Alphabetical", systemImage: "textformat").tag(0)
                 Label("Newest", systemImage: "clock").tag(1)
@@ -42,6 +40,8 @@ struct ListSortView: View {
                 Label("Least Familiar", systemImage: "xmark.circle").tag(4)
                 Label("Random", systemImage: "shuffle").tag(5)
             }
+            Divider()
+            Toggle("Show Child Cards", isOn: $showChildren)
 
         } label: {
             Label("Sort", systemImage: icon)
