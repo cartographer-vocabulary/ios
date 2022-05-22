@@ -65,35 +65,45 @@ extension Card {
         }
     }
     
-    static func sortCards(_ cards: [Card], of list: VocabList?, with sorting: Int) -> [Card] {
+    static func sortCards(_ cards: [Card], of list: VocabList?, with sorting: Int, caseInsensitive: Bool = true, ignoreDiacritics: Bool = true) -> [Card] {
         let currentCardsOnTop = UserDefaults.standard.bool(forKey: "currentCardsOnTop")
-        var sorted:[Card] = []
+        var sorted:[Card] = cards.sorted { a, b in
+
+            func normalizeString(string:String, caseInsensitive:Bool, ignoreDiacritics:Bool) -> String {
+                var formatted = string
+                if caseInsensitive { formatted = formatted.folding(options: .caseInsensitive, locale: .current)}
+                if ignoreDiacritics { formatted = formatted.folding(options: .diacriticInsensitive, locale: .current)}
+                return formatted
+            }
+
+            return normalizeString(string: a.wrappedWord, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics) < normalizeString(string: b.wrappedWord, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics)
+        }
         switch sorting {
         case 1:
-            sorted = cards.sorted { a, b in
+            sorted = sorted.sorted { a, b in
                 a.wrappedLastSeen > b.wrappedLastSeen
             }
             
         case 2:
-            sorted =  cards.sorted { a, b in
+            sorted =  sorted.sorted { a, b in
                 a.wrappedLastSeen < b.wrappedLastSeen
             }
             
         case 3:
-            sorted = cards.sorted { a, b in
+            sorted = sorted.sorted { a, b in
                 a.familiarity.rawValue > b.familiarity.rawValue
             }
             
         case 4:
-            sorted = cards.sorted { a, b in
+            sorted = sorted.sorted { a, b in
                 a.familiarity.rawValue < b.familiarity.rawValue
             }
             
         case 5:
-            sorted = cards.shuffled()
+            sorted = sorted.shuffled()
             
-        default:
-            sorted = cards
+        default: break
+
         }
         return currentCardsOnTop ? sorted.sorted { a, b in
             if a.parentList == list && b.parentList != list { return true }

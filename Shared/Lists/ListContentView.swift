@@ -19,6 +19,9 @@ struct ListContentView: View {
     
     @State var searchText = ""
 
+    @AppStorage("caseInsensitive") var caseInsensitive: Bool = true
+    @AppStorage("ignoreDiacritics") var ignoreDiacritics: Bool = true
+
     var cardMode:Int
     
     var searchedCards: [Card] {
@@ -26,9 +29,9 @@ struct ListContentView: View {
         cards.filter { card in
             if searchText.isEmpty { return true }
             return (
-                card.wrappedWord.lowercased().contains(searchText.lowercased()) ||
-                card.wrappedDefinition.lowercased().contains(searchText.lowercased())
-                )
+                normalizeString(string: card.wrappedWord, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics).contains(normalizeString(string: searchText, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics)) ||
+                normalizeString(string: card.wrappedDefinition, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics).contains(normalizeString(string: searchText, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics))
+            )
         }
     }
     

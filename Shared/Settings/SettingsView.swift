@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     @Binding var showingView: Bool
-    @AppStorage("currentCardsOnTop") var currentCardsOnTop: Bool = true
-    @AppStorage("hideCardInfoBar") var hideCardInfoBar: Bool = false
+    @AppStorage("currentCardsOnTop") var currentCardsOnTop: Bool = false
+    @AppStorage("caseInsensitive") var caseInsensitive: Bool = true
+    @AppStorage("ignoreDiacritics") var ignoreDiacritics: Bool = true
 
     @AppStorage("separateCardSorting") var separateCardSorting = false
     @AppStorage("separateShowChildren") var separateShowChildren = false
@@ -22,8 +23,10 @@ struct SettingsView: View {
 //                AppIconView()
                 Section {
                     Toggle("Show Current List Cards on Top", isOn: $currentCardsOnTop)
+                    Toggle("Case Insensitive", isOn: $caseInsensitive)
+                    Toggle("Ignore Diacritics", isOn: $ignoreDiacritics)
                 } header: {
-                    Text("Sorting")
+                    Text("Search & Sorting")
                 }
                 Section {
                     Toggle("Separate Card Mode", isOn: $separateCardMode)

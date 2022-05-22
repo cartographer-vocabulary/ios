@@ -58,3 +58,10 @@ extension View {
 func unescapeString(_ string:String) -> String {
     return string.replacingOccurrences(of: "\\n", with: "\n").replacingOccurrences(of: "\\t", with: "\t")
 }
+
+func normalizeString(string:String, caseInsensitive:Bool, ignoreDiacritics:Bool) -> String {
+    var formatted = string
+    if caseInsensitive { formatted = formatted.folding(options: .caseInsensitive, locale: .current)}
+    if ignoreDiacritics { formatted = formatted.folding(options: .diacriticInsensitive, locale: .current)}
+    return formatted
+}

@@ -12,10 +12,10 @@ struct ListView: View {
 
     @Environment(\.managedObjectContext) private var viewContext
 
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "word", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
+    @FetchRequest(sortDescriptors: [], animation: .default)
     private var fetchedCards: FetchedResults<Card>
     
-    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
+    @FetchRequest(sortDescriptors: [], animation: .default)
     private var fetchedLists: FetchedResults<VocabList>
     
     @State var showingEditList = false
@@ -62,9 +62,11 @@ struct ListView: View {
         return globalCardMode
     }
 
+    @AppStorage("caseInsensitive") var caseInsensitive: Bool = true
+    @AppStorage("ignoreDiacritics") var ignoreDiacritics: Bool = true
 
     var childCards:[Card]{
-        Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), of:list, with: sorting)
+        Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), of:list, with: sorting, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics)
     }
     
     var lists:[VocabList]{
