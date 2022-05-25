@@ -15,8 +15,30 @@ struct ListExportView: View {
     @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "word", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
     private var fetchedCards: FetchedResults<Card>
     
-    @AppStorage("cardSorting") var setSorting: Int = 0
-    @AppStorage("showChildren") var setShowChildren: Bool = false
+    @AppStorage("cardSorting") var globalSorting: Int = 0
+    @AppStorage("showChildren") var globalShowChildren: Bool = false
+
+    @AppStorage("separateCardSorting") var separateSorting = false
+    @AppStorage("separateShowChildren") var separateShowChildren = false
+
+    var defaultSorting: Int {
+        if separateSorting {
+            if let id = list?.getId() {
+                return UserDefaults.standard.integer(forKey: "cardSorting" + id)
+            }
+        }
+        return globalSorting
+    }
+
+    var defaultShowChildren: Bool {
+        if separateShowChildren {
+            if let id = list?.getId() {
+                return UserDefaults.standard.bool(forKey: "showChildren" + id)
+            }
+        }
+        return globalShowChildren
+    }
+
     
     @State var sorting = 0
     @State var showChildren = false
@@ -68,8 +90,8 @@ struct ListExportView: View {
                 }
             }
             .onAppear{
-                sorting = setSorting
-                showChildren = setShowChildren
+                sorting = defaultSorting
+                showChildren = defaultShowChildren
             }
         }
         

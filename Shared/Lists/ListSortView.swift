@@ -11,21 +11,21 @@ struct ListSortView: View {
     @Binding var showChildren:Bool
     @Binding var sorting:Int
     
-    var icon: String {
+    var icon: Label<Text, Image> {
         switch sorting{
         
         case 1:
-            return "clock"
+            return Label("Newest", systemImage: "clock")
         case 2:
-            return "clock.arrow.circlepath"
+            return Label("Oldest", systemImage: "clock.arrow.circlepath")
         case 3:
-            return "checkmark.circle"
+            return Label("Most Familiar", systemImage: "checkmark.circle")
         case 4:
-            return "xmark.circle"
+            return Label("Least Familiar", systemImage: "xmark.circle")
         case 5:
-            return "shuffle"
+            return Label("Random", systemImage: "shuffle")
         default:
-            return "textformat"
+            return Label("Alphabetical", systemImage: "textformat")
         }
     }
     
@@ -44,7 +44,8 @@ struct ListSortView: View {
             Toggle("Show Child Cards", isOn: $showChildren)
 
         } label: {
-            Label("Sort", systemImage: icon)
+            icon
         }
+        .animation(.none, value: sorting)
     }
 }
