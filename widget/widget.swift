@@ -42,28 +42,41 @@ struct SimpleEntry: TimelineEntry {
 
 struct widgetEntryView : View {
     var entry: Provider.Entry
+    @Environment(\.widgetFamily) var family: WidgetFamily
+
+    let persistenceController = PersistenceController.shared
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(sortDescriptors: [], animation: .default)
+    private var fetchedCards: FetchedResults<Card>
+
+    var childCards:[Card]{
+        Card.sortCards(VocabList.getCards(of: nil, from: fetchedCards, children: true), of:nil, with: 5, caseInsensitive: false, ignoreDiacritics: false)
+    }
 
     var body: some View {
-        Text(entry.date, style: .time)
+        if childCards.indices.contains(0){
+            Label(childCards[0].parentList?.wrappedTitle ?? "Library", systemImage: childCards[0].parentList?.wrappedIcon ?? "rectangle.3.offgrid")
+            Text(childCards[0].wrappedWord)
+                .font(.title)
+            Text(childCards[0].wrappedDefinition)
+        } else {
+            Text("no cards available")
+        }
+
     }
 }
 
 @main
 struct widget: Widget {
-    let kind: String = "widget"
+    let kind: String = "net.tonyzhang.cartographer2.widget.card"
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             widgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
-    }
-}
-
-struct widget_Previews: PreviewProvider {
-    static var previews: some View {
-        widgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        .configurationDisplayName("Card")
+        .description("Shows one word from your list of choice")
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }

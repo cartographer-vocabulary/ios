@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0D14192842BE6E00B66973 /* CardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64C11127EFB6040060AF97 /* CardHelpers.swift */; };
+		1B0D141A2842BE7100B66973 /* VocabListHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */; };
+		1B0D141B2842BE7500B66973 /* cartographer2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862127D4052F009A10C6 /* cartographer2.xcdatamodeld */; };
+		1B0D141C2842C20C00B66973 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862527D4052F009A10C6 /* Persistence.swift */; };
 		1B0D2F6C28050A1E0086A758 /* CardFamiliaritySelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0D2F6B28050A1E0086A758 /* CardFamiliaritySelectView.swift */; };
 		1B64C10F27EFB5CC0060AF97 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64C10E27EFB5CC0060AF97 /* CardView.swift */; };
 		1B64C11227EFB6040060AF97 /* CardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64C11127EFB6040060AF97 /* CardHelpers.swift */; };
@@ -663,6 +667,10 @@
 			files = (
 				1BE5CC422839D7FB008CA386 /* widget.intentdefinition in Sources */,
 				1BE5CC3D2839D7FA008CA386 /* widget.swift in Sources */,
+				1B0D141B2842BE7500B66973 /* cartographer2.xcdatamodeld in Sources */,
+				1B0D141C2842C20C00B66973 /* Persistence.swift in Sources */,
+				1B0D14192842BE6E00B66973 /* CardHelpers.swift in Sources */,
+				1B0D141A2842BE7100B66973 /* VocabListHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
