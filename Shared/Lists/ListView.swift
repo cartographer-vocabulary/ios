@@ -70,7 +70,9 @@ struct ListView: View {
     }
     
     var lists:[VocabList]{
-        VocabList.getLists(of: list, from: fetchedLists)
+        VocabList.getLists(of: list, from: fetchedLists).sorted { a, b in
+            a.wrappedTitle < b.wrappedTitle
+        }
     }
     
     var body: some View {

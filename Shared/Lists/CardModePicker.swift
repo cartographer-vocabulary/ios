@@ -21,6 +21,9 @@ struct CardModePicker: View {
             } label: {
                 Text("Card Mode")
             }
+            .onChange(of: mode) { newValue in
+                print(newValue)
+            }
             Divider()
             Toggle("Hide Info Bar", isOn: $hideCardInfoBar)
 

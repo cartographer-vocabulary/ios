@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B00D4BC2851572E00777735 /* PushNotificationPayload.apns in Resources */ = {isa = PBXBuildFile; fileRef = 1B80204928105B0A000555CE /* PushNotificationPayload.apns */; };
 		1B0D14192842BE6E00B66973 /* CardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64C11127EFB6040060AF97 /* CardHelpers.swift */; };
 		1B0D141A2842BE7100B66973 /* VocabListHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */; };
 		1B0D141B2842BE7500B66973 /* cartographer2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862127D4052F009A10C6 /* cartographer2.xcdatamodeld */; };
@@ -19,7 +20,6 @@
 		1B6DED412801222700D28FD2 /* CardsImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6DED402801222700D28FD2 /* CardsImportView.swift */; };
 		1B753C3727F8766F005A0776 /* ListMoveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B753C3627F8766F005A0776 /* ListMoveView.swift */; };
 		1B80202F28105B09000555CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B80202E28105B09000555CE /* Assets.xcassets */; };
-		1B80203528105B0A000555CE /* watch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1B80203428105B0A000555CE /* watch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1B80203A28105B0A000555CE /* cartographer2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B80203928105B0A000555CE /* cartographer2App.swift */; };
 		1B80203C28105B0A000555CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B80203B28105B0A000555CE /* ContentView.swift */; };
 		1B80203E28105B0A000555CE /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B80203D28105B0A000555CE /* NotificationController.swift */; };
@@ -63,7 +63,7 @@
 		1BE5CC402839D7FB008CA386 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BE5CC3F2839D7FB008CA386 /* Assets.xcassets */; };
 		1BE5CC422839D7FB008CA386 /* widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CC3E2839D7FA008CA386 /* widget.intentdefinition */; };
 		1BE5CC432839D7FB008CA386 /* widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CC3E2839D7FA008CA386 /* widget.intentdefinition */; };
-		1BE5CC462839D7FB008CA386 /* widgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1BE5CC362839D7FA008CA386 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1BE5CC462839D7FB008CA386 /* widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1BE5CC362839D7FA008CA386 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1BEF8D0A2811901F003F9D50 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BEF8D092811901F003F9D50 /* CloudKit.framework */; };
 		1BEF8D0C28119275003F9D50 /* ListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF8D0B28119275003F9D50 /* ListContentView.swift */; };
 		1BEF8D1028119429003F9D50 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF8D0F28119429003F9D50 /* ListView.swift */; };
@@ -72,13 +72,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1B80203628105B0A000555CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1BAF861C27D4052E009A10C6 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1B80203328105B0A000555CE;
-			remoteInfo = "watch WatchKit Extension";
-		};
 		1B80204A28105B0A000555CE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1BAF861C27D4052E009A10C6 /* Project object */;
@@ -114,26 +107,15 @@
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1B80205028105B0A000555CE /* Embed App Extensions */ = {
+		1BE5CC472839D7FB008CA386 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				1B80203528105B0A000555CE /* watch WatchKit Extension.appex in Embed App Extensions */,
+				1BE5CC462839D7FB008CA386 /* widgetExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1BE5CC472839D7FB008CA386 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				1BE5CC462839D7FB008CA386 /* widgetExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -148,7 +130,6 @@
 		1B753C3627F8766F005A0776 /* ListMoveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoveView.swift; sourceTree = "<group>"; };
 		1B80202C28105B08000555CE /* Cartographer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartographer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B80202E28105B09000555CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1B80203428105B0A000555CE /* watch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "watch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B80203928105B0A000555CE /* cartographer2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartographer2App.swift; sourceTree = "<group>"; };
 		1B80203B28105B0A000555CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1B80203D28105B0A000555CE /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
@@ -357,7 +338,6 @@
 				1BAF862B27D40530009A10C6 /* Cartographer.app */,
 				1BAF863827D40530009A10C6 /* Tests iOS.xctest */,
 				1B80202C28105B08000555CE /* Cartographer.app */,
-				1B80203428105B0A000555CE /* watch WatchKit Extension.appex */,
 				1BE5CC362839D7FA008CA386 /* widgetExtension.appex */,
 			);
 			name = Products;
@@ -417,34 +397,17 @@
 			buildConfigurationList = 1B80205428105B0A000555CE /* Build configuration list for PBXNativeTarget "watch" */;
 			buildPhases = (
 				1B80202A28105B08000555CE /* Resources */,
-				1B80205028105B0A000555CE /* Embed App Extensions */,
+				1B80203028105B0A000555CE /* Sources */,
+				1B80203128105B0A000555CE /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1B80203728105B0A000555CE /* PBXTargetDependency */,
 			);
 			name = watch;
 			productName = watch;
 			productReference = 1B80202C28105B08000555CE /* Cartographer.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		1B80203328105B0A000555CE /* watch WatchKit Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1B80205328105B0A000555CE /* Build configuration list for PBXNativeTarget "watch WatchKit Extension" */;
-			buildPhases = (
-				1B80203028105B0A000555CE /* Sources */,
-				1B80203128105B0A000555CE /* Frameworks */,
-				1B80203228105B0A000555CE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "watch WatchKit Extension";
-			productName = "watch WatchKit Extension";
-			productReference = 1B80203428105B0A000555CE /* watch WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
+			productType = "com.apple.product-type.application";
 		};
 		1BAF862A27D40530009A10C6 /* cartographer2 (iOS) */ = {
 			isa = PBXNativeTarget;
@@ -454,7 +417,7 @@
 				1BAF862827D40530009A10C6 /* Frameworks */,
 				1BAF862927D40530009A10C6 /* Resources */,
 				1B80204D28105B0A000555CE /* Embed Watch Content */,
-				1BE5CC472839D7FB008CA386 /* Embed App Extensions */,
+				1BE5CC472839D7FB008CA386 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -510,12 +473,9 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					1B80202B28105B08000555CE = {
-						CreatedOnToolsVersion = 13.3;
-					};
-					1B80203328105B0A000555CE = {
 						CreatedOnToolsVersion = 13.3;
 					};
 					1BAF862A27D40530009A10C6 = {
@@ -546,7 +506,6 @@
 				1BAF862A27D40530009A10C6 /* cartographer2 (iOS) */,
 				1BAF863727D40530009A10C6 /* Tests iOS */,
 				1B80202B28105B08000555CE /* watch */,
-				1B80203328105B0A000555CE /* watch WatchKit Extension */,
 				1BE5CC352839D7FA008CA386 /* widgetExtension */,
 			);
 		};
@@ -558,16 +517,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B9AB98A2812D11700027D80 /* Assets.xcassets in Resources */,
-				1B80202F28105B09000555CE /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1B80203228105B0A000555CE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				1B00D4BC2851572E00777735 /* PushNotificationPayload.apns in Resources */,
 				1B80204728105B0A000555CE /* Preview Assets.xcassets in Resources */,
 				1B6589F028124EEA003DFDF0 /* Assets.xcassets in Resources */,
+				1B80202F28105B09000555CE /* Assets.xcassets in Resources */,
 				1B80204428105B0A000555CE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -677,11 +630,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1B80203728105B0A000555CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1B80203328105B0A000555CE /* watch WatchKit Extension */;
-			targetProxy = 1B80203628105B0A000555CE /* PBXContainerItemProxy */;
-		};
 		1B80204B28105B0A000555CE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -706,14 +654,20 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "watch WatchKit Extension/watch WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D7P78H6282;
 				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = watch_WatchKit_Extension;
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = net.tonyzhang.cartographer2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tonyzhang.cartographer2.watchkitapp;
 				PRODUCT_NAME = Cartographer;
@@ -731,82 +685,23 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "watch WatchKit Extension/watch WatchKit Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D7P78H6282;
 				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = watch_WatchKit_Extension;
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "$(PRODUCT_MODULE_NAME).ComplicationController";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = net.tonyzhang.cartographer2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tonyzhang.cartographer2.watchkitapp;
 				PRODUCT_NAME = Cartographer;
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
-			};
-			name = Release;
-		};
-		1B80205128105B0A000555CE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "watch WatchKit Extension/watch WatchKit Extension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"watch WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = D7P78H6282;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "watch WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Cartographer;
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = watch_WatchKit_Extension.ComplicationController;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = net.tonyzhang.cartographer2.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.5;
-			};
-			name = Debug;
-		};
-		1B80205228105B0A000555CE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "watch WatchKit Extension/watch WatchKit Extension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"watch WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = D7P78H6282;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "watch WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Cartographer;
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = watch_WatchKit_Extension.ComplicationController;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = net.tonyzhang.cartographer2.watchkitapp.watchkitextension;
-				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -851,6 +746,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -910,6 +806,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1100,15 +997,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1B80205328105B0A000555CE /* Build configuration list for PBXNativeTarget "watch WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1B80205128105B0A000555CE /* Debug */,
-				1B80205228105B0A000555CE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1B80205428105B0A000555CE /* Build configuration list for PBXNativeTarget "watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

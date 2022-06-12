@@ -38,5 +38,6 @@ struct CardFamiliaritySelectView: View {
             }
         }
         .buttonStyle(.borderless)
+        .animation(.none, value: familiarity)
     }
 }
