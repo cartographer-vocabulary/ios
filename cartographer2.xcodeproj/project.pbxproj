@@ -184,6 +184,7 @@
 		1BF2FE56281423CB00FC7289 /* ListExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListExportView.swift; sourceTree = "<group>"; };
 		1BFB915A2860BCE4002B66B6 /* widgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = widgetExtension.entitlements; sourceTree = "<group>"; };
 		1BFB915B2860BDE4002B66B6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		1BFB915D2860F82E002B66B6 /* cartographer2--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "cartographer2--iOS--Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +309,7 @@
 		1BAF861B27D4052E009A10C6 = {
 			isa = PBXGroup;
 			children = (
+				1BFB915D2860F82E002B66B6 /* cartographer2--iOS--Info.plist */,
 				1BFB915A2860BCE4002B66B6 /* widgetExtension.entitlements */,
 				1B753C3527F7F048005A0776 /* cartographer2 (iOS).entitlements */,
 				1BAF862027D4052F009A10C6 /* Shared */,
@@ -844,6 +846,7 @@
 				DEVELOPMENT_TEAM = D7P78H6282;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "cartographer2--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -878,6 +881,7 @@
 				DEVELOPMENT_TEAM = D7P78H6282;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "cartographer2--iOS--Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

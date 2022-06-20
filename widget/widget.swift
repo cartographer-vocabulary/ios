@@ -20,12 +20,12 @@ struct Provider: IntentTimelineProvider {
 
     func placeholder(in context: Context) -> SimpleEntry {
         
-        SimpleEntry(date: Date(), word: "Word", definition: "Definition", configuration: ConfigurationIntent())
+        SimpleEntry(date: Date(), word: "Word", definition: "Definition", familiarity: .unset, lastSeen: "now", configuration: ConfigurationIntent())
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
         let card = getCard(fetchCards())
-        let entry = SimpleEntry(date: Date(), word: card.0, definition: card.1, configuration: configuration)
+        let entry = SimpleEntry(date: Date(), word: card.0, definition: card.1, familiarity: card.2, lastSeen: card.3, configuration: configuration)
         completion(entry)
     }
 
@@ -36,7 +36,7 @@ struct Provider: IntentTimelineProvider {
         for hourOffset in 0 ..< 5 {
             let card = getCard(fetchCards())
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, word: card.0, definition: card.1, configuration: configuration)
+            let entry = SimpleEntry(date: entryDate, word: card.0, definition: card.1, familiarity: card.2, lastSeen: card.3, configuration: configuration)
             entries.append(entry)
         }
 
@@ -44,12 +44,12 @@ struct Provider: IntentTimelineProvider {
         completion(timeline)
     }
 
-    func getCard(_ cards:[Card]) -> (String, String){
+    func getCard(_ cards:[Card]) -> (String, String, Card.Familiarity, String){
         if !cards.isEmpty {
             let card = cards.randomElement()
-            return (card?.wrappedWord ?? "", card?.wrappedDefinition ?? "")
+            return (card?.wrappedWord ?? "", card?.wrappedDefinition ?? "", card?.familiarity ?? .unset, card?.wrappedLastSeen.relativeTo(.now) ?? "now")
         }
-        return ("No cards available", "")
+        return ("No cards available", "", .unset, "now")
     }
 
     func fetchCards() -> [Card] {
@@ -63,6 +63,8 @@ struct SimpleEntry: TimelineEntry {
     let date: Date
     let word: String
     let definition: String
+    let familiarity: Card.Familiarity
+    let lastSeen: String
     let configuration: ConfigurationIntent
 }
 
@@ -70,19 +72,48 @@ struct widgetEntryView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var family: WidgetFamily
 
+    var color: Color {
+        switch(entry.familiarity) {
+
+        case .good:
+                return Color.green
+        case .medium:
+                return Color.yellow
+        case .bad:
+                return Color.red
+        default:
+                return Color.gray
+        }
+    }
+
     var body: some View {
-//            Label(childCards[0].parentList?.wrappedTitle ?? "Library", systemImage: childCards[0].parentList?.wrappedIcon ?? "rectangle.3.offgrid")
         HStack(alignment: .top){
             VStack(alignment:.leading){
                 Text(entry.word)
-                    .font(.system(size: 20, weight: .heavy, design: .serif))
+                    .font(.system(size: 18, weight: .heavy, design: .serif))
                 Text(entry.definition)
+                    .font(.system(.caption, design: .serif))
                 Spacer()
+                HStack{
+                    Circle()
+                        .frame(width:8,height: 8)
+                        .foregroundColor(entry.familiarity == .good ? .green : .gray)
+                    Circle()
+                        .frame(width:8,height: 8)
+                        .foregroundColor(entry.familiarity == .medium ? .yellow : .gray)
+                    Circle()
+                        .frame(width:8,height: 8)
+                        .foregroundColor(entry.familiarity == .bad ? .red : .gray)
+                    Spacer()
+                    Text(entry.lastSeen)
+                        .font(.caption2)
+                        .foregroundColor(.gray)
+                    
+                }
             }
             Spacer()
         }
         .padding()
-        .font(.system(.body, design: .serif))
     }
 }
 
