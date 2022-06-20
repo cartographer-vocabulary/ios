@@ -11,7 +11,12 @@ import SwiftUI
 struct cartographer2App: App {
     let persistenceController = PersistenceController.shared
 
+    init() {
+        UITableView.appearance().sectionFooterHeight = 0
+    }
+
     var body: some Scene {
+
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)

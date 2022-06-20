@@ -69,6 +69,7 @@
 		1BEF8D1028119429003F9D50 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF8D0F28119429003F9D50 /* ListView.swift */; };
 		1BEF8D122811986E003F9D50 /* CardAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF8D112811986E003F9D50 /* CardAddView.swift */; };
 		1BF2FE57281423CB00FC7289 /* ListExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF2FE56281423CB00FC7289 /* ListExportView.swift */; };
+		1BFB915C2860BDE4002B66B6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BFB915B2860BDE4002B66B6 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +182,8 @@
 		1BEF8D0F28119429003F9D50 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		1BEF8D112811986E003F9D50 /* CardAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddView.swift; sourceTree = "<group>"; };
 		1BF2FE56281423CB00FC7289 /* ListExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListExportView.swift; sourceTree = "<group>"; };
+		1BFB915A2860BCE4002B66B6 /* widgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = widgetExtension.entitlements; sourceTree = "<group>"; };
+		1BFB915B2860BDE4002B66B6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +214,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BFB915C2860BDE4002B66B6 /* CloudKit.framework in Frameworks */,
 				1BE5CC3A2839D7FA008CA386 /* SwiftUI.framework in Frameworks */,
 				1BE5CC382839D7FA008CA386 /* WidgetKit.framework in Frameworks */,
 			);
@@ -292,6 +296,7 @@
 		1BA14EF6280C83EF005A0BBD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1BFB915B2860BDE4002B66B6 /* CloudKit.framework */,
 				1BEF8D092811901F003F9D50 /* CloudKit.framework */,
 				1BA14EF7280C83EF005A0BBD /* CloudKit.framework */,
 				1BE5CC372839D7FA008CA386 /* WidgetKit.framework */,
@@ -303,6 +308,7 @@
 		1BAF861B27D4052E009A10C6 = {
 			isa = PBXGroup;
 			children = (
+				1BFB915A2860BCE4002B66B6 /* widgetExtension.entitlements */,
 				1B753C3527F7F048005A0776 /* cartographer2 (iOS).entitlements */,
 				1BAF862027D4052F009A10C6 /* Shared */,
 				1BAF863227D40530009A10C6 /* macOS */,
@@ -940,6 +946,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = widgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D7P78H6282;
@@ -969,6 +976,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = widgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D7P78H6282;
