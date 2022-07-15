@@ -85,6 +85,7 @@ struct ListContentView: View {
         .searchable(text: $searchText)
         .sheet(isPresented: $showingAddCard) {
             CardEditView(showingView: $showingAddCard, parentList: list)
+                .presentationDetents([.medium,.large])
         }
         .sheet(isPresented: $showingImportCard) {
             CardsImportView(showingView: $showingImportCard, parentList: list)

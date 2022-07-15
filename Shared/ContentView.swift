@@ -18,13 +18,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ListView()
-            Text("No List Selected")
-                .font(.title)
-                .opacity(0.5)
         }
-        #if os(iOS)
-        .navigationViewStyle(.stack)
-        #endif
         .onShake {
             guard viewContext.undoManager != nil else {return}
             guard viewContext.undoManager?.canUndo ?? false || viewContext.undoManager?.canRedo ?? false else {return}

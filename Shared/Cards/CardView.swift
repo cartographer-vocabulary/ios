@@ -65,7 +65,7 @@ struct CardView: View {
             } label: {
                 Label(card.wrappedLastSeen.relativeTo(Date.now), systemImage: "checkmark")
             }
-            .tint(.blue)
+            .tint(.accentColor)
         })
         .swipeActions(edge: .leading, allowsFullSwipe: false, content: {
             Button {
@@ -119,6 +119,7 @@ struct CardView: View {
         }
         .sheet(isPresented: $showingEditSheet) {
             CardEditView(showingView: $showingEditSheet, card: card)
+                .presentationDetents([.medium,.large])
         }
         .sheet(isPresented: $showingMoveSheet) {
             CardMoveView(showingView: $showingMoveSheet,card: card)

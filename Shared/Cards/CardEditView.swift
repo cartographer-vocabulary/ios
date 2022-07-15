@@ -29,6 +29,7 @@ struct CardEditView: View {
                         .font(.title)
                     TextEditor(text: $definition)
                         .padding([.leading,.trailing],-5)
+                        .padding(.bottom,-2)
                 }
                 Section {
                     if let card = card {
