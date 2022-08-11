@@ -61,9 +61,13 @@ struct CardView: View {
         .contentShape(Rectangle())
         .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
             Button {
-                card.seen()
+                if card.isReviewing {
+                    card.seen()
+                }
+                card.isReviewing.toggle()
             } label: {
-                Label(card.wrappedLastSeen.relativeTo(Date.now), systemImage: "checkmark")
+                Label(card.wrappedLastSeen.relativeTo(Date.now), systemImage: card.isReviewing ? "checkmark" : "plus")
+                    .labelStyle(.iconOnly)
             }
             .tint(.accentColor)
         })

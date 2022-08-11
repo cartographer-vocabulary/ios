@@ -19,10 +19,13 @@ struct CardInfoBarView: View {
 
             Spacer()
             Button{
-                card.seen()
+                if card.isReviewing {
+                    card.seen()
+                }
+                card.isReviewing.toggle()
                 impactMed.impactOccurred()
             } label: {
-                Image(systemName: "checkmark")
+                Image(systemName: card.isReviewing ? "checkmark" : "plus")
                     .font(.title2)
             }
         }

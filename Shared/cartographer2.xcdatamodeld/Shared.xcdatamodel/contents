@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21277" systemVersion="22A5321d" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Card" representedClassName="Card" syncable="YES" codeGenerationType="class">
         <attribute name="definition" optional="YES" attributeType="String"/>
+        <attribute name="isReviewing" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lastSeen" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="rawFamiliarity" optional="YES" attributeType="Integer 64" minValueString="-1" maxValueString="2" defaultValueString="-1" usesScalarValueType="YES"/>
         <attribute name="word" optional="YES" attributeType="String"/>
@@ -14,8 +15,4 @@
         <relationship name="lists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VocabList" inverseName="parentList" inverseEntity="VocabList"/>
         <relationship name="parentList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VocabList" inverseName="lists" inverseEntity="VocabList"/>
     </entity>
-    <elements>
-        <element name="Card" positionX="-54" positionY="9" width="128" height="104"/>
-        <element name="VocabList" positionX="-63" positionY="-9" width="128" height="104"/>
-    </elements>
 </model>

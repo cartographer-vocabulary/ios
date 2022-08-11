@@ -21,8 +21,6 @@ struct ListContentView: View {
 
     @AppStorage("caseInsensitive") var caseInsensitive: Bool = true
     @AppStorage("ignoreDiacritics") var ignoreDiacritics: Bool = true
-
-    var cardMode:Int
     
     var searchedCards: [Card] {
         
@@ -78,7 +76,7 @@ struct ListContentView: View {
                 }
             }
             ForEach(searchedCards, id: \.self){card in
-                CardView(card: card, parentList: list, mode:cardMode)
+                CardView(card: card, parentList: list, mode:0)
             }
         }
         .animation(.default, value: searchText)
