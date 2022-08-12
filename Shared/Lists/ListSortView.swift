@@ -10,6 +10,7 @@ import SwiftUI
 struct ListSortView: View {
     @Binding var showChildren:Bool
     @Binding var sorting:Int
+    var hideShowChildren = false
     
     var icon: Label<Text, Image> {
         switch sorting{
@@ -41,7 +42,9 @@ struct ListSortView: View {
                 Label("Random", systemImage: "shuffle").tag(5)
             }
             Divider()
-            Toggle("Show Child Cards", isOn: $showChildren)
+            if !hideShowChildren{
+                Toggle("Show Child Cards", isOn: $showChildren)
+            }
 
         } label: {
             icon

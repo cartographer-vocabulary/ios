@@ -60,6 +60,10 @@ extension Card {
         }
         set (familiarity){
             rawFamiliarity = familiarity.rawValue
+            if isReviewing {
+                seen()
+                isReviewing.toggle()
+            }
             save()
         }
     }

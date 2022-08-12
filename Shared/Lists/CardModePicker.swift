@@ -20,9 +20,6 @@ struct CardModePicker: View {
             } label: {
                 Text("Card Mode")
             }
-            .onChange(of: mode) { newValue in
-                print(newValue)
-            }
         } label: {
             Label("Card Mode", systemImage: cardIcons[mode])
         }
