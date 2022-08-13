@@ -25,15 +25,11 @@ struct SettingsView: View {
                     Toggle("Show Current List Cards on Top", isOn: $currentCardsOnTop)
                     Toggle("Case Insensitive", isOn: $caseInsensitive)
                     Toggle("Ignore Diacritics", isOn: $ignoreDiacritics)
+                    Toggle("Per list Card Mode", isOn: $separateCardMode)
+                    Toggle("Per list Card Sorting", isOn: $separateCardSorting)
+                    Toggle("Per list Show Child Cards", isOn: $separateShowChildren)
                 } header: {
                     Text("Search & Sorting")
-                }
-                Section {
-                    Toggle("Separate Card Mode", isOn: $separateCardMode)
-                    Toggle("Separate Card Sorting", isOn: $separateCardSorting)
-                    Toggle("Separate Show Child Cards", isOn: $separateShowChildren)
-                } header : {
-                    Text("Enable Separate Per List Sorting")
                 }
             }
             .navigationTitle("Settings")

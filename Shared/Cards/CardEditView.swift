@@ -32,11 +32,7 @@ struct CardEditView: View {
                         .padding(.bottom,-2)
                 }
                 Section {
-                    if let card = card {
-                        CardInfoBarView(card: card)
-                    } else {
-                        CardFamiliaritySelectView(familiarity: $familiarity)
-                    }
+                    CardFamiliaritySelectView(familiarity: $familiarity)
                 }
                 
                 if let card = card{

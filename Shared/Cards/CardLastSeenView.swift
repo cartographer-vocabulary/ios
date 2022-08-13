@@ -12,7 +12,8 @@ struct CardLastSeenView: View {
     let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
     @State var date = Date()
     var body: some View {
-        Text(card.wrappedLastSeen.relativeTo(date))
+        Label(card.wrappedLastSeen.relativeTo(date),systemImage: "clock")
+            .labelStyle(.titleAndIcon)
             .foregroundColor(.secondary)
             .onReceive(timer) { _ in
                 date = Date()

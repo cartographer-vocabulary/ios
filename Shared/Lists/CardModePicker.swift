@@ -10,7 +10,6 @@ import SwiftUI
 struct CardModePicker: View {
     @Binding var mode:Int
     var cardIcons = ["rectangle.on.rectangle.angled", "rectangle.bottomhalf.inset.filled", "rectangle.tophalf.inset.filled"]
-    @AppStorage("hideCardInfoBar") var hideCardInfoBar: Bool = false
 
     var body: some View {
         Menu {
@@ -24,9 +23,6 @@ struct CardModePicker: View {
             .onChange(of: mode) { newValue in
                 print(newValue)
             }
-            Divider()
-            Toggle("Hide Info Bar", isOn: $hideCardInfoBar)
-
         } label: {
             Label("Card Mode", systemImage: cardIcons[mode])
         }

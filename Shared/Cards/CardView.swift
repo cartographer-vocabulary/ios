@@ -18,19 +18,26 @@ struct CardView: View {
 
     @State var isFlipped = false
 
+    @State var isSeen = false
+
     @AppStorage("hideCardInfoBar") var hideCardInfoBar: Bool = false
     
     var body: some View {
         Section{
             HStack{
                 VStack(alignment: .leading, spacing: 10){
-                    if(parentList != card.parentList){
-                        Text(card.getPath(from: parentList).joined(separator: " - "))
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                            .padding(.top, -2)
-                            .padding(.bottom, -4)
-                    }
+
+                        HStack{
+                            if(parentList != card.parentList){
+                                Text(card.getPath(from: parentList).joined(separator: " - "))
+                            }
+                            CardLastSeenView(card:card)
+                        }
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                        .padding(.top, -2)
+                        .padding(.bottom, -4)
+
                     Text(card.wrappedWord)
                         .font(.title2)
                         .fontWeight(.medium)
@@ -46,56 +53,41 @@ struct CardView: View {
                         .cornerRadius(3)
                         .animation(.default, value: mode)
 
-                    if !hideCardInfoBar {
-                        CardInfoBarView(card: card)
-                    }
+
                     
                 }
                 .padding([.top, .bottom], 10)
                 Spacer()
+                if !hideCardInfoBar {
+                    CardFamiliaritySelectView(familiarity: $card.familiarity)
+                }
+            }
+        }
+        .onAppear{
+            DispatchQueue.main.async {
+                isSeen = true
+            }
+        }
+        .onDisappear{
+            DispatchQueue.main.async {
+                if isSeen {
+                    card.wrappedLastSeen = .now
+                }
             }
         }
         .onChange(of: mode, perform: { newValue in
             isFlipped = false
         })
         .contentShape(Rectangle())
-        .swipeActions(edge: .trailing, allowsFullSwipe: true, content: {
-            Button {
-                card.seen()
-            } label: {
-                Label(card.wrappedLastSeen.relativeTo(Date.now), systemImage: "checkmark")
-            }
-            .tint(.accentColor)
-        })
-        .swipeActions(edge: .leading, allowsFullSwipe: false, content: {
-            Button {
-                card.familiarity = .good
-            } label: {
-                Label("Familiar", systemImage: card.familiarity == .good ? "circle.fill" : "")
-                    .labelStyle(.iconOnly)
-            }
-            .tint(.green)
-            Button {
-                card.familiarity = .medium
-            } label: {
-                Label("Medium", systemImage: card.familiarity == .medium ? "circle.fill" : "")
-                    .labelStyle(.iconOnly)
-            }
-            .tint(.yellow)
-            Button {
-                card.familiarity = .bad
-            } label: {
-                Label("Not Familiar", systemImage: card.familiarity == .bad ? "circle.fill" : "")
-                    .labelStyle(.iconOnly)
-            }
-            .tint(.red)
-        })
         .onTapGesture {
             if mode == 0 {
-                showingEditSheet = true
+                card.seen()
             } else {
+                if isFlipped {
+                    card.seen()
+                }
                 withAnimation {
-                    isFlipped.toggle()
+                    isFlipped=true
                 }
             }
         }

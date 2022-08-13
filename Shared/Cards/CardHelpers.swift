@@ -60,7 +60,7 @@ extension Card {
         }
         set (familiarity){
             rawFamiliarity = familiarity.rawValue
-            save()
+            seen()
         }
     }
     
@@ -144,7 +144,7 @@ extension Card {
 extension Date {
     func relativeTo(_ date:Date) -> String{
         let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .full
+        formatter.unitsStyle = .abbreviated
         let dateDifference = date.timeIntervalSince(self)
         if dateDifference < 60 {
             return "now"

@@ -11,13 +11,15 @@ struct CardFamiliaritySelectView: View {
     @Binding var familiarity:Card.Familiarity
     let impactMed = UIImpactFeedbackGenerator(style: .light)
     var body: some View {
-        HStack{
+        VStack (spacing: 0){
             Button {
                 familiarity = .good
                 impactMed.impactOccurred()
             } label: {
                 Circle()
-                    .frame(width: 28, height: 28)
+                    .padding(2)
+                    .frame(width: 30, height: 30)
+                    .contentShape(Rectangle())
                     .foregroundColor(familiarity == .good ? .green : .primary.opacity(0.1))
             }
             Button {
@@ -25,7 +27,9 @@ struct CardFamiliaritySelectView: View {
                 impactMed.impactOccurred()
             } label: {
                 Circle()
-                    .frame(width: 28, height: 28)
+                    .padding(2)
+                    .frame(width: 30, height: 30)
+                    .contentShape(Rectangle())
                     .foregroundColor(familiarity == .medium ? .yellow : .primary.opacity(0.1))
             }
             Button {
@@ -33,7 +37,9 @@ struct CardFamiliaritySelectView: View {
                 impactMed.impactOccurred()
             } label: {
                 Circle()
-                    .frame(width: 28, height: 28)
+                    .padding(2)
+                    .frame(width: 30, height: 30)
+                    .contentShape(Rectangle())
                     .foregroundColor(familiarity == .bad ? .red : .primary.opacity(0.1))
             }
         }

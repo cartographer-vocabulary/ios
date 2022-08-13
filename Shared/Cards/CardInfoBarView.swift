@@ -12,8 +12,7 @@ struct CardInfoBarView: View {
     let impactMed = UIImpactFeedbackGenerator(style: .light)
 
     var body: some View {
-        HStack {
-
+        VStack {
             CardFamiliaritySelectView(familiarity: $card.familiarity)
             CardLastSeenView(card:card)
 
