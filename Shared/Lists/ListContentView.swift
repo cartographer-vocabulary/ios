@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListContentView: View {
     
-    var list: VocabList?
+    var list: VocabList
     var lists: [VocabList]
     var cards: [Card]
     

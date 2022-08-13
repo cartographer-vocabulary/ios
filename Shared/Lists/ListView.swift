@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListView: View {
-    var list:VocabList?
+    var list:VocabList
 
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -37,7 +37,7 @@ struct ListView: View {
 
     var sorting: Int {
         if separateSorting {
-            if let id = list?.getId() {
+            if let id = list.getId() {
                 return listSorting ??  UserDefaults.standard.integer(forKey: "cardSorting" + id)
             }
         }
@@ -46,7 +46,7 @@ struct ListView: View {
 
     var showChildren: Bool {
         if separateShowChildren {
-            if let id = list?.getId() {
+            if let id = list.getId() {
                 return listShowChildren ?? UserDefaults.standard.bool(forKey: "showChildren" + id)
             }
         }
@@ -55,7 +55,7 @@ struct ListView: View {
 
     var cardMode: Int {
         if separateCardMode {
-            if let id = list?.getId() {
+            if let id = list.getId() {
                 return listCardMode ?? UserDefaults.standard.integer(forKey: "cardMode" + id)
             }
         }
@@ -86,7 +86,7 @@ struct ListView: View {
                         }, set: { value in
                             listCardMode = value
                             if separateCardMode {
-                                if let id = list?.getId() {
+                                if let id = list.getId() {
                                     UserDefaults.standard.set(value, forKey: "cardMode" + id)
                                     return
                                 }
@@ -101,7 +101,7 @@ struct ListView: View {
                         }, set: { value in
                             listShowChildren = value
                             if separateShowChildren {
-                                if let id = list?.getId() {
+                                if let id = list.getId() {
                                     UserDefaults.standard.set(value, forKey: "showChildren" + id)
                                     return
                                 }
@@ -114,7 +114,7 @@ struct ListView: View {
                         }, set: { value in
                             listSorting = value
                             if separateSorting {
-                                if let id = list?.getId() {
+                                if let id = list.getId() {
                                     UserDefaults.standard.set(value, forKey: "cardSorting" + id)
                                     return
                                 }
@@ -142,15 +142,17 @@ struct ListView: View {
                             } label: {
                                 Label("Edit", systemImage: "pencil")
                             }
-                            Button {
-                                showingMoveList = true
-                            } label: {
-                                Label("Move", systemImage: "arrowshape.turn.up.right")
-                            }
-                            Button (role:.destructive){
-                                list.delete()
-                            } label: {
-                                Label("Delete", systemImage: "trash")
+                            if !list.isTopMost{
+                                Button {
+                                    showingMoveList = true
+                                } label: {
+                                    Label("Move", systemImage: "arrowshape.turn.up.right")
+                                }
+                                Button (role:.destructive){
+                                    list.delete()
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
                             }
                         }
 
@@ -160,7 +162,7 @@ struct ListView: View {
                     }
                 }
             }
-            .navigationTitle(list?.wrappedTitle ?? "Library")
+            .navigationTitle(list.wrappedTitle)
             .animation(.default, value: sorting)
             .animation(.default, value: showChildren)
             .listStyle(.insetGrouped)

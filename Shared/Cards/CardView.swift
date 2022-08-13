@@ -10,7 +10,7 @@ import SwiftUI
 struct CardView: View {
     
     @ObservedObject var card:Card
-    var parentList:VocabList?
+    var parentList:VocabList
     var mode:Int = 0
 
     @State var showingEditSheet = false

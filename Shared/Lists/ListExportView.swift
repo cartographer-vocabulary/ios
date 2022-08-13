@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ListExportView: View {
     @Binding var showingView:Bool
-    var list:VocabList?
+    var list:VocabList
     
     @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "word", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
     private var fetchedCards: FetchedResults<Card>
@@ -23,7 +23,7 @@ struct ListExportView: View {
 
     var defaultSorting: Int {
         if separateSorting {
-            if let id = list?.getId() {
+            if let id = list.getId() {
                 return UserDefaults.standard.integer(forKey: "cardSorting" + id)
             }
         }

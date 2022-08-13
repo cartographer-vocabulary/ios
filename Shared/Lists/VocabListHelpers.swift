@@ -48,7 +48,7 @@ extension VocabList {
         }
     }
     
-    static func getLists(of list:VocabList?, from fetchedLists: FetchedResults<VocabList>) -> [VocabList] {
+    static func getLists(of list:VocabList, from fetchedLists: FetchedResults<VocabList>) -> [VocabList] {
         let lists = fetchedLists.map{$0}
         let filtered = lists.filter { childList in
             return childList.parentList == list
@@ -56,7 +56,7 @@ extension VocabList {
         return filtered
     }
     
-    static func getCards(of list:VocabList?,from fetchedCards: FetchedResults<Card>, children:Bool = false) -> [Card] {
+    static func getCards(of list:VocabList,from fetchedCards: FetchedResults<Card>, children:Bool = false) -> [Card] {
         let cards = fetchedCards.map{$0}
         let topLevel = cards.filter { card in
             return card.parentList == list
@@ -69,13 +69,13 @@ extension VocabList {
         return children ? allContained : topLevel
     }
     
-    func isInside(_ list: VocabList?) -> Bool {
+    func isInside(_ list: VocabList) -> Bool {
         if parentList == list { return true }
         
         return parentList?.isInside(list) ?? false
     }
     
-    func getPath(from containerList: VocabList? = nil) -> [String] {
+    func getPath(from containerList: VocabList) -> [String] {
         guard parentList != containerList else { return [] }
         
         var pathSegments: [String] = []

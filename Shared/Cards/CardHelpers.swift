@@ -64,7 +64,7 @@ extension Card {
         }
     }
     
-    static func sortCards(_ cards: [Card], of list: VocabList?, with sorting: Int, caseInsensitive: Bool = true, ignoreDiacritics: Bool = true) -> [Card] {
+    static func sortCards(_ cards: [Card], of list: VocabList, with sorting: Int, caseInsensitive: Bool = true, ignoreDiacritics: Bool = true) -> [Card] {
         let currentCardsOnTop = UserDefaults.standard.bool(forKey: "currentCardsOnTop")
         var sorted:[Card] = cards.sorted { a, b in
 
@@ -110,7 +110,7 @@ extension Card {
         } : sorted
     }
     
-    func isInside(_ list: VocabList?) -> Bool {
+    func isInside(_ list: VocabList) -> Bool {
         
         if parentList == list {
             return true
@@ -119,7 +119,7 @@ extension Card {
         return parentList?.isInside(list) ?? false
     }
     
-    func getPath(from containerList: VocabList? = nil) -> [String] {
+    func getPath(from containerList: VocabList) -> [String] {
         var pathSegments:[String] = []
         if let parent = parentList {
             pathSegments.append(contentsOf: parent.getPath(from: containerList))

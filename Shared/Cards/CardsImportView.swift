@@ -13,7 +13,7 @@ struct CardsImportView: View {
     private var fetchedCards: FetchedResults<Card>
 
     @Binding var showingView:Bool
-    var parentList: VocabList?
+    var parentList: VocabList
     @State var text = ""
     @State var cardSeparator:String = ""
     @State var wordDefinitionSeparator:String = ""

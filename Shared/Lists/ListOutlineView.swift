@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListOutlineView<Content>: View where Content: View {
-    var parentList: VocabList? = nil
+    var parentList: VocabList
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.title)], animation: .default)
     private var fetchedLists: FetchedResults<VocabList>

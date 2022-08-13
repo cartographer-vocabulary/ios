@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ListSelectorView: View {
-    @Binding var list: VocabList?
+    @Binding var list: VocabList
     var disabledLists: [VocabList]?
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.title)], animation: .default)
     private var fetchedLists: FetchedResults<VocabList>
+    private var topList: VocabList {
+        return fetchedLists.filter {$0.isTopMost}[0]
+    }
+
     private var lists: [VocabList] {
         return fetchedLists.filter({ list in
-            return list.parentList == nil
+            return list.parentList == topList
         })
     }
     
@@ -23,38 +27,38 @@ struct ListSelectorView: View {
         Form {
             Section {
                 HStack {
-                    Label("Library", systemImage: "books.vertical")
+                    Label(topList.wrappedTitle, systemImage: topList.wrappedIcon)
                     Spacer()
-                    if list == nil{
+                    if list == topList{
                         Image(systemName: "checkmark")
                             .foregroundColor(.accentColor)
                     }
                 }
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    list = nil
-                }
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        list = topList
+                    }
             }
             Section {
-                ListOutlineView { selectedList, parent in
+                ListOutlineView(parentList: topList) {selectedList, parent in
                     if !(disabledLists?.allSatisfy({ list in
                         selectedList.isInside(list) || selectedList == list
                     }) ?? false) {
-                    HStack {
-                        Label(selectedList.wrappedTitle, systemImage: selectedList.wrappedIcon)
-                        Spacer()
-                        if selectedList == list{
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.accentColor)
+                        HStack {
+                            Label(selectedList.wrappedTitle, systemImage: selectedList.wrappedIcon)
+                            Spacer()
+                            if selectedList == list{
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.accentColor)
+                            }
                         }
-                    }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        guard !(disabledLists?.allSatisfy({ list in
-                            selectedList.isInside(list) || selectedList == list
-                        }) ?? false) else {return}
-                        list = selectedList
-                    }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            guard !(disabledLists?.allSatisfy({ list in
+                                selectedList.isInside(list) || selectedList == list
+                            }) ?? false) else {return}
+                            list = selectedList
+                        }
                     }
                 }
             }
