@@ -18,7 +18,7 @@ struct CardEditView: View {
     @State var definition = ""
     @State var familiarity: Card.Familiarity = .unset
     
-    var parentList:VocabList
+    var parentList:VocabList?
     var card:Card?
     
     var body: some View {

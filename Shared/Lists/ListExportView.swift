@@ -32,7 +32,7 @@ struct ListExportView: View {
 
     var defaultShowChildren: Bool {
         if separateShowChildren {
-            if let id = list?.getId() {
+            if let id = list.getId() {
                 return UserDefaults.standard.bool(forKey: "showChildren" + id)
             }
         }

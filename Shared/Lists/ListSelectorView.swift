@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListSelectorView: View {
-    @Binding var list: VocabList
+    @Binding var list: VocabList?
     var disabledLists: [VocabList]?
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.title)], animation: .default)
