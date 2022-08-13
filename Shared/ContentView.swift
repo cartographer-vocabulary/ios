@@ -16,18 +16,8 @@ struct ContentView: View {
     @State var undoAlert = false
     
     var body: some View {
-        TabView{
-            NavigationView {
-                ListView()
-            }
-                .tabItem {
-                    Label("Library", systemImage: "books.vertical")
-                }
-
-            ReviewView()
-                .tabItem {
-                    Label("Review", systemImage: "rectangle.on.rectangle.angled")
-                }
+        NavigationView {
+            ListView()
         }
         .onShake {
             guard viewContext.undoManager != nil else {return}

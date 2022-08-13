@@ -25,12 +25,15 @@ struct ListView: View {
     
     @AppStorage("cardSorting") var globalSorting: Int = 0
     @AppStorage("showChildren") var globalShowChildren: Bool = false
+    @AppStorage("cardMode") var globalCardMode = 0
 
     @AppStorage("separateCardSorting") var separateSorting = false
     @AppStorage("separateShowChildren") var separateShowChildren = false
+    @AppStorage("separateCardMode") var separateCardMode = false
 
     @State var listSorting:Int?
     @State var listShowChildren:Bool?
+    @State var listCardMode:Int?
 
     var sorting: Int {
         if separateSorting {
@@ -50,6 +53,14 @@ struct ListView: View {
         return globalShowChildren
     }
 
+    var cardMode: Int {
+        if separateCardMode {
+            if let id = list?.getId() {
+                return listCardMode ?? UserDefaults.standard.integer(forKey: "cardMode" + id)
+            }
+        }
+        return globalCardMode
+    }
 
     @AppStorage("caseInsensitive") var caseInsensitive: Bool = true
     @AppStorage("ignoreDiacritics") var ignoreDiacritics: Bool = true
@@ -65,17 +76,24 @@ struct ListView: View {
     }
     
     var body: some View {
-        ListContentView(list: list, lists: lists, cards: childCards)
+        ListContentView(list: list, lists: lists, cards: childCards, cardMode: cardMode)
             .toolbar{
                 ToolbarItemGroup(placement: .navigationBarTrailing){
-                    Button {
-                        childCards.forEach { card in
-                            card.isReviewing = true
-                            card.save()
+
+                    CardModePicker(mode: Binding<Int>(
+                        get: {
+                            cardMode
+                        }, set: { value in
+                            listCardMode = value
+                            if separateCardMode {
+                                if let id = list?.getId() {
+                                    UserDefaults.standard.set(value, forKey: "cardMode" + id)
+                                    return
+                                }
+                            }
+                            globalCardMode = value
                         }
-                    } label: {
-                        Label("Add All", systemImage: "plus.rectangle.on.rectangle")
-                    }
+                    ))
 
                     ListSortView(showChildren: Binding<Bool>(
                         get: {

@@ -15,8 +15,7 @@ struct SettingsView: View {
 
     @AppStorage("separateCardSorting") var separateCardSorting = false
     @AppStorage("separateShowChildren") var separateShowChildren = false
-
-    @AppStorage("hideCardInfoBar") var hideCardInfoBar: Bool = false
+    @AppStorage("separateCardMode") var separateCardMode = false
 
     var body: some View {
         NavigationView {
@@ -26,15 +25,15 @@ struct SettingsView: View {
                     Toggle("Show Current List Cards on Top", isOn: $currentCardsOnTop)
                     Toggle("Case Insensitive", isOn: $caseInsensitive)
                     Toggle("Ignore Diacritics", isOn: $ignoreDiacritics)
-                    Toggle("Separate Card Sorting", isOn: $separateCardSorting)
-                    Toggle("Separate Show Child Cards", isOn: $separateShowChildren)
                 } header: {
                     Text("Search & Sorting")
                 }
                 Section {
-                    Toggle("Hide Card Info Bar", isOn: $hideCardInfoBar)
-                } header: {
-                    Text("Appearance")
+                    Toggle("Separate Card Mode", isOn: $separateCardMode)
+                    Toggle("Separate Card Sorting", isOn: $separateCardSorting)
+                    Toggle("Separate Show Child Cards", isOn: $separateShowChildren)
+                } header : {
+                    Text("Enable Separate Per List Sorting")
                 }
             }
             .navigationTitle("Settings")

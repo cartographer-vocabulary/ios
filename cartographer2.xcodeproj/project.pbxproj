@@ -54,7 +54,6 @@
 		1BBB34FE27F9364B00BD7476 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB34FD27F9364B00BD7476 /* AppIconView.swift */; };
 		1BBF840B27DCDB5800C0069B /* VocabListHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */; };
 		1BC5BEB727F0A56900CB133C /* CardLastSeenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5BEB627F0A56900CB133C /* CardLastSeenView.swift */; };
-		1BCC09DD28A52FE600E07FE7 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC09DC28A52FE600E07FE7 /* ReviewView.swift */; };
 		1BCC823127F8C656007E3E3A /* ListSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC823027F8C656007E3E3A /* ListSelectorView.swift */; };
 		1BCC823327F8CCEB007E3E3A /* ListOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC823227F8CCEB007E3E3A /* ListOutlineView.swift */; };
 		1BCC823527F8DBE7007E3E3A /* CardMoveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC823427F8DBE7007E3E3A /* CardMoveView.swift */; };
@@ -167,7 +166,6 @@
 		1BBB34FD27F9364B00BD7476 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabListHelpers.swift; sourceTree = "<group>"; };
 		1BC5BEB627F0A56900CB133C /* CardLastSeenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLastSeenView.swift; sourceTree = "<group>"; };
-		1BCC09DC28A52FE600E07FE7 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		1BCC823027F8C656007E3E3A /* ListSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectorView.swift; sourceTree = "<group>"; };
 		1BCC823227F8CCEB007E3E3A /* ListOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOutlineView.swift; sourceTree = "<group>"; };
 		1BCC823427F8DBE7007E3E3A /* CardMoveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMoveView.swift; sourceTree = "<group>"; };
@@ -331,7 +329,6 @@
 			children = (
 				1BAF862327D4052F009A10C6 /* cartographer2App.swift */,
 				1BAF862427D4052F009A10C6 /* ContentView.swift */,
-				1BCC09DC28A52FE600E07FE7 /* ReviewView.swift */,
 				1BAF862527D4052F009A10C6 /* Persistence.swift */,
 				1BA12E1327E764C300F72A2F /* Helpers.swift */,
 				1BBB34FC27F934F600BD7476 /* Settings */,
@@ -611,7 +608,6 @@
 				1BF2FE57281423CB00FC7289 /* ListExportView.swift in Sources */,
 				1B9711D52820D04B00A6404C /* CardInfoBarView.swift in Sources */,
 				1BCC823527F8DBE7007E3E3A /* CardMoveView.swift in Sources */,
-				1BCC09DD28A52FE600E07FE7 /* ReviewView.swift in Sources */,
 				1BBB34FB27F934EF00BD7476 /* SettingsView.swift in Sources */,
 				1BBB34FE27F9364B00BD7476 /* AppIconView.swift in Sources */,
 			);
