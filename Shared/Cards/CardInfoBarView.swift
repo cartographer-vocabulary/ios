@@ -24,7 +24,6 @@ struct CardInfoBarView: View {
                 }
                 card.isReviewing.toggle()
                 impactMed.impactOccurred()
-                card.save()
             } label: {
                 Image(systemName: card.isReviewing ? "checkmark" : "plus")
                     .font(.title2)

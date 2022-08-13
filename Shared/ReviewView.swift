@@ -38,34 +38,23 @@ struct ReviewView: View {
 
     var body: some View {
         NavigationStack{
-            ZStack{
-                List{
-                    Section{
-                        Button {
-                            childCards.forEach { card in
-                                card.isReviewing = false
-                            }
-                            try? viewContext.save()
-                        } label: {
-                            Label("All Done",systemImage: "checkmark.circle")
+            List{
+                Section{
+                    Button {
+                        childCards.forEach { card in
+                            card.isReviewing = false
+                            card.seen()
                         }
-
-                    }
-                    ForEach(childCards, id: \.self){card in
-                        CardView(card: card, parentList: nil, mode:cardMode)
+                    } label: {
+                        Label("All Done",systemImage: "checkmark.circle")
                     }
 
                 }
-                .listStyle(.insetGrouped)
-                if childCards.isEmpty {
-                    VStack{
-                        Text("All Done")
-                            .font(.largeTitle)
-                        Text("No cards here")
-                    }
-                        .opacity(0.5)
+                ForEach(childCards, id: \.self){card in
+                    CardView(card: card, parentList: nil, mode:cardMode)
                 }
             }
+            .listStyle(.insetGrouped)
             .toolbar{
                     ToolbarItemGroup(placement: .navigationBarTrailing){
 
@@ -81,7 +70,7 @@ struct ReviewView: View {
                                 }
                                 globalSorting = value
                             }
-                        ), hideShowChildren: true)
+                        ))
 
                         Menu {
                             Button {

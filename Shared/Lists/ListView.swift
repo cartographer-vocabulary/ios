@@ -71,8 +71,8 @@ struct ListView: View {
                     Button {
                         childCards.forEach { card in
                             card.isReviewing = true
+                            card.save()
                         }
-                        try? viewContext.save()
                     } label: {
                         Label("Add All", systemImage: "plus.rectangle.on.rectangle")
                     }
