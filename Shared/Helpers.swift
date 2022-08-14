@@ -21,6 +21,7 @@ extension View {
     }
 }
 
+#if os(iOS)
 // The notification we'll send when a shake gesture happens.
 extension UIDevice {
     static let deviceDidShakeNotification = Notification.Name(rawValue: "deviceDidShakeNotification")
@@ -34,6 +35,7 @@ extension UIWindow {
         }
     }
 }
+#endif
 
 // A view modifier that detects shaking and calls a function of our choosing.
 struct DeviceShakeViewModifier: ViewModifier {
@@ -42,9 +44,11 @@ struct DeviceShakeViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .onAppear()
+            #if os(iOS)
             .onReceive(NotificationCenter.default.publisher(for: UIDevice.deviceDidShakeNotification)) { _ in
                 action()
             }
+            #endif
     }
 }
 

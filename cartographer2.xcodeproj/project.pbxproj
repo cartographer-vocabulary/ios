@@ -34,6 +34,7 @@
 		1B80205928105C73000555CE /* VocabListHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */; };
 		1B8F9CEA27F1196B00014407 /* ListSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F9CE927F1196B00014407 /* ListSortView.swift */; };
 		1B8F9CEC27F2A44400014407 /* ListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F9CEB27F2A44400014407 /* ListContentView.swift */; };
+		1B941B9328A95A8B0036C363 /* SheetContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B941B9228A95A3C0036C363 /* SheetContainerView.swift */; };
 		1B9711D52820D04B00A6404C /* CardInfoBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9711D42820D04B00A6404C /* CardInfoBarView.swift */; };
 		1B9AB98A2812D11700027D80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BAF862627D40530009A10C6 /* Assets.xcassets */; };
 		1BA12E0827E6B45800F72A2F /* ListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA12E0727E6B45800F72A2F /* ListRow.swift */; };
@@ -142,6 +143,7 @@
 		1B80204928105B0A000555CE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		1B8F9CE927F1196B00014407 /* ListSortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSortView.swift; sourceTree = "<group>"; };
 		1B8F9CEB27F2A44400014407 /* ListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContentView.swift; sourceTree = "<group>"; };
+		1B941B9228A95A3C0036C363 /* SheetContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetContainerView.swift; sourceTree = "<group>"; };
 		1B9711D42820D04B00A6404C /* CardInfoBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfoBarView.swift; sourceTree = "<group>"; };
 		1BA12E0727E6B45800F72A2F /* ListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRow.swift; sourceTree = "<group>"; };
 		1BA12E0D27E6B49C00F72A2F /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				1BAF862427D4052F009A10C6 /* ContentView.swift */,
 				1BAF862527D4052F009A10C6 /* Persistence.swift */,
 				1BA12E1327E764C300F72A2F /* Helpers.swift */,
+				1B941B9228A95A3C0036C363 /* SheetContainerView.swift */,
 				1BBB34FC27F934F600BD7476 /* Settings */,
 				1B64C11427EFB6950060AF97 /* Cards */,
 				1B94A09827E55CDB00111D9D /* Lists */,
@@ -597,6 +600,7 @@
 				1BE5CC432839D7FB008CA386 /* widget.intentdefinition in Sources */,
 				1BA12E0827E6B45800F72A2F /* ListRow.swift in Sources */,
 				1BCC823327F8CCEB007E3E3A /* ListOutlineView.swift in Sources */,
+				1B941B9328A95A8B0036C363 /* SheetContainerView.swift in Sources */,
 				1BAF864C27D40530009A10C6 /* cartographer2.xcdatamodeld in Sources */,
 				1B8F9CEA27F1196B00014407 /* ListSortView.swift in Sources */,
 				1BAF865027D40530009A10C6 /* ContentView.swift in Sources */,
@@ -866,7 +870,7 @@
 				PRODUCT_NAME = Cartographer;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -906,7 +910,7 @@
 				PRODUCT_NAME = Cartographer;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

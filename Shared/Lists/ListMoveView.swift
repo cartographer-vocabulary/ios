@@ -14,7 +14,7 @@ struct ListMoveView: View {
     @State var selectedList: VocabList? = nil
     
     var body: some View {
-        NavigationView {
+        SheetContainerView {
             ListSelectorView(list: $selectedList, disabledLists: [list])
             .toolbar {
                 ToolbarItem(placement: .confirmationAction){
@@ -34,7 +34,6 @@ struct ListMoveView: View {
                 list.save()
             }
             .navigationTitle("Move List")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

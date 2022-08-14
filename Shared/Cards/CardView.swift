@@ -63,18 +63,6 @@ struct CardView: View {
                 }
             }
         }
-        .onAppear{
-            DispatchQueue.main.async {
-                isSeen = true
-            }
-        }
-        .onDisappear{
-            DispatchQueue.main.async {
-                if isSeen {
-                    card.wrappedLastSeen = .now
-                }
-            }
-        }
         .onChange(of: mode, perform: { newValue in
             isFlipped = false
         })

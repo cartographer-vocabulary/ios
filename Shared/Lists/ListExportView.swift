@@ -59,7 +59,7 @@ struct ListExportView: View {
     
     
     var body: some View {
-        NavigationView{
+        SheetContainerView{
             Form {
                 Section {
                     TextField("Word Definition Separator (tab)", text: $wordDefinitionSeparator)
@@ -69,7 +69,11 @@ struct ListExportView: View {
                 
                 Section {
                     Button{
+                        #if os(iOS)
                         UIPasteboard.general.string = unescapeString(cardText)
+                        #else
+                        NSPasteboard.general.setString(unescapeString(cardText),forType: .string)
+                        #endif
                     } label: {
                         Label("Copy", systemImage: "doc.on.clipboard")
                     }
@@ -78,7 +82,6 @@ struct ListExportView: View {
                 }
             }
             .navigationTitle("Export List")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction){
                     Button {

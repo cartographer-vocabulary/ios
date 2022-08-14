@@ -9,12 +9,17 @@ import SwiftUI
 
 struct CardFamiliaritySelectView: View {
     @Binding var familiarity:Card.Familiarity
+    #if os(iOS)
     let impactMed = UIImpactFeedbackGenerator(style: .light)
-    var body: some View {
-        VStack (spacing: 0){
+    #endif
+    var isHorizontal = false
+    @ViewBuilder
+    func content() -> some View {
             Button {
                 familiarity = .good
+                #if os(iOS)
                 impactMed.impactOccurred()
+                #endif
             } label: {
                 Circle()
                     .padding(2)
@@ -24,7 +29,9 @@ struct CardFamiliaritySelectView: View {
             }
             Button {
                 familiarity = .medium
+                #if os(iOS)
                 impactMed.impactOccurred()
+                #endif
             } label: {
                 Circle()
                     .padding(2)
@@ -34,7 +41,9 @@ struct CardFamiliaritySelectView: View {
             }
             Button {
                 familiarity = .bad
+                #if os(iOS)
                 impactMed.impactOccurred()
+                #endif
             } label: {
                 Circle()
                     .padding(2)
@@ -42,8 +51,21 @@ struct CardFamiliaritySelectView: View {
                     .contentShape(Rectangle())
                     .foregroundColor(familiarity == .bad ? .red : .primary.opacity(0.1))
             }
+    }
+    var body: some View {
+        if !isHorizontal {
+            VStack (spacing: 0){
+                content()
+            }
+            .buttonStyle(.borderless)
+            .animation(.none, value: familiarity)
+        } else {
+            HStack (spacing: 0) {
+                content()
+                Spacer()
+            }
+            .buttonStyle(.borderless)
+            .animation(.none, value: familiarity)
         }
-        .buttonStyle(.borderless)
-        .animation(.none, value: familiarity)
     }
 }

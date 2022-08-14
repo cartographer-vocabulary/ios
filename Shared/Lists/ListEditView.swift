@@ -21,7 +21,7 @@ struct ListEditView: View {
     @State var listIcon = ""
     
     var body: some View {
-        NavigationView {
+        SheetContainerView {
             Form{
                 Section{
                     TextField("Title", text: $listTitle, onCommit: {
@@ -63,7 +63,6 @@ struct ListEditView: View {
                 save()
             }
             .navigationTitle(list == nil ? "Add List" : "Edit List")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
     

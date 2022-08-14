@@ -22,7 +22,7 @@ struct CardEditView: View {
     var card:Card?
     
     var body: some View {
-        NavigationView{
+        SheetContainerView{
             Form {
                 Section{
                     TextField("", text: $word)
@@ -32,7 +32,7 @@ struct CardEditView: View {
                         .padding(.bottom,-2)
                 }
                 Section {
-                    CardFamiliaritySelectView(familiarity: $familiarity)
+                    CardFamiliaritySelectView(familiarity: $familiarity, isHorizontal: true)
                 }
                 
                 if let card = card{
@@ -70,8 +70,9 @@ struct CardEditView: View {
                 save()
             }
             .navigationTitle(card == nil ? "Add Card" : "Edit Card")
-            .navigationBarTitleDisplayMode(.inline)
+
         }
+
     }
     
     func save() {

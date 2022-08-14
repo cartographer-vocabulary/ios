@@ -11,6 +11,8 @@ struct ListView: View {
     var list:VocabList
 
     @Environment(\.managedObjectContext) private var viewContext
+    var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
+
 
     @FetchRequest(sortDescriptors: [], animation: .default)
     private var fetchedCards: FetchedResults<Card>
@@ -68,7 +70,7 @@ struct ListView: View {
     var childCards:[Card]{
         Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), of:list, with: sorting, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics)
     }
-    
+
     var lists:[VocabList]{
         VocabList.getLists(of: list, from: fetchedLists).sorted { a, b in
             a.wrappedTitle < b.wrappedTitle
@@ -165,7 +167,9 @@ struct ListView: View {
             .navigationTitle(list.wrappedTitle)
             .animation(.default, value: sorting)
             .animation(.default, value: showChildren)
+        #if os(iOS)
             .listStyle(.insetGrouped)
+        #endif
             .sheet(isPresented: $showingEditList) {
                 if let list = list {
                     ListEditView(showingView:$showingEditList, list: list)
@@ -182,12 +186,6 @@ struct ListView: View {
             .sheet(isPresented: $showingSettings) {
                 SettingsView(showingView:$showingSettings)
             }
-    }
-}
-
-struct ListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListView(list:VocabList())
     }
 }
 

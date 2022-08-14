@@ -14,7 +14,7 @@ struct CardMoveView: View {
     @State var selectedList: VocabList? = nil
     
     var body: some View {
-        NavigationView {
+        SheetContainerView {
             ListSelectorView(list: $selectedList)
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction){
@@ -34,7 +34,6 @@ struct CardMoveView: View {
                     card.save()
                 }
                 .navigationTitle("Move Card")
-                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

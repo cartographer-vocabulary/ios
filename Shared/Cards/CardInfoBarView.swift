@@ -9,8 +9,9 @@ import SwiftUI
 
 struct CardInfoBarView: View {
     @ObservedObject var card:Card
+    #if os(iOS)
     let impactMed = UIImpactFeedbackGenerator(style: .light)
-
+    #endif
     var body: some View {
         VStack {
             CardFamiliaritySelectView(familiarity: $card.familiarity)
@@ -19,7 +20,9 @@ struct CardInfoBarView: View {
             Spacer()
             Button{
                 card.seen()
+                #if os(iOS)
                 impactMed.impactOccurred()
+                #endif
             } label: {
                 Image(systemName: "checkmark")
                     .font(.title2)

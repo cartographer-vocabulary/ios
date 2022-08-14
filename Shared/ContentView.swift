@@ -10,8 +10,10 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+
+    #if os(iOS)
     let impactMed = UIImpactFeedbackGenerator(style: .medium)
+    #endif
     
     @State var undoAlert = false
 

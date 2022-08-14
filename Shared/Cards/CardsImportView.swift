@@ -18,7 +18,7 @@ struct CardsImportView: View {
     @State var cardSeparator:String = ""
     @State var wordDefinitionSeparator:String = ""
     var body: some View {
-        NavigationView {
+        SheetContainerView {
             Form {
                 Section{
                     TextField("Word Definition Separator (tab)", text: $wordDefinitionSeparator)
@@ -26,9 +26,15 @@ struct CardsImportView: View {
                 }
                 Section {
                     Button {
+                        #if os(iOS)
                         if let string = UIPasteboard.general.string {
                             text = string
                         }
+                        #else
+                        if let string = NSPasteboard.general.string(forType: .string) {
+                            text = string
+                        }
+                        #endif
                     } label: {
                         Label("Paste", systemImage: "doc.on.clipboard")
                     }
@@ -87,7 +93,6 @@ struct CardsImportView: View {
                 }
             }
             .navigationTitle("Import Cards")
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
