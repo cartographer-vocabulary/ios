@@ -18,8 +18,6 @@ struct CardView: View {
 
     @State var isFlipped = false
 
-    @State var isSeen = false
-
     @AppStorage("hideCardInfoBar") var hideCardInfoBar: Bool = false
     
     var body: some View {

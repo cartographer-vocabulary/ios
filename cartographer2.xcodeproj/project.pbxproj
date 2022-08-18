@@ -27,7 +27,7 @@
 		1B80204228105B0A000555CE /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B80204128105B0A000555CE /* ComplicationController.swift */; };
 		1B80204428105B0A000555CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B80204328105B0A000555CE /* Assets.xcassets */; };
 		1B80204728105B0A000555CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B80204628105B0A000555CE /* Preview Assets.xcassets */; };
-		1B80204C28105B0A000555CE /* Cartographer.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1B80202C28105B08000555CE /* Cartographer.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B80204C28105B0A000555CE /* Cartographer.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1B80202C28105B08000555CE /* Cartographer.app */; platformFilters = (ios, maccatalyst, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1B80205628105B9F000555CE /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862527D4052F009A10C6 /* Persistence.swift */; };
 		1B80205728105BBF000555CE /* cartographer2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862127D4052F009A10C6 /* cartographer2.xcdatamodeld */; };
 		1B80205828105C6F000555CE /* CardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64C11127EFB6040060AF97 /* CardHelpers.swift */; };
@@ -64,7 +64,7 @@
 		1BE5CC402839D7FB008CA386 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BE5CC3F2839D7FB008CA386 /* Assets.xcassets */; };
 		1BE5CC422839D7FB008CA386 /* widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CC3E2839D7FA008CA386 /* widget.intentdefinition */; };
 		1BE5CC432839D7FB008CA386 /* widget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CC3E2839D7FA008CA386 /* widget.intentdefinition */; };
-		1BE5CC462839D7FB008CA386 /* widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1BE5CC362839D7FA008CA386 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1BE5CC462839D7FB008CA386 /* widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1BE5CC362839D7FA008CA386 /* widgetExtension.appex */; platformFilters = (ios, maccatalyst, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1BEF8D0A2811901F003F9D50 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BEF8D092811901F003F9D50 /* CloudKit.framework */; };
 		1BEF8D0C28119275003F9D50 /* ListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF8D0B28119275003F9D50 /* ListContentView.swift */; };
 		1BEF8D1028119429003F9D50 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF8D0F28119429003F9D50 /* ListView.swift */; };
@@ -644,6 +644,10 @@
 /* Begin PBXTargetDependency section */
 		1B80204B28105B0A000555CE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				ios,
+				maccatalyst,
+			);
 			target = 1B80202B28105B08000555CE /* watch */;
 			targetProxy = 1B80204A28105B0A000555CE /* PBXContainerItemProxy */;
 		};
@@ -654,6 +658,10 @@
 		};
 		1BE5CC452839D7FB008CA386 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				ios,
+				maccatalyst,
+			);
 			target = 1BE5CC352839D7FA008CA386 /* widgetExtension */;
 			targetProxy = 1BE5CC442839D7FB008CA386 /* PBXContainerItemProxy */;
 		};
