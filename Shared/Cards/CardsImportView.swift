@@ -39,8 +39,7 @@ struct CardsImportView: View {
                         Label("Paste", systemImage: "doc.on.clipboard")
                     }
 
-                    TextEditor(text: $text)
-                        .padding([.leading,.trailing],-5)
+                    TextField("Text Content",text: $text, axis: .vertical)
                 }
             }
             .toolbar {

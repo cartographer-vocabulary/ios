@@ -35,6 +35,7 @@ struct CardView: View {
                         .foregroundColor(.secondary)
                         .padding(.top, -2)
                         .padding(.bottom, -4)
+                        .lineLimit(1)
 
                     Text(card.wrappedWord)
                         .font(.title2)
@@ -44,12 +45,14 @@ struct CardView: View {
                         .cornerRadius(3)
                         .padding([.bottom], -4)
                         .animation(.default, value: mode)
+                        .lineLimit(nil)
 
                     Text(card.wrappedDefinition)
                         .opacity(mode != 1 || isFlipped ? 1 : 0)
                         .background(mode != 1 || isFlipped ? .clear : .primary)
                         .cornerRadius(3)
                         .animation(.default, value: mode)
+                        .lineLimit(nil)
 
 
                     
@@ -60,6 +63,12 @@ struct CardView: View {
                     CardFamiliaritySelectView(familiarity: $card.familiarity)
                 }
             }
+            #if os(macOS)
+            .padding(.horizontal)
+            .padding(.vertical,8)
+            .background(Color(NSColor.controlBackgroundColor).ignoresSafeArea(.all))
+            .cornerRadius(10)
+            #endif
         }
         .onChange(of: mode, perform: { newValue in
             isFlipped = false
@@ -95,11 +104,11 @@ struct CardView: View {
                 Label("Delete", systemImage: "xmark")
             }
         }
-        .sheet(isPresented: $showingEditSheet) {
+        .popover(isPresented: $showingEditSheet) {
             CardEditView(showingView: $showingEditSheet, card: card)
                 .presentationDetents([.medium,.large])
         }
-        .sheet(isPresented: $showingMoveSheet) {
+        .popover(isPresented: $showingMoveSheet) {
             CardMoveView(showingView: $showingMoveSheet,card: card)
         }
         

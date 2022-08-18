@@ -18,7 +18,7 @@ struct SettingsView: View {
     @AppStorage("separateCardMode") var separateCardMode = false
 
     var body: some View {
-        NavigationView {
+        SheetContainerView {
             Form {
 //                AppIconView()
                 Section {

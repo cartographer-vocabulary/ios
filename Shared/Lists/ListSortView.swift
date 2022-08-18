@@ -40,6 +40,7 @@ struct ListSortView: View {
                 Label("Least Familiar", systemImage: "xmark.circle").tag(4)
                 Label("Random", systemImage: "shuffle").tag(5)
             }
+            .pickerStyle(.inline)
             Divider()
             Toggle("Show Child Cards", isOn: $showChildren)
 

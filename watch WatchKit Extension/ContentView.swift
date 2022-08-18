@@ -30,8 +30,16 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView{
-            ListContentView(list: nil, lists: lists, cards: cards)
-                .environment(\.managedObjectContext, viewContext)
+            if fetchedLists.contains(where: {$0.isTopMost}) {
+                ListView(list: fetchedLists.filter({$0.isTopMost})[0])
+            } else {
+                Text("Loading")
+                    .font(.largeTitle)
+                    .opacity(0.5)
+            }
+        }
+        .onAppear{
+            checkTopMostList()
         }
         .navigationTitle("Library")
     }

@@ -18,14 +18,9 @@ struct cartographer2App: App {
     #endif
 
     var body: some Scene {
-
-        WindowGroup {
+        WindowGroup{
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environment(\.defaultMinListHeaderHeight, 0)
-        }
-        .commands {
-            SidebarCommands()
         }
     }
 }

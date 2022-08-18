@@ -22,10 +22,9 @@ struct ContentView: View {
 
     @FetchRequest(sortDescriptors: [], animation: .default)
     private var fetchedLists: FetchedResults<VocabList>
-
     
     var body: some View {
-        NavigationView {
+        NavigationStack{
             if fetchedLists.contains(where: {$0.isTopMost}) {
                 ListView(list: fetchedLists.filter({$0.isTopMost})[0])
             } else {
@@ -35,27 +34,7 @@ struct ContentView: View {
             }
         }
         .onAppear{
-            if !fetchedLists.contains(where: {$0.isTopMost}) {
-                let topList = VocabList(context: viewContext)
-                topList.wrappedIcon = "books.vertical"
-                topList.wrappedTitle = "Library"
-                topList.isTopMost = true
-                topList.save()
-
-                fetchedLists.forEach { list in
-                    guard list != topList else {return}
-                    if list.parentList == nil {
-                        list.save(to: topList)
-                    }
-                }
-                fetchedCards.forEach { card in
-                    if card.parentList == nil {
-                        card.parentList = topList
-                        card.save()
-                    }
-                }
-                try? viewContext.save()
-            }
+            checkTopMostList()
         }
         .onShake {
             guard viewContext.undoManager != nil else {return}

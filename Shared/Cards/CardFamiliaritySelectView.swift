@@ -12,6 +12,13 @@ struct CardFamiliaritySelectView: View {
     #if os(iOS)
     let impactMed = UIImpactFeedbackGenerator(style: .light)
     #endif
+
+    #if os(iOS)
+    let buttonSize:CGFloat = 30
+    #elseif os(macOS)
+    let buttonSize:CGFloat = 25
+    #endif
+
     var isHorizontal = false
     @ViewBuilder
     func content() -> some View {
@@ -23,7 +30,7 @@ struct CardFamiliaritySelectView: View {
             } label: {
                 Circle()
                     .padding(2)
-                    .frame(width: 30, height: 30)
+                    .frame(width: buttonSize, height: buttonSize)
                     .contentShape(Rectangle())
                     .foregroundColor(familiarity == .good ? .green : .primary.opacity(0.1))
             }
@@ -35,7 +42,7 @@ struct CardFamiliaritySelectView: View {
             } label: {
                 Circle()
                     .padding(2)
-                    .frame(width: 30, height: 30)
+                    .frame(width: buttonSize, height: buttonSize)
                     .contentShape(Rectangle())
                     .foregroundColor(familiarity == .medium ? .yellow : .primary.opacity(0.1))
             }
@@ -47,7 +54,7 @@ struct CardFamiliaritySelectView: View {
             } label: {
                 Circle()
                     .padding(2)
-                    .frame(width: 30, height: 30)
+                    .frame(width: buttonSize, height: buttonSize)
                     .contentShape(Rectangle())
                     .foregroundColor(familiarity == .bad ? .red : .primary.opacity(0.1))
             }

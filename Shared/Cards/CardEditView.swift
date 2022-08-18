@@ -25,11 +25,14 @@ struct CardEditView: View {
         SheetContainerView{
             Form {
                 Section{
-                    TextField("", text: $word)
+                    TextField("Word", text: $word, axis: .vertical)
+                        .lineLimit(1...10)
                         .font(.title)
-                    TextEditor(text: $definition)
-                        .padding([.leading,.trailing],-5)
-                        .padding(.bottom,-2)
+
+                    TextField("Definition",text: $definition, axis: .vertical)
+                        .lineLimit(1...10)
+
+
                 }
                 Section {
                     CardFamiliaritySelectView(familiarity: $familiarity, isHorizontal: true)
@@ -64,14 +67,13 @@ struct CardEditView: View {
                         familiarity = card.familiarity
                     }
                 }
-
             }
             .onDisappear{
                 save()
             }
             .navigationTitle(card == nil ? "Add Card" : "Edit Card")
-
         }
+        .frame(idealHeight:200)
 
     }
     

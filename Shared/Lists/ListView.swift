@@ -76,102 +76,92 @@ struct ListView: View {
             a.wrappedTitle < b.wrappedTitle
         }
     }
-    @ViewBuilder
-    func toolbarContent() -> some View {
-        CardModePicker(mode: Binding<Int>(
-            get: {
-                cardMode
-            }, set: { value in
-                listCardMode = value
-                if separateCardMode {
-                    if let id = list.getId() {
-                        UserDefaults.standard.set(value, forKey: "cardMode" + id)
-                        return
-                    }
-                }
-                globalCardMode = value
-            }
-        ))
-
-        ListSortView(showChildren: Binding<Bool>(
-            get: {
-                showChildren
-            }, set: { value in
-                listShowChildren = value
-                if separateShowChildren {
-                    if let id = list.getId() {
-                        UserDefaults.standard.set(value, forKey: "showChildren" + id)
-                        return
-                    }
-                }
-                globalShowChildren = value
-            }
-        ), sorting: Binding<Int>(
-            get: {
-                sorting
-            }, set: { value in
-                listSorting = value
-                if separateSorting {
-                    if let id = list.getId() {
-                        UserDefaults.standard.set(value, forKey: "cardSorting" + id)
-                        return
-                    }
-                }
-                globalSorting = value
-            }
-        ))
-
-        Menu {
-            Button{
-                showingExportList = true
-            } label: {
-                Label("Export", systemImage:"square.and.arrow.up")
-            }
-            Divider()
-            Button {
-                showingSettings = true
-            } label: {
-                Label("Settings", systemImage: "gearshape")
-            }
-            Divider()
-            if let list = list {
-                Button{
-                    showingEditList = true
-                } label: {
-                    Label("Edit", systemImage: "pencil")
-                }
-                if !list.isTopMost{
-                    Button {
-                        showingMoveList = true
-                    } label: {
-                        Label("Move", systemImage: "arrowshape.turn.up.right")
-                    }
-                    Button (role:.destructive){
-                        list.delete()
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                    }
-                }
-            }
-
-
-        } label : {
-            Label("List Options", systemImage: "ellipsis.circle")
-        }
-    }
     
     var body: some View {
         ListContentView(list: list, lists: lists, cards: childCards, cardMode: cardMode)
             .toolbar{
-                #if os(iOS)
-                ToolbarItemGroup(placement: .navigationBarTrailing){
-                    toolbarContent()
-                }
-                #else
                 ToolbarItemGroup(placement: .primaryAction){
-                    toolbarContent()
+                    CardModePicker(mode: Binding<Int>(
+                        get: {
+                            cardMode
+                        }, set: { value in
+                            listCardMode = value
+                            if separateCardMode {
+                                if let id = list.getId() {
+                                    UserDefaults.standard.set(value, forKey: "cardMode" + id)
+                                    return
+                                }
+                            }
+                            globalCardMode = value
+                        }
+                    ))
+
+                    ListSortView(showChildren: Binding<Bool>(
+                        get: {
+                            showChildren
+                        }, set: { value in
+                            listShowChildren = value
+                            if separateShowChildren {
+                                if let id = list.getId() {
+                                    UserDefaults.standard.set(value, forKey: "showChildren" + id)
+                                    return
+                                }
+                            }
+                            globalShowChildren = value
+                        }
+                    ), sorting: Binding<Int>(
+                        get: {
+                            sorting
+                        }, set: { value in
+                            listSorting = value
+                            if separateSorting {
+                                if let id = list.getId() {
+                                    UserDefaults.standard.set(value, forKey: "cardSorting" + id)
+                                    return
+                                }
+                            }
+                            globalSorting = value
+                        }
+                    ))
+
+                    Menu {
+                        Button{
+                            showingExportList = true
+                        } label: {
+                            Label("Export", systemImage:"square.and.arrow.up")
+                        }
+                        Divider()
+                        Button {
+                            showingSettings = true
+                        } label: {
+                            Label("Settings", systemImage: "gearshape")
+                        }
+                        Divider()
+                        if let list = list {
+                            Button{
+                                showingEditList = true
+                            } label: {
+                                Label("Edit", systemImage: "pencil")
+                            }
+                            if !list.isTopMost{
+                                Button {
+                                    showingMoveList = true
+                                } label: {
+                                    Label("Move", systemImage: "arrowshape.turn.up.right")
+                                }
+                                Button (role:.destructive){
+                                    list.delete()
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
+                        }
+
+
+                    } label : {
+                        Label("List Options", systemImage: "ellipsis.circle")
+                    }
                 }
-                #endif
             }
             .navigationTitle(list.wrappedTitle)
             .animation(.default, value: sorting)
@@ -179,6 +169,7 @@ struct ListView: View {
         #if os(iOS)
             .listStyle(.insetGrouped)
         #endif
+        
             .sheet(isPresented: $showingEditList) {
                 if let list = list {
                     ListEditView(showingView:$showingEditList, list: list)
@@ -189,10 +180,10 @@ struct ListView: View {
                     ListMoveView(showingView:$showingMoveList, list: list)
                 }
             }
-            .sheet(isPresented: $showingExportList) {
+            .popover(isPresented: $showingExportList) {
                 ListExportView(showingView:$showingExportList, list: list)
             }
-            .sheet(isPresented: $showingSettings) {
+            .popover(isPresented: $showingSettings) {
                 SettingsView(showingView:$showingSettings)
             }
     }

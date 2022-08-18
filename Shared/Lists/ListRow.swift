@@ -28,7 +28,6 @@ struct ListRow: View {
             
         } label: {
             Label(list.wrappedTitle, systemImage: list.wrappedIcon)
-            
         }
         .contextMenu {
             Button {

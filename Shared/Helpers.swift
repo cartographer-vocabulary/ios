@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct WrapNavigation: ViewModifier {
     func body(content: Content) -> some View {
@@ -68,4 +69,38 @@ func normalizeString(string:String, caseInsensitive:Bool, ignoreDiacritics:Bool)
     if caseInsensitive { formatted = formatted.folding(options: .caseInsensitive, locale: .current)}
     if ignoreDiacritics { formatted = formatted.folding(options: .diacriticInsensitive, locale: .current)}
     return formatted
+}
+
+func checkTopMostList(){
+    var fetchedLists = [VocabList]()
+    var fetchedCards = [Card]()
+    let viewContext = PersistenceController.shared.container.viewContext
+
+    var fetchList = NSFetchRequest<VocabList>(entityName: "VocabList")
+    fetchedLists = (try? viewContext.fetch(fetchList) as [VocabList]) ?? []
+
+    var fetchCard = NSFetchRequest<Card>(entityName: "Card")
+    fetchedCards = (try? viewContext.fetch(fetchCard) as [Card]) ?? []
+
+    if !fetchedLists.contains(where: {$0.isTopMost}) {
+        let topList = VocabList(context: viewContext)
+        topList.wrappedIcon = "books.vertical"
+        topList.wrappedTitle = "Library"
+        topList.isTopMost = true
+        topList.save()
+
+        fetchedLists.forEach { list in
+            guard list != topList else {return}
+            if list.parentList == nil {
+                list.save(to: topList)
+            }
+        }
+        fetchedCards.forEach { card in
+            if card.parentList == nil {
+                card.parentList = topList
+                card.save()
+            }
+        }
+        try? viewContext.save()
+    }
 }

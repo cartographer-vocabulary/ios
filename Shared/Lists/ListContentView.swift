@@ -45,7 +45,12 @@ struct ListContentView: View {
                     } label: {
                         Label("Add List", systemImage: "plus")
                     }
-                    
+                    .popover(isPresented: $showingAddList) {
+                        ListEditView(showingView: $showingAddList, parentList: list)
+                    }
+                    #if os(macOS)
+                    .buttonStyle(.borderless)
+                    #endif
                     
                     ForEach(lists){ list in
                         ListRow(list: list)
@@ -60,38 +65,39 @@ struct ListContentView: View {
                             Label("Add Card", systemImage: "plus")
                             Spacer()
                         }
-                       
-                        .buttonStyle(.borderless)
+                        .popover(isPresented: $showingAddCard) {
+                            CardEditView(showingView: $showingAddCard, parentList: list)
+                                .presentationDetents([.medium,.large])
+                        }
+
                         Spacer()
-                        Menu {
-                            Button {
-                                showingImportCard = true
-                            } label: {
-                                Label("Import text", systemImage: "text.alignleft")
-                            }
+                        Button {
+                            showingImportCard = true
                         } label: {
-                            Label("More", systemImage: "ellipsis.circle")
+                            Label("Import text", systemImage: "text.alignleft")
                                 .labelStyle(.iconOnly)
                         }
+                        .popover(isPresented: $showingImportCard) {
+                            CardsImportView(showingView: $showingImportCard, parentList: list)
+                        }
+
                     }
-                    
+                    .buttonStyle(.borderless)
                 }
             }
             ForEach(searchedCards, id: \.self){card in
                 CardView(card: card, parentList: list, mode:cardMode)
             }
         }
+        #if os(macOS)
+        .scrollContentBackground(.hidden)
+        .listStyle(.sidebar)
+        #endif
+
         .animation(.default, value: searchText)
         .searchable(text: $searchText)
-        .sheet(isPresented: $showingAddCard) {
-            CardEditView(showingView: $showingAddCard, parentList: list)
-                .presentationDetents([.medium,.large])
-        }
-        .sheet(isPresented: $showingImportCard) {
-            CardsImportView(showingView: $showingImportCard, parentList: list)
-        }
-        .sheet(isPresented: $showingAddList) {
-            ListEditView(showingView: $showingAddList, parentList: list)
-        }
+
+
+
     }
 }
