@@ -11,12 +11,10 @@ struct SheetContainerView<Content: View>: View {
     var content: () -> Content
     var body: some View {
         #if os(macOS)
-        ScrollView{
-            content()
-                .padding()
-        }
-        .frame(minWidth: 400,maxWidth: 800, minHeight:200, idealHeight: 400, maxHeight: 800)
-        .labelsHidden()
+        content()
+        .formStyle(.grouped)
+        .frame(minWidth: 400,idealWidth: 600, maxWidth: 1000, minHeight:200, idealHeight: 400, maxHeight: 1000)
+
 
         #else
 

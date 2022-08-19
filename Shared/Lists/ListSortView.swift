@@ -41,8 +41,12 @@ struct ListSortView: View {
                 Label("Random", systemImage: "shuffle").tag(5)
             }
             .pickerStyle(.inline)
+            .labelStyle(.titleAndIcon)
+
             Divider()
             Toggle("Show Child Cards", isOn: $showChildren)
+            .labelStyle(.titleAndIcon)
+
 
         } label: {
             icon

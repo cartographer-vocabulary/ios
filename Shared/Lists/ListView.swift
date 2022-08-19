@@ -125,38 +125,40 @@ struct ListView: View {
                     ))
 
                     Menu {
-                        Button{
-                            showingExportList = true
-                        } label: {
-                            Label("Export", systemImage:"square.and.arrow.up")
-                        }
-                        Divider()
-                        Button {
-                            showingSettings = true
-                        } label: {
-                            Label("Settings", systemImage: "gearshape")
-                        }
-                        Divider()
-                        if let list = list {
+                        Group{
                             Button{
-                                showingEditList = true
+                                showingExportList = true
                             } label: {
-                                Label("Edit", systemImage: "pencil")
+                                Label("Export", systemImage:"square.and.arrow.up")
                             }
-                            if !list.isTopMost{
-                                Button {
-                                    showingMoveList = true
+                            Divider()
+                            Button {
+                                showingSettings = true
+                            } label: {
+                                Label("Settings", systemImage: "gearshape")
+                            }
+                            Divider()
+                            if let list = list {
+                                Button{
+                                    showingEditList = true
                                 } label: {
-                                    Label("Move", systemImage: "arrowshape.turn.up.right")
+                                    Label("Edit", systemImage: "pencil")
                                 }
-                                Button (role:.destructive){
-                                    list.delete()
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
+                                if !list.isTopMost{
+                                    Button {
+                                        showingMoveList = true
+                                    } label: {
+                                        Label("Move", systemImage: "arrowshape.turn.up.right")
+                                    }
+                                    Button (role:.destructive){
+                                        list.delete()
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
                                 }
                             }
                         }
-
+                        .labelStyle(.titleAndIcon)
 
                     } label : {
                         Label("List Options", systemImage: "ellipsis.circle")
@@ -180,10 +182,10 @@ struct ListView: View {
                     ListMoveView(showingView:$showingMoveList, list: list)
                 }
             }
-            .popover(isPresented: $showingExportList) {
+            .sheet(isPresented: $showingExportList) {
                 ListExportView(showingView:$showingExportList, list: list)
             }
-            .popover(isPresented: $showingSettings) {
+            .sheet(isPresented: $showingSettings) {
                 SettingsView(showingView:$showingSettings)
             }
     }

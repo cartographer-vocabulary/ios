@@ -45,7 +45,7 @@ struct ListContentView: View {
                     } label: {
                         Label("Add List", systemImage: "plus")
                     }
-                    .popover(isPresented: $showingAddList) {
+                    .sheet(isPresented: $showingAddList) {
                         ListEditView(showingView: $showingAddList, parentList: list)
                     }
                     #if os(macOS)
@@ -65,7 +65,7 @@ struct ListContentView: View {
                             Label("Add Card", systemImage: "plus")
                             Spacer()
                         }
-                        .popover(isPresented: $showingAddCard) {
+                        .sheet(isPresented: $showingAddCard) {
                             CardEditView(showingView: $showingAddCard, parentList: list)
                                 .presentationDetents([.medium,.large])
                         }
@@ -77,7 +77,7 @@ struct ListContentView: View {
                             Label("Import text", systemImage: "text.alignleft")
                                 .labelStyle(.iconOnly)
                         }
-                        .popover(isPresented: $showingImportCard) {
+                        .sheet(isPresented: $showingImportCard) {
                             CardsImportView(showingView: $showingImportCard, parentList: list)
                         }
 
@@ -93,7 +93,6 @@ struct ListContentView: View {
         .scrollContentBackground(.hidden)
         .listStyle(.sidebar)
         #endif
-
         .animation(.default, value: searchText)
         .searchable(text: $searchText)
 

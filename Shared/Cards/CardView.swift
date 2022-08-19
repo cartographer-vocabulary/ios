@@ -104,11 +104,11 @@ struct CardView: View {
                 Label("Delete", systemImage: "xmark")
             }
         }
-        .popover(isPresented: $showingEditSheet) {
+        .sheet(isPresented: $showingEditSheet) {
             CardEditView(showingView: $showingEditSheet, card: card)
                 .presentationDetents([.medium,.large])
         }
-        .popover(isPresented: $showingMoveSheet) {
+        .sheet(isPresented: $showingMoveSheet) {
             CardMoveView(showingView: $showingMoveSheet,card: card)
         }
         

@@ -24,6 +24,8 @@ struct CardModePicker: View {
                 print(newValue)
             }
             .pickerStyle(.inline)
+            .labelStyle(.titleAndIcon)
+
         } label: {
             Label("Card Mode", systemImage: cardIcons[mode])
         }

@@ -18,13 +18,15 @@ struct ListContentView: View {
     
     var body: some View {
         List {
-            Section {
-                ForEach(lists) { list in
-                    NavigationLink{
-                        ListView(list: list)
-                            .environment(\.managedObjectContext, viewContext)
-                    } label: {
-                        Label(list.wrappedTitle, systemImage: list.wrappedIcon)
+            if !lists.isEmpty{
+                Section {
+                    ForEach(lists) { list in
+                        NavigationLink{
+                            ListView(list: list)
+                                .environment(\.managedObjectContext, viewContext)
+                        } label: {
+                            Label(list.wrappedTitle, systemImage: list.wrappedIcon)
+                        }
                     }
                 }
             }

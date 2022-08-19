@@ -23,7 +23,7 @@ struct CardEditView: View {
     
     var body: some View {
         SheetContainerView{
-            Form {
+            Form{
                 Section{
                     TextField("Word", text: $word, axis: .vertical)
                         .lineLimit(1...10)
@@ -31,8 +31,6 @@ struct CardEditView: View {
 
                     TextField("Definition",text: $definition, axis: .vertical)
                         .lineLimit(1...10)
-
-
                 }
                 Section {
                     CardFamiliaritySelectView(familiarity: $familiarity, isHorizontal: true)

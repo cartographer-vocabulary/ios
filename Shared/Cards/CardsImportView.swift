@@ -40,6 +40,7 @@ struct CardsImportView: View {
                     }
 
                     TextField("Text Content",text: $text, axis: .vertical)
+                        .lineLimit(1...)
                 }
             }
             .toolbar {

@@ -82,7 +82,8 @@ func checkTopMostList(){
     var fetchCard = NSFetchRequest<Card>(entityName: "Card")
     fetchedCards = (try? viewContext.fetch(fetchCard) as [Card]) ?? []
 
-    if !fetchedLists.contains(where: {$0.isTopMost}) {
+    var allTopMost = fetchedLists.filter({$0.isTopMost})
+    if allTopMost.isEmpty {
         let topList = VocabList(context: viewContext)
         topList.wrappedIcon = "books.vertical"
         topList.wrappedTitle = "Library"
@@ -102,5 +103,21 @@ func checkTopMostList(){
             }
         }
         try? viewContext.save()
+    } else if allTopMost.count > 1 {
+        let first = allTopMost.first
+        fetchedLists.forEach { list in
+            if let parentList = list.parentList {
+                if parentList.isTopMost {
+                    list.parentList = first
+                }
+            }
+        }
+        fetchedCards.forEach { card in
+            if let parentList = card.parentList {
+                if parentList.isTopMost {
+                    card.parentList  = first
+                }
+            }
+        }
     }
 }

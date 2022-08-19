@@ -21,11 +21,11 @@ struct ListRow: View {
             return []
         }
     }
-    
-    func currentRow() -> some View{
+
+    var body: some View {
         NavigationLink{
             ListView(list: list)
-            
+
         } label: {
             Label(list.wrappedTitle, systemImage: list.wrappedIcon)
         }
@@ -54,13 +54,5 @@ struct ListRow: View {
             ListMoveView(showingView: $moveSheet, list: list)
         }
     }
-    var body: some View {
-        currentRow()
-    }
 }
 
-struct ListRow_Previews: PreviewProvider {
-    static var previews: some View {
-        ListRow(list:VocabList())
-    }
-}
