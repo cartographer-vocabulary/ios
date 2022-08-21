@@ -121,7 +121,7 @@
       "size" : "16x16"
     },
     {
-      "filename" : "Plugin icon mac32-1.png",
+      "filename" : "Plugin icon mac32 1.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
@@ -145,25 +145,25 @@
       "size" : "128x128"
     },
     {
-      "filename" : "Plugin icon mac256-1.png",
+      "filename" : "Plugin icon mac256 1.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
-      "filename" : "Plugin icon - 1512-1.png",
+      "filename" : "Plugin icon mac512 1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
-      "filename" : "Plugin icon - 1512.png",
+      "filename" : "Plugin icon mac512.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"
     },
     {
-      "filename" : "Plugin icon - 1full-1.png",
+      "filename" : "Plugin icon macfull.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "512x512"
