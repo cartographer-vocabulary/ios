@@ -19,6 +19,10 @@ struct CardView: View {
     @State var isFlipped = false
 
     @AppStorage("hideCardInfoBar") var hideCardInfoBar: Bool = false
+
+    #if os(iOS)
+    let impactMed = UIImpactFeedbackGenerator(style: .soft)
+    #endif
     
     var body: some View {
         Section{
@@ -75,6 +79,9 @@ struct CardView: View {
         })
         .contentShape(Rectangle())
         .onTapGesture {
+            #if os(iOS)
+            impactMed.impactOccurred()
+            #endif
             if mode == 0 {
                 card.seen()
             } else {
@@ -105,7 +112,7 @@ struct CardView: View {
             }
         }
         .sheet(isPresented: $showingEditSheet) {
-            CardEditView(showingView: $showingEditSheet, card: card)
+            CardEditView(showingView: $showingEditSheet, parentList: parentList, card: card)
                 .presentationDetents([.medium,.large])
         }
         .sheet(isPresented: $showingMoveSheet) {

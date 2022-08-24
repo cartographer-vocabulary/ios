@@ -61,12 +61,12 @@ struct ListContentView: View {
                         Button{
                             showingAddCard = true
                         } label: {
-                            Label("Add Card", systemImage: "plus")
+                            Label("Add Cards", systemImage: "plus")
                             Spacer()
                         }
                         .keyboardShortcut("a",modifiers: .command)
                         .sheet(isPresented: $showingAddCard) {
-                            CardEditView(showingView: $showingAddCard, parentList: list)
+                            CardAddView(showingView: $showingAddCard, parentList: list)
                                 .presentationDetents([.medium,.large])
                         }
 

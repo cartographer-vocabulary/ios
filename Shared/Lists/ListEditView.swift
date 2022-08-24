@@ -82,9 +82,3 @@ struct ListEditView: View {
         
     }
 }
-
-struct ListEditView_Previews: PreviewProvider {
-    static var previews: some View {
-        ListEditView(showingView:.constant(true), list:VocabList())
-    }
-}

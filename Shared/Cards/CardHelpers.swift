@@ -46,7 +46,7 @@ extension Card {
         save()
     }
     
-    enum Familiarity: Int64 {
+    enum Familiarity: Int, Equatable, Hashable {
         case good = 2
         case medium = 1
         case bad = 0
@@ -56,10 +56,10 @@ extension Card {
 
     var familiarity:Familiarity {
         get {
-            return Familiarity(rawValue: rawFamiliarity) ?? .unset
+            return Familiarity(rawValue: Int(rawFamiliarity)) ?? .unset
         }
         set (familiarity){
-            rawFamiliarity = familiarity.rawValue
+            rawFamiliarity = Int64(familiarity.rawValue)
             seen()
         }
     }

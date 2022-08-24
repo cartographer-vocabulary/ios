@@ -18,11 +18,8 @@ struct CardEditView: View {
     @State var definition = ""
     @State var familiarity: Card.Familiarity = .unset
     
-    var parentList:VocabList?
-    var card:Card?
-
-    @FocusState var focusWord:Bool
-    @State var focusDefinition = true
+    var parentList:VocabList
+    var card:Card
 
 
     
@@ -33,7 +30,6 @@ struct CardEditView: View {
                     TextField("Word", text: $word, axis: .vertical)
                         .lineLimit(1...10)
                         .font(.title)
-                        .focused($focusWord)
 
 
                     TextField("Definition",text: $definition, axis: .vertical)
@@ -42,15 +38,13 @@ struct CardEditView: View {
                 Section {
                     CardFamiliaritySelectView(familiarity: $familiarity, isHorizontal: true)
                 }
-                
-                if let card = card{
-                    Section {
-                        Button(role:.destructive){
-                            card.delete()
-                            showingView = false
-                        } label: {
-                            Label("Delete Card",systemImage: "xmark")
-                        }
+
+                Section {
+                    Button(role:.destructive){
+                        card.delete()
+                        showingView = false
+                    } label: {
+                        Label("Delete Card",systemImage: "xmark")
                     }
                 }
             }
@@ -68,40 +62,25 @@ struct CardEditView: View {
             }
             .onAppear{
                 DispatchQueue.main.async {
-                    if let card = card {
-                        word = card.wrappedWord
-                        definition = card.wrappedDefinition
-                        familiarity = card.familiarity
-                    }
+                    word = card.wrappedWord
+                    definition = card.wrappedDefinition
+                    familiarity = card.familiarity
                 }
             }
             .onDisappear{
                 save()
             }
-            .navigationTitle(card == nil ? "Add Card" : "Edit Card")
+            .navigationTitle("Edit Card")
         }
         .frame(idealHeight:400)
 
     }
     
-    func save(hideView:Bool = true) {
-        showingView = !hideView
-        if let card = card {
-            if(card.wrappedWord != word) { card.wrappedWord = word }
-            if(card.wrappedDefinition != definition) { card.wrappedDefinition = definition }
-            if(card.familiarity != familiarity) { card.familiarity = familiarity }
-            card.save()
-        } else {
-            if(word.isEmpty && definition.isEmpty) {return}
-            let card = Card(context: viewContext)
-            card.wrappedWord = word
-            card.wrappedDefinition = definition
-            card.wrappedLastSeen = Date.now
-            card.parentList = parentList
-            card.familiarity = familiarity
-            card.save()
-            
-        }
+    func save() {
+        if(card.wrappedWord != word) { card.wrappedWord = word }
+        if(card.wrappedDefinition != definition) { card.wrappedDefinition = definition }
+        if(card.familiarity != familiarity) { card.familiarity = familiarity }
+        card.save()
     }
 }
 
