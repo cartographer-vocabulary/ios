@@ -21,6 +21,9 @@ struct cartographer2App: App {
         WindowGroup{
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            #if os(macOS)
+                .frame(minWidth: 300,idealWidth: 500, maxWidth: .infinity)
+            #endif
         }
     }
 }

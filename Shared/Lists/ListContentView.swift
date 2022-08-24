@@ -37,7 +37,6 @@ struct ListContentView: View {
     
     var body: some View {
         List {
-            
             if searchText.isEmpty {
                 Section {
                     Button {
@@ -51,12 +50,12 @@ struct ListContentView: View {
                     #if os(macOS)
                     .buttonStyle(.borderless)
                     #endif
-                    
+
                     ForEach(lists){ list in
                         ListRow(list: list)
                     }
                 }
-                
+
                 Section{
                     HStack {
                         Button{
@@ -65,6 +64,7 @@ struct ListContentView: View {
                             Label("Add Card", systemImage: "plus")
                             Spacer()
                         }
+                        .keyboardShortcut("a",modifiers: .command)
                         .sheet(isPresented: $showingAddCard) {
                             CardEditView(showingView: $showingAddCard, parentList: list)
                                 .presentationDetents([.medium,.large])
@@ -95,8 +95,7 @@ struct ListContentView: View {
         #endif
         .animation(.default, value: searchText)
         .searchable(text: $searchText)
-
-
+        .scrollDismissesKeyboard(.immediately)
 
     }
 }

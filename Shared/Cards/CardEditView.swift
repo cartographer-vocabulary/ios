@@ -20,6 +20,11 @@ struct CardEditView: View {
     
     var parentList:VocabList?
     var card:Card?
+
+    @FocusState var focusWord:Bool
+    @State var focusDefinition = true
+
+
     
     var body: some View {
         SheetContainerView{
@@ -28,6 +33,8 @@ struct CardEditView: View {
                     TextField("Word", text: $word, axis: .vertical)
                         .lineLimit(1...10)
                         .font(.title)
+                        .focused($focusWord)
+
 
                     TextField("Definition",text: $definition, axis: .vertical)
                         .lineLimit(1...10)
@@ -55,6 +62,8 @@ struct CardEditView: View {
                         Text("Done")
                     }
                     .font(.body.weight(.bold))
+                    .keyboardShortcut(.return,modifiers: .command)
+
                 }
             }
             .onAppear{
@@ -71,12 +80,12 @@ struct CardEditView: View {
             }
             .navigationTitle(card == nil ? "Add Card" : "Edit Card")
         }
-        .frame(idealHeight:200)
+        .frame(idealHeight:400)
 
     }
     
-    func save() {
-        showingView = false
+    func save(hideView:Bool = true) {
+        showingView = !hideView
         if let card = card {
             if(card.wrappedWord != word) { card.wrappedWord = word }
             if(card.wrappedDefinition != definition) { card.wrappedDefinition = definition }

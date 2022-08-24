@@ -13,7 +13,6 @@ struct ListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
 
-
     @FetchRequest(sortDescriptors: [], animation: .default)
     private var fetchedCards: FetchedResults<Card>
     

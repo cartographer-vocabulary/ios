@@ -11,21 +11,21 @@ struct ListSortView: View {
     @Binding var showChildren:Bool
     @Binding var sorting:Int
     
-    var icon: Label<Text, Image> {
+    var icon: String {
         switch sorting{
         
         case 1:
-            return Label("Newest", systemImage: "clock")
+            return "clock"
         case 2:
-            return Label("Oldest", systemImage: "clock.arrow.circlepath")
+            return "clock.arrow.circlepath"
         case 3:
-            return Label("Most Familiar", systemImage: "checkmark.circle")
+            return "checkmark.circle"
         case 4:
-            return Label("Least Familiar", systemImage: "xmark.circle")
+            return "xmark.circle"
         case 5:
-            return Label("Random", systemImage: "shuffle")
+            return "shuffle"
         default:
-            return Label("Alphabetical", systemImage: "textformat")
+            return "textformat"
         }
     }
     
@@ -49,7 +49,7 @@ struct ListSortView: View {
 
 
         } label: {
-            icon
+            Label("Sorting", systemImage: icon)
         }
         .animation(.none, value: sorting)
     }

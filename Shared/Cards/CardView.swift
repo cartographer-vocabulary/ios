@@ -45,14 +45,14 @@ struct CardView: View {
                         .cornerRadius(3)
                         .padding([.bottom], -4)
                         .animation(.default, value: mode)
-                        .lineLimit(nil)
+                        .lineLimit(1...)
 
                     Text(card.wrappedDefinition)
                         .opacity(mode != 1 || isFlipped ? 1 : 0)
                         .background(mode != 1 || isFlipped ? .clear : .primary)
                         .cornerRadius(3)
                         .animation(.default, value: mode)
-                        .lineLimit(nil)
+                        .lineLimit(1...)
 
 
                     

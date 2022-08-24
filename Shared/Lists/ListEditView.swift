@@ -24,9 +24,7 @@ struct ListEditView: View {
         SheetContainerView {
             Form{
                 Section{
-                    TextField("Title", text: $listTitle, onCommit: {
-                        save()
-                    })
+                    TextField("Title", text: $listTitle)
                     .font(.title)
                 }
                 Section{
@@ -42,6 +40,7 @@ struct ListEditView: View {
                         Text("Done")
                     }
                     .font(.body.weight(.bold))
+                    .keyboardShortcut(.return,modifiers: .command)
                     
                 }
             }
