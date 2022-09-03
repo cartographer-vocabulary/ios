@@ -10,7 +10,7 @@ import SwiftUI
 struct CardAddView: View {
     @Binding var showing:Bool
     @Environment(\.managedObjectContext) private var viewContext
-    var parentList: VocabList?
+    var parentList: VocabList
     @State var word = ""
     @State var definition = ""
     var body: some View {

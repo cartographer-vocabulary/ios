@@ -77,12 +77,24 @@ func checkTopMostList(){
     let viewContext = PersistenceController.shared.container.viewContext
 
     var fetchList = NSFetchRequest<VocabList>(entityName: "VocabList")
-    fetchedLists = (try? viewContext.fetch(fetchList) as [VocabList]) ?? []
+
+    do {
+        fetchedLists = try viewContext.fetch(fetchList) as [VocabList]
+    } catch {
+        print(error)
+    }
 
     var fetchCard = NSFetchRequest<Card>(entityName: "Card")
-    fetchedCards = (try? viewContext.fetch(fetchCard) as [Card]) ?? []
+
+    do {
+        fetchedCards = try viewContext.fetch(fetchCard) as [Card]
+    } catch {
+        print(error)
+    }
 
     var allTopMost = fetchedLists.filter({$0.isTopMost})
+
+    print(allTopMost.count)
     if allTopMost.isEmpty {
         let topList = VocabList(context: viewContext)
         topList.wrappedIcon = "books.vertical"
@@ -105,6 +117,14 @@ func checkTopMostList(){
         try? viewContext.save()
     } else if allTopMost.count > 1 {
         let first = allTopMost.first
+
+        fetchedCards.forEach { card in
+            if let parentList = card.parentList {
+                if parentList.isTopMost {
+                    card.parentList = first
+                }
+            }
+        }
         fetchedLists.forEach { list in
             if let parentList = list.parentList {
                 if parentList.isTopMost {
@@ -112,12 +132,11 @@ func checkTopMostList(){
                 }
             }
         }
-        fetchedCards.forEach { card in
-            if let parentList = card.parentList {
-                if parentList.isTopMost {
-                    card.parentList  = first
-                }
+        allTopMost.forEach { list in
+            if list != first {
+                list.delete()
             }
         }
+        try? viewContext.save()
     }
 }

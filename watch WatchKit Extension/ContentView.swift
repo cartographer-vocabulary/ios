@@ -12,21 +12,9 @@ struct ContentView: View {
     @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
     private var fetchedLists: FetchedResults<VocabList>
     
-    private var lists: [VocabList] {
-        return fetchedLists.filter({ list in
-            return list.parentList == nil
-        })
-    }
-    
     @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "word", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
     private var fetchedCards: FetchedResults<Card>
-    
-    
-    private var cards: [Card] {
-        fetchedCards.filter { card in
-            return card.parentList == nil
-        }
-    }
+
     
     var body: some View {
         NavigationView{

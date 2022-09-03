@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListContentView: View {
-    var list: VocabList?
+    var list: VocabList
     var lists: [VocabList]
     var cards: [Card]
     
@@ -18,6 +18,11 @@ struct ListContentView: View {
     
     var body: some View {
         List {
+            Button {
+                checkTopMostList()
+            } label: {
+                Text("testing")
+            }
             if !lists.isEmpty{
                 Section {
                     ForEach(lists) { list in
