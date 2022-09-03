@@ -18,11 +18,6 @@ struct ListContentView: View {
     
     var body: some View {
         List {
-            Button {
-                checkTopMostList()
-            } label: {
-                Text("testing")
-            }
             if !lists.isEmpty{
                 Section {
                     ForEach(lists) { list in
