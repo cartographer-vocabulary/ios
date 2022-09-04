@@ -17,6 +17,8 @@ struct SettingsView: View {
     @AppStorage("separateShowChildren") var separateShowChildren = false
     @AppStorage("separateCardMode") var separateCardMode = false
 
+    @AppStorage("readOnScroll") var readOnScroll = true
+
     var body: some View {
         SheetContainerView {
             Form {
@@ -30,6 +32,9 @@ struct SettingsView: View {
                     Toggle("Per list Show Child Cards", isOn: $separateShowChildren)
                 } header: {
                     Text("Search & Sorting")
+                }
+                Section {
+                    Toggle("Mark as read on scroll", isOn: $readOnScroll)
                 }
             }
             .navigationTitle("Settings")

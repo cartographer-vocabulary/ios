@@ -81,6 +81,7 @@ struct CardEditView: View {
         if(card.wrappedDefinition != definition) { card.wrappedDefinition = definition }
         if(card.familiarity != familiarity) { card.familiarity = familiarity }
         card.save()
+        NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
     }
 }
 

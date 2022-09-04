@@ -66,15 +66,15 @@ struct ListView: View {
     @AppStorage("caseInsensitive") var caseInsensitive: Bool = true
     @AppStorage("ignoreDiacritics") var ignoreDiacritics: Bool = true
 
-    var childCards:[Card]{
-        Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), of:list, with: sorting, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics)
-    }
+    @State var childCards:[Card] = []
 
     var lists:[VocabList]{
         VocabList.getLists(of: list, from: fetchedLists).sorted { a, b in
             a.wrappedTitle < b.wrappedTitle
         }
     }
+
+    let sortNotifier = NotificationCenter.default.publisher(for: Notification.Name("sort"))
     
     var body: some View {
         ListContentView(list: list, lists: lists, cards: childCards, cardMode: cardMode)
@@ -167,10 +167,27 @@ struct ListView: View {
             .navigationTitle(list.wrappedTitle)
             .animation(.default, value: sorting)
             .animation(.default, value: showChildren)
-        #if os(iOS)
+#if os(iOS)
             .listStyle(.insetGrouped)
-        #endif
-        
+#endif
+            .onAppear{
+                resort()
+            }
+            .onReceive(sortNotifier, perform: { _ in
+                if sorting != 5 {
+                    resort()
+                }
+            })
+            .onChange(of: sorting, perform: { _ in
+                resort()
+            })
+            .onChange(of: showChildren, perform: { _ in
+                resort()
+            })
+            .refreshable {
+                resort()
+            }
+
             .sheet(isPresented: $showingEditList) {
                 if let list = list {
                     ListEditView(showingView:$showingEditList, list: list)
@@ -187,6 +204,17 @@ struct ListView: View {
             .sheet(isPresented: $showingSettings) {
                 SettingsView(showingView:$showingSettings)
             }
+    }
+
+    func resort(){
+        DispatchQueue.global(qos: .userInteractive).async {
+            let cards = Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), of:list, with: sorting, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics)
+            DispatchQueue.main.async {
+                withAnimation(.default){
+                    childCards = cards
+                }
+            }
+        }
     }
 }
 

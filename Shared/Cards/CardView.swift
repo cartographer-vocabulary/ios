@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CardView: View {
+
+    @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject var card:Card
     var parentList:VocabList
@@ -18,7 +20,8 @@ struct CardView: View {
 
     @State var isFlipped = false
 
-    @AppStorage("hideCardInfoBar") var hideCardInfoBar: Bool = false
+    @AppStorage("readOnScroll") var readOnScroll = true
+
 
     #if os(iOS)
     let impactMed = UIImpactFeedbackGenerator(style: .soft)
@@ -63,9 +66,7 @@ struct CardView: View {
                 }
                 .padding([.top, .bottom], 10)
                 Spacer()
-                if !hideCardInfoBar {
-                    CardFamiliaritySelectView(familiarity: $card.familiarity)
-                }
+                CardFamiliaritySelectView(familiarity: $card.familiarity)
             }
             #if os(macOS)
             .padding(.horizontal)
@@ -74,9 +75,18 @@ struct CardView: View {
             .cornerRadius(10)
             #endif
         }
-        .onChange(of: mode, perform: { newValue in
+        .onChange(of: mode, perform: { _ in
             isFlipped = false
         })
+        .onChange(of: card.familiarity, perform: { _ in
+            try? viewContext.save()
+            NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
+        })
+        .onDisappear{
+            if readOnScroll {
+                card.seen()
+            }
+        }
         .contentShape(Rectangle())
         .onTapGesture {
             #if os(iOS)
@@ -84,9 +94,11 @@ struct CardView: View {
             #endif
             if mode == 0 {
                 card.seen()
+                NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
             } else {
                 if isFlipped {
                     card.seen()
+                    NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
                 }
                 withAnimation {
                     isFlipped=true
