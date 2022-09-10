@@ -18,9 +18,15 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
+        let list = VocabList(context: viewContext)
+        list.isTopMost = true
+
         for _ in 0..<10 {
-            let newItem = VocabList(context: viewContext)
-            newItem.title = "placeholder"
+            let newItem = Card(context: viewContext)
+            newItem.word = "Hello"
+            newItem.definition = "world"
+            newItem.familiarity = .medium
+            newItem.parentList = list
         }
         do {
             try viewContext.save()

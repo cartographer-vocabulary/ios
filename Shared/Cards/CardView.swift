@@ -28,7 +28,6 @@ struct CardView: View {
     #endif
     
     var body: some View {
-        Section{
             HStack{
                 VStack(alignment: .leading, spacing: 10){
 
@@ -74,7 +73,6 @@ struct CardView: View {
             .background(Color(NSColor.controlBackgroundColor).ignoresSafeArea(.all))
             .cornerRadius(10)
             #endif
-        }
         .onChange(of: mode, perform: { _ in
             isFlipped = false
         })

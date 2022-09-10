@@ -34,11 +34,9 @@ struct CardEditView: View {
 
                     TextField("Definition",text: $definition, axis: .vertical)
                         .lineLimit(1...10)
-                }
-                Section {
                     CardFamiliaritySelectView(familiarity: $familiarity, isHorizontal: true)
-                }
 
+                }
                 Section {
                     Button(role:.destructive){
                         card.delete()

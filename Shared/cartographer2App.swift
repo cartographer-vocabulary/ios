@@ -10,13 +10,7 @@ import SwiftUI
 @main
 struct cartographer2App: App {
     let persistenceController = PersistenceController.shared
-
-    #if os(iOS)
-    init() {
-        UITableView.appearance().sectionFooterHeight = 0
-    }
-    #endif
-
+    
     var body: some Scene {
         WindowGroup{
             ContentView()
