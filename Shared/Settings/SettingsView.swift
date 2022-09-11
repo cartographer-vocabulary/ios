@@ -34,7 +34,7 @@ struct SettingsView: View {
                     Text("Search & Sorting")
                 }
                 Section {
-                    Toggle("Mark as read on scroll", isOn: $readOnScroll)
+                    Toggle("Mark as read automatically", isOn: $readOnScroll)
                 }
             }
             .navigationTitle("Settings")
