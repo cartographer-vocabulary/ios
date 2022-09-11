@@ -80,7 +80,6 @@ struct ListContentView: View {
                         .sheet(isPresented: $showingImportCard) {
                             CardsImportView(showingView: $showingImportCard, parentList: list)
                         }
-
                     }
                     .buttonStyle(.borderless)
                 }

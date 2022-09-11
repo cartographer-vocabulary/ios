@@ -184,10 +184,6 @@ struct ListView: View {
             .onChange(of: showChildren, perform: { _ in
                 resort()
             })
-            .refreshable {
-                resort()
-            }
-
             .sheet(isPresented: $showingEditList) {
                 if let list = list {
                     ListEditView(showingView:$showingEditList, list: list)
