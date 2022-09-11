@@ -57,16 +57,11 @@ extension VocabList {
     }
     
     static func getCards(of list:VocabList,from fetchedCards: FetchedResults<Card>, children:Bool = false) -> [Card] {
-        let cards = fetchedCards.map{$0}
-        let topLevel = cards.filter { card in
+        return children ? fetchedCards.filter { card in
+            return card.isInside(list)
+        } : fetchedCards.filter { card in
             return card.parentList == list
         }
-        
-        let allContained = cards.filter { card in
-            return card.isInside(list)
-        }
-        
-        return children ? allContained : topLevel
     }
     
     func isInside(_ list: VocabList) -> Bool {

@@ -87,6 +87,7 @@ struct CardAddView: View {
             saveCard.parentList = parentList
             saveCard.familiarity = card.familiarity
             saveCard.save()
+            NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
         }
     }
 }

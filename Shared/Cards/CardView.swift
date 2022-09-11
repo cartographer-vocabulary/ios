@@ -117,6 +117,7 @@ struct CardView: View {
             Divider()
             Button(role:.destructive) {
                 card.delete()
+                NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
             } label: {
                 Label("Delete", systemImage: "xmark")
             }

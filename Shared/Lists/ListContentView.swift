@@ -84,7 +84,7 @@ struct ListContentView: View {
                     .buttonStyle(.borderless)
                 }
             }
-            ForEach(searchedCards, id: \.self){card in
+            ForEach(searchedCards, id: \.objectID){card in
                 CardView(card: card, parentList: list, mode:cardMode)
             }
         }

@@ -164,9 +164,8 @@ struct ListView: View {
                     }
                 }
             }
+            .animation(.default, value: childCards)
             .navigationTitle(list.wrappedTitle)
-            .animation(.default, value: sorting)
-            .animation(.default, value: showChildren)
 #if os(iOS)
             .listStyle(.insetGrouped)
 #endif
@@ -204,12 +203,7 @@ struct ListView: View {
 
     func resort(){
         DispatchQueue.global(qos: .userInteractive).async {
-            let cards = Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), of:list, with: sorting, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics)
-            DispatchQueue.main.async {
-                withAnimation(.default){
-                    childCards = cards
-                }
-            }
+            childCards = Card.sortCards(VocabList.getCards(of: list, from: fetchedCards, children: showChildren), of:list, with: sorting, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics)
         }
     }
 }

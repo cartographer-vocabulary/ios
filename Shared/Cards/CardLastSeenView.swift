@@ -13,10 +13,13 @@ struct CardLastSeenView: View {
     @State var date = Date()
     var body: some View {
         Label(card.wrappedLastSeen.relativeTo(date),systemImage: "clock")
+            .animation(.default, value: card.wrappedLastSeen)
             .labelStyle(.titleAndIcon)
             .foregroundColor(.secondary)
             .onReceive(timer) { _ in
-                date = Date()
+                withAnimation {
+                    date = Date()
+                }
             }
         
     }

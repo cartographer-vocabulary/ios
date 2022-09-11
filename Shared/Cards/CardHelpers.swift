@@ -79,35 +79,38 @@ extension Card {
         }
         switch sorting {
         case 1:
-            sorted = sorted.sorted { a, b in
+            sorted.sort { a, b in
                 a.wrappedLastSeen > b.wrappedLastSeen
             }
             
         case 2:
-            sorted =  sorted.sorted { a, b in
+            sorted.sort { a, b in
                 a.wrappedLastSeen < b.wrappedLastSeen
             }
             
         case 3:
-            sorted = sorted.sorted { a, b in
+            sorted.sort { a, b in
                 a.familiarity.rawValue > b.familiarity.rawValue
             }
             
         case 4:
-            sorted = sorted.sorted { a, b in
+            sorted.sort { a, b in
                 a.familiarity.rawValue < b.familiarity.rawValue
             }
             
         case 5:
-            sorted = sorted.shuffled()
+            sorted.shuffle()
             
         default: break
 
         }
-        return currentCardsOnTop ? sorted.sorted { a, b in
-            if a.parentList == list && b.parentList != list { return true }
-            return false
-        } : sorted
+        if currentCardsOnTop {
+            sorted.sort{a, b in
+                if a.parentList == list && b.parentList != list { return true }
+                return false
+            }
+        }
+        return sorted
     }
     
     func isInside(_ list: VocabList) -> Bool {
