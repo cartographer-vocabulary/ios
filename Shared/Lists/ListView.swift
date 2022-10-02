@@ -37,28 +37,22 @@ struct ListView: View {
     @State var listCardMode:Int?
 
     var sorting: Int {
-        if separateSorting {
-            if let id = list.getId() {
-                return listSorting ??  UserDefaults.standard.integer(forKey: "cardSorting" + id)
-            }
+        if separateSorting{
+            return listSorting ??  Int(list.sorting)
         }
         return globalSorting
     }
 
     var showChildren: Bool {
         if separateShowChildren {
-            if let id = list.getId() {
-                return listShowChildren ?? UserDefaults.standard.bool(forKey: "showChildren" + id)
-            }
+            return listShowChildren ?? list.children
         }
         return globalShowChildren
     }
 
     var cardMode: Int {
         if separateCardMode {
-            if let id = list.getId() {
-                return listCardMode ?? UserDefaults.standard.integer(forKey: "cardMode" + id)
-            }
+            return listCardMode ?? Int(list.cardMode)
         }
         return globalCardMode
     }
@@ -86,12 +80,10 @@ struct ListView: View {
                         }, set: { value in
                             listCardMode = value
                             if separateCardMode {
-                                if let id = list.getId() {
-                                    UserDefaults.standard.set(value, forKey: "cardMode" + id)
-                                    return
-                                }
+                                list.cardMode = Int64(value)
+                            }else{
+                                globalCardMode = value
                             }
-                            globalCardMode = value
                         }
                     ))
 
@@ -101,12 +93,10 @@ struct ListView: View {
                         }, set: { value in
                             listShowChildren = value
                             if separateShowChildren {
-                                if let id = list.getId() {
-                                    UserDefaults.standard.set(value, forKey: "showChildren" + id)
-                                    return
-                                }
+                                list.children = value
+                            } else {
+                                globalShowChildren = value
                             }
-                            globalShowChildren = value
                         }
                     ), sorting: Binding<Int>(
                         get: {
@@ -114,12 +104,10 @@ struct ListView: View {
                         }, set: { value in
                             listSorting = value
                             if separateSorting {
-                                if let id = list.getId() {
-                                    UserDefaults.standard.set(value, forKey: "cardSorting" + id)
-                                    return
-                                }
+                                list.sorting = Int64(value)
+                            } else {
+                                globalSorting = value
                             }
-                            globalSorting = value
                         }
                     ))
 
@@ -130,13 +118,6 @@ struct ListView: View {
                             } label: {
                                 Label("Export", systemImage:"square.and.arrow.up")
                             }
-                            Divider()
-                            Button {
-                                showingSettings = true
-                            } label: {
-                                Label("Settings", systemImage: "gearshape")
-                            }
-                            Divider()
                             if let list = list {
                                 Button{
                                     showingEditList = true
@@ -149,12 +130,39 @@ struct ListView: View {
                                     } label: {
                                         Label("Move", systemImage: "arrowshape.turn.up.right")
                                     }
-                                    Button (role:.destructive){
-                                        list.delete()
-                                    } label: {
+                                    Menu{
+                                        Button (role:.destructive){
+                                            list.delete()
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
+                                        }
+                                    }label: {
                                         Label("Delete", systemImage: "trash")
                                     }
                                 }
+                            }
+                            Divider()
+                            Button {
+                                viewContext.redo()
+                                resort()
+                            } label: {
+                                Label("Redo", systemImage: "arrow.uturn.right.circle")
+                            }
+                            .disabled(!(viewContext.undoManager?.canRedo ?? false))
+                            Button {
+                                viewContext.undo()
+                                resort()
+                            } label: {
+                                Label("Undo", systemImage: "arrow.uturn.left.circle")
+                            }
+                            .disabled(!(viewContext.undoManager?.canUndo ?? false))
+                            
+
+                            Divider()
+                            Button {
+                                showingSettings = true
+                            } label: {
+                                Label("Settings", systemImage: "gearshape")
                             }
                         }
                         .labelStyle(.titleAndIcon)

@@ -14,8 +14,6 @@ struct ContentView: View {
     #if os(iOS)
     let impactMed = UIImpactFeedbackGenerator(style: .medium)
     #endif
-    
-    @State var undoAlert = false
 
     @FetchRequest(sortDescriptors: [], animation: .default)
     private var fetchedCards: FetchedResults<Card>
@@ -36,37 +34,6 @@ struct ContentView: View {
         .onAppear{
             checkTopMostList()
         }
-        .onShake {
-            guard viewContext.undoManager != nil else {return}
-            guard viewContext.undoManager?.canUndo ?? false || viewContext.undoManager?.canRedo ?? false else {return}
-            
-            undoAlert = true
-        }
-        .alert("Undo Changes", isPresented: $undoAlert) {
-            if(viewContext.undoManager?.canUndo ?? false) {
-                Button {
-                    viewContext.undo()
-                    try? viewContext.save()
-                } label: {
-                    Text("Undo")
-                }
-            }
-            if(viewContext.undoManager?.canRedo ?? false) {
-                Button {
-                    viewContext.redo()
-                    try? viewContext.save()
-                } label: {
-                    Text("Redo")
-                }
-            }
-            Button (role:.cancel
-            ){
-            } label: {
-                Text("Cancel")
-            }
-        }
-        
-        
     }
 
 }

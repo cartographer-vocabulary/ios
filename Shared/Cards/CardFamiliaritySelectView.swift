@@ -34,6 +34,8 @@ struct CardFamiliaritySelectView: View {
                     .contentShape(Rectangle())
                     .foregroundColor(familiarity == .good ? .green : .primary.opacity(0.1))
             }
+            .hoverEffect(.lift)
+
             Button {
                 familiarity = .medium
                 #if os(iOS)
@@ -46,6 +48,8 @@ struct CardFamiliaritySelectView: View {
                     .contentShape(Rectangle())
                     .foregroundColor(familiarity == .medium ? .yellow : .primary.opacity(0.1))
             }
+            .hoverEffect(.lift)
+
             Button {
                 familiarity = .bad
                 #if os(iOS)
@@ -58,6 +62,7 @@ struct CardFamiliaritySelectView: View {
                     .contentShape(Rectangle())
                     .foregroundColor(familiarity == .bad ? .red : .primary.opacity(0.1))
             }
+            .hoverEffect(.lift)
     }
     var body: some View {
         if !isHorizontal {
