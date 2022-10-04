@@ -61,19 +61,22 @@ struct CardView: View {
                     .animation(.default, value: mode)
                     .lineLimit(1...)
 
-
+                Spacer(minLength: 2)
 
             }
-            .padding([.top, .bottom], 10)
+            .padding(.top, 10)
             Spacer()
             CardFamiliaritySelectView(familiarity: $card.familiarity)
         }
-        #if os(macOS)
         .padding(.horizontal)
         .padding(.vertical,8)
+#if os(macOS)
         .background(Color(NSColor.controlBackgroundColor).ignoresSafeArea(.all))
+#else
+        .background(Color(uiColor: .secondarySystemGroupedBackground).ignoresSafeArea(.all))
+#endif
+
         .cornerRadius(10)
-        #endif
         .onChange(of: mode, perform: { _ in
             isFlipped = false
         })

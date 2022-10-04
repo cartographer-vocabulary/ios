@@ -36,63 +36,71 @@ struct ListContentView: View {
     }
     
     var body: some View {
-        List {
-            if searchText.isEmpty {
-                Section {
-                    Button {
-                        showingAddList = true
-                    } label: {
-                        Label("Add List", systemImage: "plus")
-                    }
-                    .sheet(isPresented: $showingAddList) {
-                        ListEditView(showingView: $showingAddList, parentList: list)
-                    }
-                    #if os(macOS)
-                    .buttonStyle(.borderless)
-                    #endif
+        ScrollView {
+            VStack(alignment: .leading, spacing: 10) {
+                if searchText.isEmpty {
+                    Section {
 
-                    ForEach(lists){ list in
-                        ListRow(list: list)
+                        ForEach(lists){ list in
+                            ListRow(list: list)
+                        }
+                    } header: {
+                        HStack{
+                            Text("Lists")
+                            Spacer()
+                            Button {
+                                showingAddList = true
+                            } label: {
+                                Image(systemName: "plus")
+
+                            }
+
+#if os(macOS)
+                            .buttonStyle(.borderless)
+#endif
+                        }
+                        .padding(.horizontal)
+                        .foregroundColor(.primary.opacity(0.5))
+                        .sheet(isPresented: $showingAddList) {
+                            ListEditView(showingView: $showingAddList, parentList: list)
+                        }
                     }
                 }
-
                 Section{
+                    LazyVGrid(columns: [GridItem(.adaptive(minimum: 300))]){
+                        ForEach(searchedCards, id: \.objectID){card in
+                            CardView(card: card, parentList: list, mode:cardMode)
+                        }
+                    }
+                } header: {
                     HStack {
+                        Text("Cards")
+                        Spacer()
                         Button{
                             showingAddCard = true
                         } label: {
                             Label("Add Cards", systemImage: "plus")
-                            Spacer()
-                        }
-                        .keyboardShortcut("a",modifiers: .command)
-                        .sheet(isPresented: $showingAddCard) {
-                            CardAddView(showingView: $showingAddCard, parentList: list)
-                                .presentationDetents([.medium,.large])
-                        }
-
-                        Spacer()
-                        Button {
-                            showingImportCard = true
-                        } label: {
-                            Label("Import text", systemImage: "text.alignleft")
                                 .labelStyle(.iconOnly)
                         }
-                        .sheet(isPresented: $showingImportCard) {
-                            CardsImportView(showingView: $showingImportCard, parentList: list)
-                        }
+                        .keyboardShortcut("a",modifiers: .command)
+                        .buttonStyle(.borderless)
+
                     }
-                    .buttonStyle(.borderless)
+                    .padding(.horizontal)
+                    .foregroundColor(.primary.opacity(0.5))
+                    .sheet(isPresented: $showingAddCard) {
+                        CardAddView(showingView: $showingAddCard, parentList: list)
+                            .presentationDetents([.medium,.large])
+                    }
                 }
             }
-            Section{
-                ForEach(searchedCards, id: \.objectID){card in
-                    CardView(card: card, parentList: list, mode:cardMode)
-                }
-            }
+            .padding(.horizontal, 20)
+            #if os(macOS)
+            .padding(.vertical)
+            #endif
         }
-        #if os(macOS)
-        .scrollContentBackground(.hidden)
-        .listStyle(.sidebar)
+        #if os(iOS)
+        .background(Color(uiColor: .systemGroupedBackground),ignoresSafeAreaEdges: .all)
         #endif
         .animation(.default, value: searchText)
         .searchable(text: $searchText)

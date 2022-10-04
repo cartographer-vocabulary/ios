@@ -27,8 +27,24 @@ struct ListRow: View {
             ListView(list: list)
 
         } label: {
-            Label(list.wrappedTitle, systemImage: list.wrappedIcon)
+            HStack{
+                Label(list.wrappedTitle, systemImage: list.wrappedIcon)
+                    .labelStyle(.titleAndIcon)
+                    .foregroundColor(.primary)
+                Spacer()
+            }
+
         }
+        .padding()
+#if os(macOS)
+        .background(Color(NSColor.controlBackgroundColor).ignoresSafeArea(.all))
+#else
+        .background(Color(uiColor: .secondarySystemGroupedBackground).ignoresSafeArea(.all))
+#endif
+
+        .cornerRadius(10)
+        .buttonStyle(.borderless)
+        
         .contextMenu {
             Button {
                 editSheet = true
