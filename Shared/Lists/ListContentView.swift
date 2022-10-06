@@ -40,30 +40,53 @@ struct ListContentView: View {
             VStack(alignment: .leading, spacing: 10) {
                 if searchText.isEmpty {
                     Section {
-
                         ForEach(lists){ list in
                             ListRow(list: list)
                         }
                     } header: {
-                        HStack{
-                            Text("Lists")
-                            Spacer()
-                            Button {
+                        if lists.isEmpty {
+                            Button{
                                 showingAddList = true
                             } label: {
-                                Image(systemName: "plus")
-
+                                HStack{
+                                    Label("Add List", systemImage: "plus.circle")
+                                        .labelStyle(.titleAndIcon)
+                                        .foregroundColor(.primary)
+                                    Spacer()
+                                }
+                                .padding()
+#if os(macOS)
+                                .background(Color(NSColor.controlBackgroundColor).ignoresSafeArea(.all))
+#else
+                                .background(Color(uiColor: .secondarySystemGroupedBackground).ignoresSafeArea(.all))
+#endif
+                                .cornerRadius(10)
+                                .buttonStyle(.borderless)
                             }
+                        } else {
+                            HStack{
+                                Text("Lists")
+                                Spacer()
+                                Button {
+                                    showingAddList = true
+                                } label: {
+                                    Image(systemName: "plus")
+
+                                }
 
 #if os(macOS)
-                            .buttonStyle(.borderless)
+                                .buttonStyle(.borderless)
 #endif
+                            }
+                            .font(.caption)
+                            .textCase(.uppercase)
+                            .padding(.horizontal)
+                            .foregroundColor(.primary.opacity(0.5))
+
                         }
-                        .padding(.horizontal)
-                        .foregroundColor(.primary.opacity(0.5))
-                        .sheet(isPresented: $showingAddList) {
-                            ListEditView(showingView: $showingAddList, parentList: list)
-                        }
+                    }
+                    .sheet(isPresented: $showingAddList) {
+                        ListEditView(showingView: $showingAddList, parentList: list)
                     }
                 }
                 Section{
@@ -73,25 +96,50 @@ struct ListContentView: View {
                         }
                     }
                 } header: {
-                    HStack {
-                        Text("Cards")
-                        Spacer()
+                    if cards.isEmpty {
                         Button{
                             showingAddCard = true
                         } label: {
-                            Label("Add Cards", systemImage: "plus")
-                                .labelStyle(.iconOnly)
+                            HStack{
+                                Label("Add Card", systemImage: "plus.circle")
+                                    .labelStyle(.titleAndIcon)
+                                    .foregroundColor(.primary)
+                                Spacer()
+                            }
+                            .padding()
+                            .padding(.vertical)
+#if os(macOS)
+                            .background(Color(NSColor.controlBackgroundColor).ignoresSafeArea(.all))
+#else
+                            .background(Color(uiColor: .secondarySystemGroupedBackground).ignoresSafeArea(.all))
+#endif
+                            .cornerRadius(10)
+                            .buttonStyle(.borderless)
+                            .padding(.top)
                         }
-                        .keyboardShortcut("a",modifiers: .command)
-                        .buttonStyle(.borderless)
+                    } else {
+                        HStack {
+                            Text("Cards")
+                            Spacer()
+                            Button{
+                                showingAddCard = true
+                            } label: {
+                                Label("Add Cards", systemImage: "plus")
+                                    .labelStyle(.iconOnly)
+                            }
+                            .keyboardShortcut("a",modifiers: .command)
+                            .buttonStyle(.borderless)
+                        }
+                        .font(.caption)
+                        .textCase(.uppercase)
+                        .padding(.horizontal)
+                        .foregroundColor(.primary.opacity(0.5))
 
                     }
-                    .padding(.horizontal)
-                    .foregroundColor(.primary.opacity(0.5))
-                    .sheet(isPresented: $showingAddCard) {
-                        CardAddView(showingView: $showingAddCard, parentList: list)
-                            .presentationDetents([.medium,.large])
-                    }
+                }
+                .sheet(isPresented: $showingAddCard) {
+                    CardAddView(showingView: $showingAddCard, parentList: list)
+                        .presentationDetents([.medium,.large])
                 }
             }
             .padding(.horizontal, 20)
