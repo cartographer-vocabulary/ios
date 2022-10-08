@@ -8,12 +8,7 @@
 import CoreData
 
 struct PersistenceController {
-//    static let shared = PersistenceController()
-    static let shared: PersistenceController = {
-        let result = PersistenceController()
-        result.container.viewContext.undoManager = UndoManager()
-        return result
-    }()
+    static let shared = PersistenceController()
 
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)

@@ -48,18 +48,16 @@ func checkTopMostList(){
         topList.wrappedIcon = "books.vertical"
         topList.wrappedTitle = "Library"
         topList.isTopMost = true
-        topList.save()
 
         fetchedLists.forEach { list in
             guard list != topList else {return}
             if list.parentList == nil {
-                list.save(to: topList)
+                list.parentList = topList
             }
         }
         fetchedCards.forEach { card in
             if card.parentList == nil {
                 card.parentList = topList
-                card.save()
             }
         }
         try? viewContext.save()

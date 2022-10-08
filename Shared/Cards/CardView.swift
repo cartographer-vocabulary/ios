@@ -81,6 +81,7 @@ struct CardView: View {
             isFlipped = false
         })
         .onChange(of: card.familiarity, perform: { _ in
+            card.seen()
             try? viewContext.save()
             NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
         })
@@ -91,6 +92,7 @@ struct CardView: View {
             if readOnScroll && Date().timeIntervalSinceReferenceDate - appearTime > 3{
                 card.seen()
             }
+            try? viewContext.save()
         }
         .contentShape(Rectangle())
         .onTapGesture {

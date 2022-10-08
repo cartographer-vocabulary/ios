@@ -10,6 +10,7 @@ import SwiftUI
 struct ListView: View {
     var list:VocabList
 
+    @Environment(\.undoManager) var undoManager
     @Environment(\.managedObjectContext) private var viewContext
     var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
 
@@ -68,7 +69,7 @@ struct ListView: View {
         }
     }
 
-    let sortNotifier = NotificationCenter.default.publisher(for: Notification.Name("sort"))
+    @State var prevLength = 0
     
     var body: some View {
         ListContentView(list: list, lists: lists, cards: childCards, cardMode: cardMode)
@@ -143,19 +144,19 @@ struct ListView: View {
                             }
                             Divider()
                             Button {
-                                viewContext.redo()
+                                undoManager?.redo()
                                 resort()
                             } label: {
                                 Label("Redo", systemImage: "arrow.uturn.right.circle")
                             }
-                            .disabled(!(viewContext.undoManager?.canRedo ?? false))
+                            .disabled(!(undoManager?.canRedo ?? false))
                             Button {
-                                viewContext.undo()
+                                undoManager?.undo()
                                 resort()
                             } label: {
                                 Label("Undo", systemImage: "arrow.uturn.left.circle")
                             }
-                            .disabled(!(viewContext.undoManager?.canUndo ?? false))
+                            .disabled(!(undoManager?.canUndo ?? false))
                             
 
                             Divider()
@@ -180,7 +181,17 @@ struct ListView: View {
             .onAppear{
                 resort()
             }
-            .onReceive(sortNotifier, perform: { _ in
+            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("sort")), perform: { _ in
+                if sorting != 5 {
+                    resort()
+                }
+            })
+            .onReceive(NotificationCenter.default.publisher(for: .NSUndoManagerDidUndoChange), perform: { _ in
+                if sorting != 5 {
+                    resort()
+                }
+            })
+            .onReceive(NotificationCenter.default.publisher(for: .NSUndoManagerDidRedoChange), perform: { _ in
                 if sorting != 5 {
                     resort()
                 }
@@ -190,6 +201,12 @@ struct ListView: View {
             })
             .onChange(of: showChildren, perform: { _ in
                 resort()
+            })
+            .onChange(of: childCards, perform: { cards in
+                if childCards.count != prevLength {
+                    resort()
+                    prevLength = childCards.count
+                }
             })
             .sheet(isPresented: $showingEditList) {
                 if let list = list {

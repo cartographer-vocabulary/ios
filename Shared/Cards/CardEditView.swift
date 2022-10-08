@@ -78,7 +78,7 @@ struct CardEditView: View {
         if(card.wrappedWord != word) { card.wrappedWord = word }
         if(card.wrappedDefinition != definition) { card.wrappedDefinition = definition }
         if(card.familiarity != familiarity) { card.familiarity = familiarity }
-        card.save()
+        try? viewContext.save()
         NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
     }
 }

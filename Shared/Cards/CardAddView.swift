@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CardAddView: View {
 
+    @Environment(\.undoManager) var undoManager
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "word", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
         private var fetchedCards: FetchedResults<Card>
@@ -96,7 +97,7 @@ struct CardAddView: View {
                         Button {
                             showingView = false
                         } label: {
-                            Text("cancel")
+                            Text("Cancel")
                         }
                         .font(.body.weight(.regular))
 
@@ -154,22 +155,22 @@ struct CardAddView: View {
                     if(cardParts.indices.contains(1)) {card.definition = cardParts[1]}
                     card.lastSeen = Date.now
                     card.parentList = parentList
+//                    undoManager?.registerUndo(withTarget: card, handler: {$0.delete()})
                 }
             }
-            try? viewContext.save()
         } else {
             for card in cards{
-                if(card.word.isEmpty && card.definition.isEmpty) {return}
+                if(card.word.isEmpty && card.definition.isEmpty) {break}
                 let saveCard = Card(context: viewContext)
                 saveCard.wrappedWord = card.word
                 saveCard.wrappedDefinition = card.definition
                 saveCard.wrappedLastSeen = Date.now
                 saveCard.parentList = parentList
                 saveCard.familiarity = card.familiarity
-                saveCard.save()
-                NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
+//                undoManager?.registerUndo(withTarget: saveCard, handler: { $0.delete()})
             }
         }
         NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
+        try? viewContext.save()
     }
 }

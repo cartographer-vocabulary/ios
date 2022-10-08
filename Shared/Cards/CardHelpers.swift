@@ -43,7 +43,6 @@ extension Card {
     
     func seen(){
         wrappedLastSeen = Date()
-        save()
     }
     
     enum Familiarity: Int, Equatable, Hashable {
@@ -60,7 +59,6 @@ extension Card {
         }
         set (familiarity){
             rawFamiliarity = Int64(familiarity.rawValue)
-            seen()
         }
     }
     
@@ -131,12 +129,6 @@ extension Card {
         return pathSegments
     }
 
-    
-    func save(){
-        let viewContext = PersistenceController.shared.container.viewContext
-        try? viewContext.save()
-    }
-    
     func delete(){
         let viewContext = PersistenceController.shared.container.viewContext
         viewContext.delete(self)

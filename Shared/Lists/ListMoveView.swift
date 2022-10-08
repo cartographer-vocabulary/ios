@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ListMoveView: View {
 
+    @Environment(\.managedObjectContext) private var viewContext
     @Binding var showingView: Bool
     @ObservedObject var list:VocabList
     @State var selectedList: VocabList? = nil
@@ -31,7 +32,7 @@ struct ListMoveView: View {
             }
             .onDisappear{
                 list.parentList = selectedList
-                list.save()
+                try? viewContext.save()
             }
             .navigationTitle("Move List")
         }

@@ -92,15 +92,6 @@ extension VocabList {
         return nil
     }
     
-    
-    func save(to parent:VocabList? = nil){
-        let viewContext = PersistenceController.shared.container.viewContext
-        if let parent = parent {
-            self.parentList = parent
-        }
-        try? viewContext.save()
-    }
-    
     func delete(){
         let viewContext = PersistenceController.shared.container.viewContext
         viewContext.delete(self)

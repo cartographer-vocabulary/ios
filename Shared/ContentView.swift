@@ -10,6 +10,7 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.undoManager) var undoManager
 
     #if os(iOS)
     let impactMed = UIImpactFeedbackGenerator(style: .medium)
@@ -33,6 +34,7 @@ struct ContentView: View {
         }
         .onAppear{
             checkTopMostList()
+            PersistenceController.shared.container.viewContext.undoManager = undoManager
         }
     }
 

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CardMoveView: View {
-    
+
+    @Environment(\.managedObjectContext) private var viewContext
     @Binding var showingView: Bool
     @ObservedObject var card: Card
     @State var selectedList: VocabList? = nil
@@ -31,7 +32,7 @@ struct CardMoveView: View {
                 }
                 .onDisappear{
                     card.parentList = selectedList
-                    card.save()
+                    try? viewContext.save()
                 }
                 .navigationTitle("Move Card")
         }
