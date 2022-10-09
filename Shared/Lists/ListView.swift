@@ -79,12 +79,16 @@ struct ListView: View {
                         get: {
                             cardMode
                         }, set: { value in
+                            undoManager?.disableUndoRegistration()
+                            viewContext.undoManager = nil
                             listCardMode = value
                             if separateCardMode {
                                 list.cardMode = Int64(value)
                             }else{
                                 globalCardMode = value
                             }
+                            viewContext.undoManager = undoManager
+                            undoManager?.enableUndoRegistration()
                         }
                     ))
 
@@ -92,23 +96,31 @@ struct ListView: View {
                         get: {
                             showChildren
                         }, set: { value in
+                            undoManager?.disableUndoRegistration()
+                            viewContext.undoManager = nil
                             listShowChildren = value
                             if separateShowChildren {
                                 list.children = value
                             } else {
                                 globalShowChildren = value
                             }
+                            viewContext.undoManager = undoManager
+                            undoManager?.enableUndoRegistration()
                         }
                     ), sorting: Binding<Int>(
                         get: {
                             sorting
                         }, set: { value in
+                            undoManager?.disableUndoRegistration()
+                            viewContext.undoManager = nil
                             listSorting = value
                             if separateSorting {
                                 list.sorting = Int64(value)
                             } else {
                                 globalSorting = value
                             }
+                            viewContext.undoManager = undoManager
+                            undoManager?.enableUndoRegistration()
                         }
                     ))
 
@@ -142,23 +154,6 @@ struct ListView: View {
                                     }
                                 }
                             }
-                            Divider()
-                            Button {
-                                undoManager?.redo()
-                                resort()
-                            } label: {
-                                Label("Redo", systemImage: "arrow.uturn.right.circle")
-                            }
-                            .disabled(!(undoManager?.canRedo ?? false))
-                            Button {
-                                undoManager?.undo()
-                                resort()
-                            } label: {
-                                Label("Undo", systemImage: "arrow.uturn.left.circle")
-                            }
-                            .disabled(!(undoManager?.canUndo ?? false))
-                            
-
                             Divider()
                             Button {
                                 showingSettings = true

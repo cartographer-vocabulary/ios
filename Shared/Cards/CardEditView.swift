@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CardEditView: View {
-    
+
+    @Environment(\.undoManager) var undoManager
     @Environment(\.managedObjectContext) private var viewContext
     @Binding var showingView: Bool
     

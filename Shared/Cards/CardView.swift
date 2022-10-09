@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CardView: View {
 
+    @Environment(\.undoManager) var undoManager
+
     @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject var card:Card
@@ -66,7 +68,14 @@ struct CardView: View {
             }
             .padding(.top, 10)
             Spacer()
-            CardFamiliaritySelectView(familiarity: $card.familiarity)
+            CardFamiliaritySelectView(familiarity: Binding(get: {
+                card.familiarity
+            }, set: { familiarity in
+                card.seen()
+                card.familiarity = familiarity
+                try? viewContext.save()
+                NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
+            }))
         }
         .padding(.horizontal)
         .padding(.vertical,8)
@@ -80,19 +89,16 @@ struct CardView: View {
         .onChange(of: mode, perform: { _ in
             isFlipped = false
         })
-        .onChange(of: card.familiarity, perform: { _ in
-            card.seen()
-            try? viewContext.save()
-            NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
-        })
         .onAppear{
             appearTime = Date().timeIntervalSinceReferenceDate
         }
         .onDisappear{
+            undoManager?.disableUndoRegistration()
             if readOnScroll && Date().timeIntervalSinceReferenceDate - appearTime > 3{
                 card.seen()
             }
             try? viewContext.save()
+            undoManager?.enableUndoRegistration()
         }
         .contentShape(Rectangle())
         .onTapGesture {

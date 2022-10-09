@@ -155,7 +155,6 @@ struct CardAddView: View {
                     if(cardParts.indices.contains(1)) {card.definition = cardParts[1]}
                     card.lastSeen = Date.now
                     card.parentList = parentList
-//                    undoManager?.registerUndo(withTarget: card, handler: {$0.delete()})
                 }
             }
         } else {
@@ -167,7 +166,6 @@ struct CardAddView: View {
                 saveCard.wrappedLastSeen = Date.now
                 saveCard.parentList = parentList
                 saveCard.familiarity = card.familiarity
-//                undoManager?.registerUndo(withTarget: saveCard, handler: { $0.delete()})
             }
         }
         NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
