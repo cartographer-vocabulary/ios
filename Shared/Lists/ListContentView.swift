@@ -63,6 +63,8 @@ struct ListContentView: View {
                                 .cornerRadius(10)
                                 .buttonStyle(.borderless)
                             }
+                            .buttonStyle(.plain)
+
                         } else {
                             HStack{
                                 Text("Lists")
@@ -101,7 +103,7 @@ struct ListContentView: View {
                             showingAddCard = true
                         } label: {
                             HStack{
-                                Label("Add Card", systemImage: "plus.circle")
+                                Label("Add Cards", systemImage: "plus.circle")
                                     .labelStyle(.titleAndIcon)
                                     .foregroundColor(.primary)
                                 Spacer()
@@ -117,6 +119,8 @@ struct ListContentView: View {
                             .buttonStyle(.borderless)
                             .padding(.top)
                         }
+                        .buttonStyle(.plain)
+
                     } else {
                         HStack {
                             Text("Cards")

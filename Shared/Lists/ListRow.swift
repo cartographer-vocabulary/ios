@@ -19,6 +19,7 @@ struct ListRow: View {
             }
         } else {
             return []
+
         }
     }
 
@@ -33,17 +34,19 @@ struct ListRow: View {
                     .foregroundColor(.primary)
                 Spacer()
             }
+            .padding()
+    #if os(macOS)
+            .background(Color(NSColor.controlBackgroundColor).ignoresSafeArea(.all))
+    #else
+            .background(Color(uiColor: .secondarySystemGroupedBackground).ignoresSafeArea(.all))
+    #endif
+
+            .cornerRadius(10)
+            .buttonStyle(.borderless)
 
         }
-        .padding()
-#if os(macOS)
-        .background(Color(NSColor.controlBackgroundColor).ignoresSafeArea(.all))
-#else
-        .background(Color(uiColor: .secondarySystemGroupedBackground).ignoresSafeArea(.all))
-#endif
+        .buttonStyle(.plain)
 
-        .cornerRadius(10)
-        .buttonStyle(.borderless)
         
         .contextMenu {
             Button {

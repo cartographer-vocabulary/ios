@@ -23,6 +23,22 @@ struct ContentView: View {
     private var fetchedLists: FetchedResults<VocabList>
     
     var body: some View {
+        #if os(iOS)
+        NavigationView{
+            if fetchedLists.contains(where: {$0.isTopMost}) {
+                ListView(list: fetchedLists.filter({$0.isTopMost})[0])
+            } else {
+                Text("Loading")
+                    .font(.largeTitle)
+                    .opacity(0.5)
+            }
+        }
+        .onAppear{
+            checkTopMostList()
+            PersistenceController.shared.container.viewContext.undoManager = undoManager
+        }
+        .navigationViewStyle(.stack)
+        #else
         NavigationStack{
             if fetchedLists.contains(where: {$0.isTopMost}) {
                 ListView(list: fetchedLists.filter({$0.isTopMost})[0])
@@ -36,6 +52,8 @@ struct ContentView: View {
             checkTopMostList()
             PersistenceController.shared.container.viewContext.undoManager = undoManager
         }
+        #endif
+
     }
 
 }
