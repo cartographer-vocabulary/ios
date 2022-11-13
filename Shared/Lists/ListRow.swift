@@ -36,7 +36,7 @@ struct ListRow: View {
             }
             .padding()
     #if os(macOS)
-            .background(Color(NSColor.controlBackgroundColor).ignoresSafeArea(.all))
+            .background(Color(.alternatingContentBackgroundColors[1]).ignoresSafeArea(.all))
     #else
             .background(Color(uiColor: .secondarySystemGroupedBackground).ignoresSafeArea(.all))
     #endif

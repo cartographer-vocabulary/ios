@@ -52,11 +52,12 @@ struct ListContentView: View {
                                     Label("Add List", systemImage: "plus.circle")
                                         .labelStyle(.titleAndIcon)
                                         .foregroundColor(.primary)
+                                    
                                     Spacer()
                                 }
                                 .padding()
 #if os(macOS)
-                                .background(Color(NSColor.controlBackgroundColor).ignoresSafeArea(.all))
+                                .background(Color(.alternatingContentBackgroundColors[1]).ignoresSafeArea(.all))
 #else
                                 .background(Color(uiColor: .secondarySystemGroupedBackground).ignoresSafeArea(.all))
 #endif
@@ -73,14 +74,13 @@ struct ListContentView: View {
                                     showingAddList = true
                                 } label: {
                                     Image(systemName: "plus")
-
+                                        .padding(10)
+                                        .clipShape(Rectangle())
                                 }
-
-#if os(macOS)
                                 .buttonStyle(.borderless)
-#endif
+                                .padding(-10)
                             }
-                            .font(.caption)
+                            .fontWeight(.bold)
                             .textCase(.uppercase)
                             .padding(.horizontal)
                             .foregroundColor(.primary.opacity(0.5))
@@ -111,7 +111,7 @@ struct ListContentView: View {
                             .padding()
                             .padding(.vertical)
 #if os(macOS)
-                            .background(Color(NSColor.controlBackgroundColor).ignoresSafeArea(.all))
+                            .background(Color(.alternatingContentBackgroundColors[1]).ignoresSafeArea(.all))
 #else
                             .background(Color(uiColor: .secondarySystemGroupedBackground).ignoresSafeArea(.all))
 #endif
@@ -128,13 +128,15 @@ struct ListContentView: View {
                             Button{
                                 showingAddCard = true
                             } label: {
-                                Label("Add Cards", systemImage: "plus")
-                                    .labelStyle(.iconOnly)
+                                Image(systemName: "plus")
+                                    .padding(10)
+                                    .clipShape(Rectangle())
                             }
                             .keyboardShortcut("a",modifiers: .command)
                             .buttonStyle(.borderless)
+                            .padding(-10)
                         }
-                        .font(.caption)
+                        .fontWeight(.bold)
                         .textCase(.uppercase)
                         .padding(.horizontal)
                         .foregroundColor(.primary.opacity(0.5))
