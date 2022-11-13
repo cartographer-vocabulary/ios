@@ -70,7 +70,6 @@ struct ListEditView: View {
         if let list = list {
             if(list.wrappedIcon != listIcon) { list.wrappedIcon = listIcon }
             if(list.wrappedTitle != listTitle) { list.wrappedTitle = listTitle }
-            list.parentList = parentList
         } else {
             if(listIcon.isEmpty && listTitle.isEmpty) {return}
             let list = VocabList(context: viewContext)
@@ -82,3 +81,4 @@ struct ListEditView: View {
         
     }
 }
+
