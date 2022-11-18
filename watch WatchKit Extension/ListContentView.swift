@@ -42,15 +42,7 @@ struct ListContentView: View {
                         .environment(\.managedObjectContext, viewContext)
                 }
                 ForEach(cards){card in
-                    HStack{
-                    VStack (alignment: .leading){
-                        Text(card.wrappedWord)
-                            .font(.title3)
-                            .fontWeight(.medium)
-                        Text(card.wrappedDefinition)
-                    }
-                        Spacer()
-                    }
+                    CardView(card: card)
                 }
             }
         }
