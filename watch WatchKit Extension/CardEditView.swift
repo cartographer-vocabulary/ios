@@ -20,30 +20,43 @@ struct CardEditView: View {
             Group{
                 Button {
                     card.familiarity = .good
+                    print(card.familiarity)
+                    try? viewContext.save()
                 } label: {
                     Image(systemName: "circle.fill")
                 }
-                .listItemTint(.green)
+                .listItemTint(card.familiarity == .good ? .green : .gray)
                 Button {
                     card.familiarity = .medium
+                    try? viewContext.save()
                 } label: {
                     Image(systemName: "circle.fill")
                 }
-                .listItemTint(.yellow)
+                .listItemTint(card.familiarity == .medium ? .yellow : .gray)
                 Button {
                     card.familiarity = .bad
+                    try? viewContext.save()
                 } label: {
                     Image(systemName: "circle.fill")
                 }
-                .listItemTint(.red)
+                .listItemTint(card.familiarity == .bad ? .red : .gray)
             }
+            Button(role: .destructive) {
+                card.delete()
+            } label: {
+                Label("Delete", systemImage: "xmark")
+            }
+
         }
         .onAppear{
             word = card.wrappedWord
             definition = card.wrappedDefinition
         }
         .onDisappear{
+            card.wrappedWord = word
+            card.wrappedDefinition = definition
             try? viewContext.save()
+            print("disappeared")
         }
     }
 }
