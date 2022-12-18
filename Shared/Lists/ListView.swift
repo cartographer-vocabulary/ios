@@ -197,10 +197,10 @@ struct ListView: View {
             .onChange(of: showChildren, perform: { _ in
                 resort()
             })
-            .onChange(of: childCards, perform: { cards in
-                if childCards.count != prevLength {
+            .onChange(of: fetchedCards.count, perform: { _ in
+                if fetchedCards.count != prevLength {
                     resort()
-                    prevLength = childCards.count
+                    prevLength = fetchedCards.count
                 }
             })
             .sheet(isPresented: $showingEditList) {

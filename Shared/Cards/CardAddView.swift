@@ -168,7 +168,6 @@ struct CardAddView: View {
                 saveCard.familiarity = card.familiarity
             }
         }
-        NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
         try? viewContext.save()
     }
 }
