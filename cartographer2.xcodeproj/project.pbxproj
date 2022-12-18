@@ -879,7 +879,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tonyzhang.cartographer2;
 				PRODUCT_NAME = Cartographer;
 				SDKROOT = iphoneos;
@@ -919,7 +919,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.tonyzhang.cartographer2;
 				PRODUCT_NAME = Cartographer;
 				SDKROOT = iphoneos;
