@@ -9,20 +9,20 @@ import SwiftUI
 
 struct ListSortView: View {
     @Binding var showChildren:Bool
-    @Binding var sorting:Int
+    @Binding var sorting:VocabList.SortMethod
     
     var icon: String {
         switch sorting{
         
-        case 1:
+        case .date:
             return "clock"
-        case 2:
+        case .dateReversed:
             return "clock.arrow.circlepath"
-        case 3:
+        case .familiarity:
             return "checkmark.circle"
-        case 4:
+        case .familiarityReversed:
             return "xmark.circle"
-        case 5:
+        case .random:
             return "shuffle"
         default:
             return "textformat"

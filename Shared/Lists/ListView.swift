@@ -24,38 +24,36 @@ struct ListView: View {
     @State var showingMoveList = false
     @State var showingExportList = false
     @State var showingSettings = false
-    
-    @AppStorage("cardSorting") var globalSorting: Int = 0
-    @AppStorage("showChildren") var globalShowChildren: Bool = false
-    @AppStorage("cardMode") var globalCardMode = 0
+
+    @EnvironmentObject var topList: VocabList
 
     @AppStorage("separateCardSorting") var separateSorting = false
     @AppStorage("separateShowChildren") var separateShowChildren = false
     @AppStorage("separateCardMode") var separateCardMode = false
 
-    @State var listSorting:Int?
+    @State var listSorting:VocabList.SortMethod?
     @State var listShowChildren:Bool?
-    @State var listCardMode:Int?
+    @State var listCardMode:VocabList.CardMode?
 
-    var sorting: Int {
+    var sorting: VocabList.SortMethod {
         if separateSorting{
-            return listSorting ??  Int(list.sorting)
+            return listSorting ??  list.sorting
         }
-        return globalSorting
+        return topList.sorting
     }
 
     var showChildren: Bool {
         if separateShowChildren {
             return listShowChildren ?? list.children
         }
-        return globalShowChildren
+        return topList.children
     }
 
-    var cardMode: Int {
+    var cardMode: VocabList.CardMode {
         if separateCardMode {
-            return listCardMode ?? Int(list.cardMode)
+            return listCardMode ?? list.cardMode
         }
-        return globalCardMode
+        return topList.cardMode
     }
 
     @AppStorage("caseInsensitive") var caseInsensitive: Bool = true
@@ -75,7 +73,7 @@ struct ListView: View {
         ListContentView(list: list, lists: lists, cards: childCards, cardMode: cardMode)
             .toolbar{
                 ToolbarItemGroup(placement: .primaryAction){
-                    CardModePicker(mode: Binding<Int>(
+                    CardModePicker(mode: Binding<VocabList.CardMode>(
                         get: {
                             cardMode
                         }, set: { value in
@@ -83,9 +81,9 @@ struct ListView: View {
                             viewContext.undoManager = nil
                             listCardMode = value
                             if separateCardMode {
-                                list.cardMode = Int64(value)
+                                list.cardMode = value
                             }else{
-                                globalCardMode = value
+                                topList.cardMode = value
                             }
                             viewContext.undoManager = undoManager
                             undoManager?.enableUndoRegistration()
@@ -102,12 +100,12 @@ struct ListView: View {
                             if separateShowChildren {
                                 list.children = value
                             } else {
-                                globalShowChildren = value
+                                topList.children = value
                             }
                             viewContext.undoManager = undoManager
                             undoManager?.enableUndoRegistration()
                         }
-                    ), sorting: Binding<Int>(
+                    ), sorting: Binding<VocabList.SortMethod>(
                         get: {
                             sorting
                         }, set: { value in
@@ -115,9 +113,9 @@ struct ListView: View {
                             viewContext.undoManager = nil
                             listSorting = value
                             if separateSorting {
-                                list.sorting = Int64(value)
+                                list.sorting = value
                             } else {
-                                globalSorting = value
+                                topList.sorting = value
                             }
                             viewContext.undoManager = undoManager
                             undoManager?.enableUndoRegistration()
@@ -177,17 +175,17 @@ struct ListView: View {
                 resort()
             }
             .onReceive(NotificationCenter.default.publisher(for: Notification.Name("sort")), perform: { _ in
-                if sorting != 5 {
+                if sorting != .random {
                     resort()
                 }
             })
             .onReceive(NotificationCenter.default.publisher(for: .NSUndoManagerDidUndoChange), perform: { _ in
-                if sorting != 5 {
+                if sorting != .random {
                     resort()
                 }
             })
             .onReceive(NotificationCenter.default.publisher(for: .NSUndoManagerDidRedoChange), perform: { _ in
-                if sorting != 5 {
+                if sorting != .random {
                     resort()
                 }
             })

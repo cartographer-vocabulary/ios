@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21511" systemVersion="22A5358e" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Card" representedClassName="Card" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22D5027d" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Card" representedClassName="Card" syncable="YES">
         <attribute name="definition" optional="YES" attributeType="String"/>
         <attribute name="lastSeen" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="rawFamiliarity" optional="YES" attributeType="Integer 64" minValueString="-1" maxValueString="2" defaultValueString="-1" usesScalarValueType="YES"/>
         <attribute name="word" optional="YES" attributeType="String"/>
         <relationship name="parentList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VocabList" inverseName="cards" inverseEntity="VocabList"/>
     </entity>
-    <entity name="VocabList" representedClassName="VocabList" syncable="YES" codeGenerationType="class">
+    <entity name="VocabList" representedClassName="VocabList" syncable="YES">
         <attribute name="cardMode" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="children" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="icon" optional="YES" attributeType="String"/>

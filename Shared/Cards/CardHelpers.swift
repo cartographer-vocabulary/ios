@@ -9,7 +9,15 @@ import Foundation
 import CoreData
 
 extension Card {
-    var wrappedWord:String {
+    public var familiarity:Familiarity {
+        get {
+            return rawFamiliarity
+        }
+        set (familiarity){
+            rawFamiliarity = familiarity
+        }
+    }
+    public var wrappedWord:String {
         get {
             word ?? "Untitled Word"
         }
@@ -19,7 +27,7 @@ extension Card {
             }
         }
     }
-    var wrappedDefinition:String {
+    public var wrappedDefinition:String {
         get {
             definition ?? "No Definition"
         }
@@ -29,8 +37,7 @@ extension Card {
             }
         }
     }
-    
-    var wrappedLastSeen: Date {
+    public var wrappedLastSeen: Date {
         get {
             lastSeen ?? Date()
         }
@@ -38,31 +45,12 @@ extension Card {
             lastSeen = date
         }
     }
-    
-  
-    
+
     func seen(){
         wrappedLastSeen = Date()
     }
-    
-    enum Familiarity: Int, Equatable, Hashable {
-        case good = 2
-        case medium = 1
-        case bad = 0
-        case unset = -1
-    }
 
-
-    var familiarity:Familiarity {
-        get {
-            return Familiarity(rawValue: Int(rawFamiliarity)) ?? .unset
-        }
-        set (familiarity){
-            rawFamiliarity = Int64(familiarity.rawValue)
-        }
-    }
-    
-    static func sortCards(_ cards: [Card], of list: VocabList, with sorting: Int, caseInsensitive: Bool = true, ignoreDiacritics: Bool = true) -> [Card] {
+    static func sortCards(_ cards: [Card], of list: VocabList, with sorting: VocabList.SortMethod, caseInsensitive: Bool = true, ignoreDiacritics: Bool = true) -> [Card] {
         let currentCardsOnTop = UserDefaults.standard.bool(forKey: "currentCardsOnTop")
         var sorted:[Card] = cards.sorted { a, b in
 
@@ -76,29 +64,29 @@ extension Card {
             return normalizeString(string: a.wrappedWord, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics) < normalizeString(string: b.wrappedWord, caseInsensitive: caseInsensitive, ignoreDiacritics: ignoreDiacritics)
         }
         switch sorting {
-        case 1:
+        case .date:
             sorted.sort { a, b in
                 a.wrappedLastSeen > b.wrappedLastSeen
             }
-            
-        case 2:
+
+        case .dateReversed:
             sorted.sort { a, b in
                 a.wrappedLastSeen < b.wrappedLastSeen
             }
-            
-        case 3:
+
+        case .familiarity:
             sorted.sort { a, b in
                 a.familiarity.rawValue > b.familiarity.rawValue
             }
-            
-        case 4:
+
+        case .familiarityReversed:
             sorted.sort { a, b in
                 a.familiarity.rawValue < b.familiarity.rawValue
             }
-            
-        case 5:
+
+        case .random:
             sorted.shuffle()
-            
+
         default: break
 
         }
@@ -110,16 +98,16 @@ extension Card {
         }
         return sorted
     }
-    
+
     func isInside(_ list: VocabList) -> Bool {
-        
+
         if parentList == list {
             return true
         }
-        
+
         return parentList?.isInside(list) ?? false
     }
-    
+
     func getPath(from containerList: VocabList) -> [String] {
         var pathSegments:[String] = []
         if let parent = parentList {
@@ -134,19 +122,9 @@ extension Card {
         viewContext.delete(self)
         try? viewContext.save()
     }
+    
+
+    
+
 }
 
-extension Date {
-    func relativeTo(_ date:Date) -> String{
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .abbreviated
-        let dateDifference = date.timeIntervalSince(self)
-        if dateDifference < 60 {
-            return "now"
-        }
-        return formatter.localizedString(for: self, relativeTo: date)
-    }
-    var relativeToNow:String {
-        return relativeTo(Date())
-    }
-}

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct CardAddView: View {
 
@@ -16,7 +17,7 @@ struct CardAddView: View {
 
     @Binding var showingView: Bool
 
-    struct CardFrame:Hashable {
+    struct CardFrame:Hashable, Equatable {
         var word:String
         var definition:String
         var familiarity:Card.Familiarity

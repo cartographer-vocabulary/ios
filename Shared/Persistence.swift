@@ -20,7 +20,7 @@ struct PersistenceController {
             let newItem = Card(context: viewContext)
             newItem.word = "Hello"
             newItem.definition = "world"
-            newItem.familiarity = .medium
+            newItem.familiarity = Card.Familiarity.medium
             newItem.parentList = list
         }
         do {

@@ -22,7 +22,7 @@ struct ListContentView: View {
     @AppStorage("caseInsensitive") var caseInsensitive: Bool = true
     @AppStorage("ignoreDiacritics") var ignoreDiacritics: Bool = true
 
-    var cardMode:Int
+    var cardMode:VocabList.CardMode
     
     var searchedCards: [Card] {
         

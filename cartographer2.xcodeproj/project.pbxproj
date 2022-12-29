@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1B00D4BC2851572E00777735 /* PushNotificationPayload.apns in Resources */ = {isa = PBXBuildFile; fileRef = 1B80204928105B0A000555CE /* PushNotificationPayload.apns */; };
 		1B0D14192842BE6E00B66973 /* CardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64C11127EFB6040060AF97 /* CardHelpers.swift */; };
-		1B0D141A2842BE7100B66973 /* VocabListHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */; };
 		1B0D141B2842BE7500B66973 /* cartographer2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862127D4052F009A10C6 /* cartographer2.xcdatamodeld */; };
 		1B0D141C2842C20C00B66973 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862527D4052F009A10C6 /* Persistence.swift */; };
 		1B0D2F6C28050A1E0086A758 /* CardFamiliaritySelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0D2F6B28050A1E0086A758 /* CardFamiliaritySelectView.swift */; };
@@ -21,6 +20,7 @@
 		1B64C11627EFBAEF0060AF97 /* CardEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64C11527EFBAEF0060AF97 /* CardEditView.swift */; };
 		1B6589F028124EEA003DFDF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BAF862627D40530009A10C6 /* Assets.xcassets */; };
 		1B753C3727F8766F005A0776 /* ListMoveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B753C3627F8766F005A0776 /* ListMoveView.swift */; };
+		1B792A85295DE3E500EF90BE /* VocabListHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B792A84295DE3E500EF90BE /* VocabListHelpers.swift */; };
 		1B80202F28105B09000555CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B80202E28105B09000555CE /* Assets.xcassets */; };
 		1B80203A28105B0A000555CE /* cartographer2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B80203928105B0A000555CE /* cartographer2App.swift */; };
 		1B80203C28105B0A000555CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B80203B28105B0A000555CE /* ContentView.swift */; };
@@ -33,7 +33,6 @@
 		1B80205628105B9F000555CE /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862527D4052F009A10C6 /* Persistence.swift */; };
 		1B80205728105BBF000555CE /* cartographer2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BAF862127D4052F009A10C6 /* cartographer2.xcdatamodeld */; };
 		1B80205828105C6F000555CE /* CardHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B64C11127EFB6040060AF97 /* CardHelpers.swift */; };
-		1B80205928105C73000555CE /* VocabListHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */; };
 		1B8F9CEA27F1196B00014407 /* ListSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F9CE927F1196B00014407 /* ListSortView.swift */; };
 		1B8F9CEC27F2A44400014407 /* ListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F9CEB27F2A44400014407 /* ListContentView.swift */; };
 		1B941B9328A95A8B0036C363 /* SheetContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B941B9228A95A3C0036C363 /* SheetContainerView.swift */; };
@@ -54,12 +53,21 @@
 		1BAF865427D40530009A10C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BAF862627D40530009A10C6 /* Assets.xcassets */; };
 		1BBB34FB27F934EF00BD7476 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB34FA27F934EF00BD7476 /* SettingsView.swift */; };
 		1BBB34FE27F9364B00BD7476 /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB34FD27F9364B00BD7476 /* AppIconView.swift */; };
-		1BBF840B27DCDB5800C0069B /* VocabListHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */; };
 		1BC5A57F28B676F400E23F7F /* CardAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5A57E28B676F400E23F7F /* CardAddView.swift */; };
 		1BC5BEB727F0A56900CB133C /* CardLastSeenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC5BEB627F0A56900CB133C /* CardLastSeenView.swift */; };
 		1BCC823127F8C656007E3E3A /* ListSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC823027F8C656007E3E3A /* ListSelectorView.swift */; };
 		1BCC823327F8CCEB007E3E3A /* ListOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC823227F8CCEB007E3E3A /* ListOutlineView.swift */; };
 		1BCC823527F8DBE7007E3E3A /* CardMoveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCC823427F8DBE7007E3E3A /* CardMoveView.swift */; };
+		1BDD3C20295D38D0009C0D6D /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF8F08295CF65F0083B2F2 /* Card+CoreDataProperties.swift */; };
+		1BDD3C21295D38D0009C0D6D /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3C994295D346400771D77 /* Card+CoreDataClass.swift */; };
+		1BDD3C22295D38D0009C0D6D /* VocabList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF8F07295CF65F0083B2F2 /* VocabList+CoreDataProperties.swift */; };
+		1BDD3C23295D38D0009C0D6D /* VocabList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3C996295D347C00771D77 /* VocabList+CoreDataClass.swift */; };
+		1BDD3C24295D38D1009C0D6D /* Card+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF8F08295CF65F0083B2F2 /* Card+CoreDataProperties.swift */; };
+		1BDD3C25295D38D1009C0D6D /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3C994295D346400771D77 /* Card+CoreDataClass.swift */; };
+		1BDD3C26295D38D1009C0D6D /* VocabList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEF8F07295CF65F0083B2F2 /* VocabList+CoreDataProperties.swift */; };
+		1BDD3C27295D38D1009C0D6D /* VocabList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3C996295D347C00771D77 /* VocabList+CoreDataClass.swift */; };
+		1BE3C995295D346400771D77 /* Card+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3C994295D346400771D77 /* Card+CoreDataClass.swift */; };
+		1BE3C997295D347C00771D77 /* VocabList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3C996295D347C00771D77 /* VocabList+CoreDataClass.swift */; };
 		1BE5CC382839D7FA008CA386 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE5CC372839D7FA008CA386 /* WidgetKit.framework */; };
 		1BE5CC3A2839D7FA008CA386 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE5CC392839D7FA008CA386 /* SwiftUI.framework */; };
 		1BE5CC3D2839D7FA008CA386 /* widget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE5CC3C2839D7FA008CA386 /* widget.swift */; };
@@ -133,6 +141,7 @@
 		1B64C11527EFBAEF0060AF97 /* CardEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardEditView.swift; sourceTree = "<group>"; };
 		1B753C3527F7F048005A0776 /* cartographer2 (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "cartographer2 (iOS).entitlements"; sourceTree = "<group>"; };
 		1B753C3627F8766F005A0776 /* ListMoveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMoveView.swift; sourceTree = "<group>"; };
+		1B792A84295DE3E500EF90BE /* VocabListHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabListHelpers.swift; sourceTree = "<group>"; };
 		1B80202C28105B08000555CE /* Cartographer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cartographer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B80202E28105B09000555CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B80203928105B0A000555CE /* cartographer2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartographer2App.swift; sourceTree = "<group>"; };
@@ -168,12 +177,13 @@
 		1BAF864A27D40530009A10C6 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		1BBB34FA27F934EF00BD7476 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1BBB34FD27F9364B00BD7476 /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
-		1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabListHelpers.swift; sourceTree = "<group>"; };
 		1BC5A57E28B676F400E23F7F /* CardAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddView.swift; sourceTree = "<group>"; };
 		1BC5BEB627F0A56900CB133C /* CardLastSeenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardLastSeenView.swift; sourceTree = "<group>"; };
 		1BCC823027F8C656007E3E3A /* ListSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectorView.swift; sourceTree = "<group>"; };
 		1BCC823227F8CCEB007E3E3A /* ListOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOutlineView.swift; sourceTree = "<group>"; };
 		1BCC823427F8DBE7007E3E3A /* CardMoveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardMoveView.swift; sourceTree = "<group>"; };
+		1BE3C994295D346400771D77 /* Card+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Card+CoreDataClass.swift"; path = "Shared/Card+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1BE3C996295D347C00771D77 /* VocabList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "VocabList+CoreDataClass.swift"; path = "Shared/VocabList+CoreDataClass.swift"; sourceTree = "<group>"; };
 		1BE5CC362839D7FA008CA386 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BE5CC372839D7FA008CA386 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		1BE5CC392839D7FA008CA386 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -186,6 +196,8 @@
 		1BEF8D0B28119275003F9D50 /* ListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContentView.swift; sourceTree = "<group>"; };
 		1BEF8D0F28119429003F9D50 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		1BEF8D112811986E003F9D50 /* CardAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddView.swift; sourceTree = "<group>"; };
+		1BEF8F07295CF65F0083B2F2 /* VocabList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VocabList+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1BEF8F08295CF65F0083B2F2 /* Card+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Card+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1BF2FE56281423CB00FC7289 /* ListExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListExportView.swift; sourceTree = "<group>"; };
 		1BFB915A2860BCE4002B66B6 /* widgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = widgetExtension.entitlements; sourceTree = "<group>"; };
 		1BFB915B2860BDE4002B66B6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS16.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -284,7 +296,6 @@
 		1B94A09827E55CDB00111D9D /* Lists */ = {
 			isa = PBXGroup;
 			children = (
-				1BBF840A27DCDB5800C0069B /* VocabListHelpers.swift */,
 				1BA12E0D27E6B49C00F72A2F /* ListView.swift */,
 				1BF2FE56281423CB00FC7289 /* ListExportView.swift */,
 				1BA14EF4280C7738005A0BBD /* CardModePicker.swift */,
@@ -295,6 +306,7 @@
 				1B8F9CE927F1196B00014407 /* ListSortView.swift */,
 				1BA12E0727E6B45800F72A2F /* ListRow.swift */,
 				1BA12E1027E6B83500F72A2F /* ListEditView.swift */,
+				1B792A84295DE3E500EF90BE /* VocabListHelpers.swift */,
 				1BA12E1627E7855600F72A2F /* IconPickerView.swift */,
 			);
 			path = Lists;
@@ -318,6 +330,10 @@
 				1BFB915D2860F82E002B66B6 /* cartographer2--iOS--Info.plist */,
 				1BFB915A2860BCE4002B66B6 /* widgetExtension.entitlements */,
 				1B753C3527F7F048005A0776 /* cartographer2 (iOS).entitlements */,
+				1BEF8F07295CF65F0083B2F2 /* VocabList+CoreDataProperties.swift */,
+				1BE3C996295D347C00771D77 /* VocabList+CoreDataClass.swift */,
+				1BEF8F08295CF65F0083B2F2 /* Card+CoreDataProperties.swift */,
+				1BE3C994295D346400771D77 /* Card+CoreDataClass.swift */,
 				1BAF862027D4052F009A10C6 /* Shared */,
 				1BAF863227D40530009A10C6 /* macOS */,
 				1BAF863B27D40530009A10C6 /* Tests iOS */,
@@ -571,20 +587,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B3092C5292844330080814F /* CardView.swift in Sources */,
+				1BDD3C21295D38D0009C0D6D /* Card+CoreDataClass.swift in Sources */,
 				1B80203E28105B0A000555CE /* NotificationController.swift in Sources */,
+				1BDD3C22295D38D0009C0D6D /* VocabList+CoreDataProperties.swift in Sources */,
 				1B80205828105C6F000555CE /* CardHelpers.swift in Sources */,
 				1B80205728105BBF000555CE /* cartographer2.xcdatamodeld in Sources */,
 				1B80203C28105B0A000555CE /* ContentView.swift in Sources */,
 				1BEF8D0C28119275003F9D50 /* ListContentView.swift in Sources */,
+				1BDD3C20295D38D0009C0D6D /* Card+CoreDataProperties.swift in Sources */,
 				1B80204228105B0A000555CE /* ComplicationController.swift in Sources */,
 				1BEF8D122811986E003F9D50 /* CardAddView.swift in Sources */,
 				1B80205628105B9F000555CE /* Persistence.swift in Sources */,
-				1B80205928105C73000555CE /* VocabListHelpers.swift in Sources */,
 				1BEF8D1028119429003F9D50 /* ListView.swift in Sources */,
 				1B5DF36A28AEEECE00C378AA /* Helpers.swift in Sources */,
 				1B80203A28105B0A000555CE /* cartographer2App.swift in Sources */,
 				1B80204028105B0A000555CE /* NotificationView.swift in Sources */,
 				1B3092C7292848EA0080814F /* CardEditView.swift in Sources */,
+				1BDD3C23295D38D0009C0D6D /* VocabList+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,9 +613,10 @@
 			files = (
 				1BC5A57F28B676F400E23F7F /* CardAddView.swift in Sources */,
 				1B64C10F27EFB5CC0060AF97 /* CardView.swift in Sources */,
+				1BE3C995295D346400771D77 /* Card+CoreDataClass.swift in Sources */,
+				1B792A85295DE3E500EF90BE /* VocabListHelpers.swift in Sources */,
 				1BAF864E27D40530009A10C6 /* cartographer2App.swift in Sources */,
 				1BAF865227D40530009A10C6 /* Persistence.swift in Sources */,
-				1BBF840B27DCDB5800C0069B /* VocabListHelpers.swift in Sources */,
 				1BC5BEB727F0A56900CB133C /* CardLastSeenView.swift in Sources */,
 				1BA14EF5280C7738005A0BBD /* CardModePicker.swift in Sources */,
 				1BA12E1427E764C400F72A2F /* Helpers.swift in Sources */,
@@ -608,6 +628,7 @@
 				1BA12E0827E6B45800F72A2F /* ListRow.swift in Sources */,
 				1BCC823327F8CCEB007E3E3A /* ListOutlineView.swift in Sources */,
 				1B941B9328A95A8B0036C363 /* SheetContainerView.swift in Sources */,
+				1BE3C997295D347C00771D77 /* VocabList+CoreDataClass.swift in Sources */,
 				1BAF864C27D40530009A10C6 /* cartographer2.xcdatamodeld in Sources */,
 				1B8F9CEA27F1196B00014407 /* ListSortView.swift in Sources */,
 				1BAF865027D40530009A10C6 /* ContentView.swift in Sources */,
@@ -636,12 +657,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BDD3C25295D38D1009C0D6D /* Card+CoreDataClass.swift in Sources */,
 				1BE5CC422839D7FB008CA386 /* widget.intentdefinition in Sources */,
 				1BE5CC3D2839D7FA008CA386 /* widget.swift in Sources */,
+				1BDD3C26295D38D1009C0D6D /* VocabList+CoreDataProperties.swift in Sources */,
 				1B0D141B2842BE7500B66973 /* cartographer2.xcdatamodeld in Sources */,
+				1BDD3C24295D38D1009C0D6D /* Card+CoreDataProperties.swift in Sources */,
 				1B0D141C2842C20C00B66973 /* Persistence.swift in Sources */,
 				1B0D14192842BE6E00B66973 /* CardHelpers.swift in Sources */,
-				1B0D141A2842BE7100B66973 /* VocabListHelpers.swift in Sources */,
+				1BDD3C27295D38D1009C0D6D /* VocabList+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

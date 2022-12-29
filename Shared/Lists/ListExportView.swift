@@ -14,33 +14,28 @@ struct ListExportView: View {
     
     @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "word", ascending: true, selector: #selector(NSString.caseInsensitiveCompare))], animation: .default)
     private var fetchedCards: FetchedResults<Card>
-    
-    @AppStorage("cardSorting") var globalSorting: Int = 0
-    @AppStorage("showChildren") var globalShowChildren: Bool = false
+
+    @EnvironmentObject var topList: VocabList
 
     @AppStorage("separateCardSorting") var separateSorting = false
     @AppStorage("separateShowChildren") var separateShowChildren = false
 
-    var defaultSorting: Int {
+    var defaultSorting: VocabList.SortMethod {
         if separateSorting {
-            if let id = list.getId() {
-                return UserDefaults.standard.integer(forKey: "cardSorting" + id)
-            }
+            return list.sorting
         }
-        return globalSorting
+        return topList.sorting
     }
 
     var defaultShowChildren: Bool {
         if separateShowChildren {
-            if let id = list.getId() {
-                return UserDefaults.standard.bool(forKey: "showChildren" + id)
-            }
+            return list.children
         }
-        return globalShowChildren
+        return topList.children
     }
 
     
-    @State var sorting = 0
+    @State var sorting = VocabList.SortMethod.alphabetical
     @State var showChildren = false
     
     @State var cardSeparator:String = ""

@@ -9,7 +9,15 @@ import SwiftUI
 
 
 extension VocabList {
-    var wrappedTitle: String {
+    public var wrappedIcon: String {
+        get {
+            icon == "" || icon == nil ? "rectangle.3.offgrid" : icon ?? ""
+        }
+        set (icon) {
+            self.icon = icon.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+    }
+    public var wrappedTitle: String {
         get {
             title ?? "Untitled List"
         }
@@ -19,26 +27,7 @@ extension VocabList {
             }
         }
     }
-    
-    var wrappedIcon: String {
-        get {
-            icon == "" || icon == nil ? "rectangle.3.offgrid" : icon ?? ""
-        }
-        set (icon) {
-            self.icon = icon.trimmingCharacters(in: .whitespacesAndNewlines)
-        }
-    }
-    
-    enum SortMethod: Int64 {
-        case alphabetical = 0
-        case date = 1
-        case dateReversed = 2
-        case familiarity = 3
-        case familiarityReversed = 4
-        case random = 5
-    }
-    
-    func getLists() -> [VocabList] {
+    public func getLists() -> [VocabList] {
         if let lists = self.lists {
             return lists.compactMap { list in
                 return list as? VocabList
@@ -47,7 +36,9 @@ extension VocabList {
             return []
         }
     }
-    
+
+
+
     static func getLists(of list:VocabList, from fetchedLists: FetchedResults<VocabList>) -> [VocabList] {
         let lists = fetchedLists.map{$0}
         let filtered = lists.filter { childList in
@@ -55,7 +46,7 @@ extension VocabList {
         }
         return filtered
     }
-    
+
     static func getCards(of list:VocabList,from fetchedCards: FetchedResults<Card>, children:Bool = false) -> [Card] {
         return children ? fetchedCards.filter { card in
             return card.isInside(list)
@@ -63,23 +54,23 @@ extension VocabList {
             return card.parentList == list
         }
     }
-    
+
     func isInside(_ list: VocabList) -> Bool {
         if parentList == list { return true }
-        
+
         return parentList?.isInside(list) ?? false
     }
-    
+
     func getPath(from containerList: VocabList) -> [String] {
         guard parentList != containerList else { return [] }
-        
+
         var pathSegments: [String] = []
-        
+
         if let parent = parentList {
             pathSegments.append(contentsOf: parent.getPath(from: containerList))
             pathSegments.append(parent.wrappedTitle)
         }
-        
+
         return pathSegments
     }
 
@@ -91,7 +82,7 @@ extension VocabList {
         }
         return nil
     }
-    
+
     func delete(){
         let viewContext = PersistenceController.shared.container.viewContext
         viewContext.delete(self)

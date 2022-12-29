@@ -87,3 +87,17 @@ func checkTopMostList(){
     }
 }
 
+extension Date {
+    func relativeTo(_ date:Date) -> String{
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .abbreviated
+        let dateDifference = date.timeIntervalSince(self)
+        if dateDifference < 60 {
+            return "now"
+        }
+        return formatter.localizedString(for: self, relativeTo: date)
+    }
+    var relativeToNow:String {
+        return relativeTo(Date())
+    }
+}

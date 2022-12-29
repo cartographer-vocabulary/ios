@@ -15,7 +15,7 @@ struct CardView: View {
     
     @ObservedObject var card:Card
     var parentList:VocabList
-    var mode:Int = 0
+    var mode: VocabList.CardMode = .full
 
     @State var showingEditSheet = false
     @State var showingMoveSheet = false
@@ -49,16 +49,16 @@ struct CardView: View {
                 Text(card.wrappedWord)
                     .font(.title2)
                     .fontWeight(.medium)
-                    .opacity(mode != 2 || isFlipped ? 1 : 0)
-                    .background(mode != 2 || isFlipped ? .clear : .primary)
+                    .opacity(mode != .hideWord || isFlipped ? 1 : 0)
+                    .background(mode != .hideWord || isFlipped ? .clear : .primary)
                     .cornerRadius(3)
                     .padding([.bottom], -4)
                     .animation(.default, value: mode)
                     .lineLimit(1...)
 
                 Text(card.wrappedDefinition)
-                    .opacity(mode != 1 || isFlipped ? 1 : 0)
-                    .background(mode != 1 || isFlipped ? .clear : .primary)
+                    .opacity(mode != .hideDefinition || isFlipped ? 1 : 0)
+                    .background(mode != .hideDefinition || isFlipped ? .clear : .primary)
                     .cornerRadius(3)
                     .animation(.default, value: mode)
                     .lineLimit(1...)
@@ -105,7 +105,7 @@ struct CardView: View {
             #if os(iOS)
             impactMed.impactOccurred()
             #endif
-            if mode == 0 {
+            if mode == .full {
                 card.seen()
                 NotificationCenter.default.post(name:Notification.Name("sort"), object:nil)
             } else {
